@@ -1,0 +1,46 @@
+[user]
+	name = Paige Dwight
+	email = 85356912+plewg@users.noreply.github.com
+[push]
+	default = simple
+[pull]
+	rebase = true
+[remote "origin"]
+	push = HEAD
+[branch]
+	autosetupmerge = true
+[color]
+	branch = auto
+	diff = auto
+	ui = true
+[core]
+	commentchar = $
+[fetch]
+	prune = true
+[alias]
+	br = branch
+	co = checkout
+	st = status
+	cm = !git commit -m
+	new = "!f() { git checkout -b \"$1\";git push -u origin \"$1\"; }; f"
+	cmb = "!f() { git cm \"$(git rev-parse --abbrev-ref HEAD | sed -E 's/^([A-Z]{1,}-[0-9]{1,}).*$/\\1/'): $1\" \"${@:2}\"; }; f"
+	ci = commit
+	gud = !git commit --amend --no-edit
+	lp = "!f() { git log --color --pretty=format:\"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)\" --relative-date --decorate $@; }; f"
+[rerere]
+	enabled = true
+[diff]
+	guitool = meld
+	tool = meld
+[difftool]
+	prompt = false
+[difftool "meld"]
+	trustExitCode = true
+[merge]
+	tool = meld
+[mergetool]
+	prompt = false
+[mergetool "meld"]
+	trustExitCode = true
+[init]
+	defaultBranch = main
