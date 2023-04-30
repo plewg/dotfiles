@@ -54,7 +54,7 @@ packages:
   - gnupg
   - cloc
   - homebrew/cask/docker
-  # - nix
+  - nix
   - direnv
   - shellcheck
   - shfmt
