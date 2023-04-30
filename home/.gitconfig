@@ -1,6 +1,7 @@
 [user]
 	name = Paige Dwight
 	email = 85356912+plewg@users.noreply.github.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEocaz+DznGzHgJCzL5vfpXXAxb9i35Ms9TYXJ94u5Qe
 [push]
 	default = simple
 [pull]
@@ -15,7 +16,6 @@
 	ui = true
 [core]
 	commentchar = $
-	sshCommand = /usr/bin/ssh
 [fetch]
 	prune = true
 [alias]
@@ -45,3 +45,10 @@
 	trustExitCode = true
 [init]
 	defaultBranch = main
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	allowedSignersFile = ~/.config/git/allowed_signers
+[commit]
+	gpgsign = true
