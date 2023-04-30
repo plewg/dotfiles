@@ -3,10 +3,13 @@
 export ZSH="$HOME/.oh-my-zsh"
 export GPG_TTY=$(tty)
 
+
 PATH="/opt/homebrew/bin:$PATH"
 PATH="/opt/homebrew/sbin:$PATH"
-PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
-PATH="/opt/homebrew/opt/python@3.10/libexec/bin:$PATH"
+if [[ "$HOST" == "work-paige" ]]; then
+    PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
+    PATH="/opt/homebrew/opt/python@3.10/libexec/bin:$PATH"
+fi
 PATH="$HOME/.local/bin:$PATH"
 export PATH
 export LESS="-F -R"
@@ -15,7 +18,6 @@ ZSH_THEME="robbyrussell"
 CASE_SENSITIVE="true"
 HISTSIZE=1000000
 SAVEHIST=1000000
-
 plugins=(git jira)
 
 source $ZSH/oh-my-zsh.sh
@@ -57,7 +59,15 @@ alias dc="docker compose"
 
 # zprof
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which rbenv > /dev/null; then
+    eval "$(rbenv init - zsh)"
+fi
+if which nodenv > /dev/null; then
+    eval "$(nodenv init -)"
+fi
+eval "$(direnv hook zsh)"
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
 export DISABLE_SPRING=true
-eval "$(rbenv init - zsh)"
-eval "$(nodenv init -)"
