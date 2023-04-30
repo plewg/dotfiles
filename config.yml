@@ -24,6 +24,7 @@ packages:
   - htop
   - whois
   - openssh
+  - ripgrep
   - ssh-copy-id
   - rsync
   - lsof
@@ -40,7 +41,6 @@ packages:
   - brew-cask-completion
   - launchctl-completion
   - netcat
-  - homebrew/cask/1password
   - homebrew/cask/spotify
   - homebrew/cask/adobe-acrobat-reader
   - homebrew/cask/meetingbar
@@ -52,7 +52,7 @@ packages:
   - gnupg
   - cloc
   - homebrew/cask/docker
-  - nix
+  # - nix
   - direnv
   - shellcheck
   - shfmt
@@ -68,7 +68,7 @@ default.programs:
   http://: Google Chrome
   file://: Finder
 
-macos.terminal.theme: files/mine.terminal
+# macos.terminal.theme: files/mine.terminal
 
 macos.hide:
   - ~/Music
@@ -657,6 +657,7 @@ when: hostname != "work-paige"
 
 packages:
   - homebrew/cask/google-chrome
+  - homebrew/cask/1password
 
 macos.pmset:
   all:

@@ -15,6 +15,7 @@
 	ui = true
 [core]
 	commentchar = $
+	sshCommand = /usr/bin/ssh
 [fetch]
 	prune = true
 [alias]
