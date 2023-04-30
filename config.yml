@@ -6,6 +6,8 @@ files:
   - source: home
     destination: ~/
     link_files: true
+  - source: files/com.googlecode.iterm2.plist
+    destination: ~/Library/Preferences/com.googlecode.iterm2.plist
 
 git.repo:
   - source: https://github.com/robbyrussell/oh-my-zsh.git
