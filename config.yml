@@ -13,10 +13,6 @@ git.repo:
   - source: https://github.com/robbyrussell/oh-my-zsh.git
     destination: ~/.oh-my-zsh
 
-sudoers:
-  defaults: |
-    Defaults timestamp_timeout=15
-
 packages:
   - homebrew/cask/visual-studio-code
   - homebrew/cask/iterm2
@@ -657,6 +653,14 @@ macos.defaults:
 ---
 when: hostname != "work-paige"
 
+sudoers:
+  mode: passwordless
+  defaults: |
+    # Don't keep HOME (that's super obnoxious)
+    Defaults env_keep -= "HOME"
+    # But do keep PATH so we can run our commands as root
+    Defaults exempt_group = {{ user }}
+
 packages:
   - homebrew/cask/google-chrome
   - homebrew/cask/1password
@@ -722,3 +726,7 @@ macos.pmset:
     hibernatemode: 0
     displaysleep: 15
     sleep: 15
+
+sudoers:
+  defaults: |
+    Defaults timestamp_timeout=15
