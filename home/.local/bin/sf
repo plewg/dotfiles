@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -e
+
+run_with_doppler() {
+    LOG_LEVEL=warn doppler run --preserve-env --command="$*"
+}
+
+rspec() {
+    run_with_doppler bin/rspec "$@"
+}
+
+start() {
+    cd ~/Projects/secureframe
+    make docker
+    tmuxit --session "workin-hard" \
+        "yarn && make frontend" \
+        "h50%" "make bundle && make db_migrate && make server" \
+        "50%" "make worker"
+}
+
+case "$1" in
+    test)
+        rspec "${@:2}"
+        ;;
+    start)
+        start
+        ;;
+    *)
+        echo "Usage: $0 {test}"
+        exit 1
+        ;;
+esac
