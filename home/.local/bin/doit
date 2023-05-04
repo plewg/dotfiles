@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ -z "${1}" ]]; then
+    echo "Usage: $0 <project>"
+    exit 1
+elif [[ -f "${HOME}/Projects/${1}" ]]; then
+    cd "${HOME}/Projects/${1}"
+else
+    echo "It can't be done captain!"
+    echo "Would ye like one of these?"
+    for project in "${HOME}/Projects/"*; do
+        echo "  - ${project}"
+    done
+    exit 1
+fi
