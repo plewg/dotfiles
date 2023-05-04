@@ -54,6 +54,7 @@ packages:
   - direnv
   - shellcheck
   - shfmt
+  - fzf
 
 default.programs:
   .todo: Visual Studio Code

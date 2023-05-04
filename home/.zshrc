@@ -59,6 +59,17 @@ alias gca="git commit --amend"
 alias gan="git add -N ."
 alias dc="docker compose"
 
+doit() {
+    declare dir="$1"
+    if [[ -z "$dir" || ! -d "${HOME}/Projects/${dir}" ]]; then
+        #shellcheck disable=SC2038
+        dir="$(fzf -q "$dir" <<< "$(find "${HOME}/Projects" -type d -mindepth 1 -maxdepth 1 | xargs basename)")"
+    fi
+
+    cd "${HOME}/Projects/${dir}" || return 1
+}
+
+
 # zprof
 
 if which rbenv > /dev/null; then
