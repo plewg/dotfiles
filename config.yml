@@ -62,6 +62,12 @@ default.programs:
   .md: Visual Studio Code
   .yml: Visual Studio Code
   .json: Visual Studio Code
+  .js: Visual Studio Code
+  .jsx: Visual Studio Code
+  .ts: Visual Studio Code
+  .tsx: Visual Studio Code
+  .rb: Visual Studio Code
+  .erb: Visual Studio Code
   .xml: Visual Studio Code
   http://: Google Chrome
   file://: Finder
