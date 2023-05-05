@@ -23,6 +23,10 @@ console() {
     run_with_doppler bin/rails console
 }
 
+db() {
+    make psql
+}
+
 case "$1" in
     test)
         rspec "${@:2}"
@@ -32,6 +36,9 @@ case "$1" in
         ;;
     console)
         console
+        ;;
+    db)
+        db
         ;;
     *)
         echo "Usage: $0 {test}"
