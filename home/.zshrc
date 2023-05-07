@@ -7,6 +7,9 @@ export DISABLE_SPRING=true
 export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 export LESS="-F -R"
 
+#shellcheck disable=SC1091
+[ -s "${HOME}/.profile.private" ] && . "${HOME}/.profile.private"
+
 PATH="/opt/homebrew/bin:${PATH}"
 PATH="/opt/homebrew/sbin:${PATH}"
 if [[ "$HOST" == "work-paige" ]]; then

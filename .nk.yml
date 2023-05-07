@@ -1,6 +1,7 @@
 sources:
   - .
-  # - ../dotfiles-private
+  - ../dotfiles-private
+
 plugins:
   - ciiqr/nk-plugins#files
   - ciiqr/nk-plugins#sudoers
