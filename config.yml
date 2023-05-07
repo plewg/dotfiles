@@ -55,6 +55,7 @@ packages:
   - shellcheck
   - shfmt
   - fzf
+  - pnpm
 
 default.programs:
   .todo: Visual Studio Code

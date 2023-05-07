@@ -1,0 +1,227 @@
+{
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            // Note
+            {
+                // -
+                "scope": "source.note variable.parameter",
+                "settings": {
+                    "fontStyle": ""
+                }
+            },
+            {
+                // !!
+                "scope": "source.note invalid",
+                "settings": {
+                    "foreground": "#F92672",
+                    "fontStyle": "bold underline"
+                }
+            }
+        ]
+    },
+    "workbench.colorCustomizations": {
+        // TODO: I wish I could just add a border...
+        "minimapSlider.background": "#79797960"
+        // "minimapSlider.background": "#79797933" // default
+    },
+    // theme
+    "workbench.colorTheme": "Dracula",
+    "workbench.iconTheme": "vs-seti",
+    "editor.fontSize": 24,
+    "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+    // workbench
+    "workbench.settings.editor": "json",
+    "workbench.settings.openDefaultKeybindings": false,
+    "workbench.settings.openDefaultSettings": false,
+    "workbench.activityBar.visible": false,
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.panel.defaultLocation": "left",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.editor.focusRecentEditorAfterClose": false,
+    // editor
+    "editor.formatOnSave": true,
+    "editor.rulers": [80, 100, 120],
+    "editor.minimap.showSlider": "always",
+    "editor.renderLineHighlight": "all",
+    "editor.showFoldingControls": "always",
+    "editor.cursorBlinking": "solid",
+    "editor.cursorStyle": "line-thin",
+    "editor.scrollbar.vertical": "hidden",
+    "editor.scrollbar.verticalScrollbarSize": 0,
+    "editor.matchBrackets": "never",
+    "subtleBrackets.disableNative": false,
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/TAGS": true,
+        "**/build": true,
+        "**/generated": true,
+        "**/.cache": true,
+        "**/.turbo": true,
+        "**/.plasmo": true
+    },
+    "search.useIgnoreFiles": false,
+    // status bar
+    "git.enableStatusBarSync": false,
+    // search
+    // TODO: want project/open files in quick open, not history...
+    "search.quickOpen.includeHistory": false,
+    // macos
+    "window.nativeTabs": true,
+    // project manager
+    "projectManager.cacheProjectsBetweenSessions": false, // TODO: experimenting to see if this fixes issues with it randomly forgetting about projects (even when the project is open in a window)
+    "projectManager.showProjectNameInStatusBar": false,
+    "projectManager.ignoreProjectsWithinProjects": true,
+    "projectManager.any.maxDepthRecursion": 1,
+    "projectManager.sortList": "Recent",
+    "projectManager.git.baseFolders": ["~/Projects"],
+    "projectManager.git.ignoredFolders": [
+        "node_modules",
+        "out",
+        "typings",
+        "test",
+        ".haxelib",
+        // ignored projects:
+        ".sublime", // TODO: remove once cleaned up
+        "config",
+        "config-private",
+        "lane-next",
+        "lane-certificates",
+        "laptop"
+    ],
+    // prettier
+    "prettier.proseWrap": "always",
+    "prettier.trailingComma": "all",
+    // customize ui
+    // "customizeUI.stylesheet": {
+    //     ".editor-actions": "display: none !important;"
+    // },
+    // language settings
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[graphql]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[handlebars]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+        "editor.wordWrap": "off"
+    },
+    // codespaces
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    // misc
+    "prettier.requireConfig": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "files.autoSave": "onFocusChange",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.semanticHighlighting.enabled": true,
+    "workbench.editor.enablePreview": false,
+    "shellcheck.ignorePatterns": {
+        "**/*.fish": true,
+        "**/*.xonshrc": true,
+        "**/*.xsh": true,
+        "**/*.zsh": true,
+        "**/*.zshrc": true,
+        "**/zshrc": true,
+        "**/*.zprofile": true,
+        "**/zprofile": true,
+        "**/*.zlogin": true,
+        "**/zlogin": true,
+        "**/*.zlogout": true,
+        "**/zlogout": true,
+        "**/*.zshenv": true,
+        "**/zshenv": true,
+        "**/*.zsh-theme": true
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "files.watcherExclude": {
+        "**/dist/*/**": true
+    },
+    "search.exclude": {
+        "**/dist": true,
+        "/node_modules": true,
+        "/.pnp": true,
+        ".pnp.js": true,
+        "/coverage": true,
+        "/prisma/db.sqlite": true,
+        "/prisma/db.sqlite-journal": true,
+        "/.next/": true,
+        "/out/": true,
+        "next-env.d.ts": true,
+        "/build": true,
+        ".DS_Store": true,
+        "*.pem": true,
+        "npm-debug.log*": true,
+        "yarn-debug.log*": true,
+        "yarn-error.log*": true,
+        ".pnpm-debug.log*": true,
+        ".vercel": true,
+        "*.tsbuildinfo": true
+    },
+    "gitlens.plusFeatures.enabled": false,
+    "editor.gotoLocation.multipleDefinitions": "goto",
+    "cSpell.ignoreWords": ["fontawesome", "fortawesome", "luxon"],
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "editor.inlineSuggest.enabled": true,
+    "emmet.showExpandedAbbreviation": "never",
+    "shellcheck.exclude": [
+        // disable: Expressions don't expand in single quotes, use double quotes for that.
+        "2016"
+    ],
+    "npm.packageManager": "pnpm",
+    "eslint.packageManager": "pnpm",
+    "cSpell.userWords": [
+        "Authed",
+        "brainthyme",
+        "CLIENTVAR",
+        "middlewares",
+        "NEXTAUTH",
+        "nextjs",
+        "packagejson",
+        "pentible",
+        "runtimes",
+        "superjson",
+        "tailwindcss",
+        "TRPC"
+    ],
+    "breadcrumbs.enabled": false
+    // TODO: review recommendations:
+    // "editor.hideCursorInOverviewRuler": true,
+    // "editor.occurrencesHighlight": false,
+    // "editor.overviewRulerBorder": false,
+    // "editor.scrollbar.horizontal": "hidden",
+    // "editor.colorDecorators": false,
+    // "editor.snippetSuggestions": "top",
+    // "editor.suggestOnTriggerCharacters": false,
+    // "editor.parameterHints": false,
+    // "editor.quickSuggestions": false,
+    // "explorer.openEditors.visible": 0,
+    // "workbench.sideBar.location": "left",
+    // "javascript.validate.enable": false,
+}

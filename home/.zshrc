@@ -58,6 +58,7 @@ alias gcan="git commit --amend --no-edit"
 alias gca="git commit --amend"
 alias gan="git add -N ."
 alias dc="docker compose"
+alias p="pnpm"
 
 doit() {
     declare dir="$1"
