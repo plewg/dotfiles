@@ -14,3 +14,4 @@ plugins:
   - ciiqr/nk-plugins#macos-default-programs
   - ciiqr/nk-plugins#nix-cli
   - ciiqr/nk-plugins#brew
+  - ./plugins/link-cleanup

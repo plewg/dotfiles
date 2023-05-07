@@ -13,6 +13,9 @@ git.repo:
   - source: https://github.com/robbyrussell/oh-my-zsh.git
     destination: ~/.oh-my-zsh
 
+link-cleanup:
+  - ~/.local/bin
+
 packages:
   - homebrew/cask/visual-studio-code
   - homebrew/cask/iterm2
