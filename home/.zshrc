@@ -70,6 +70,9 @@ doit() {
         dir="$(fzf -q "$dir" <<< "$(find "${HOME}/Projects" -type d -mindepth 1 -maxdepth 1 | xargs basename)")"
     fi
 
+    if [[ -z "$dir" ]]; then
+        return 1
+    fi
     cd "${HOME}/Projects/${dir}" || return 1
 }
 
