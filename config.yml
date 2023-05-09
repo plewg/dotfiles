@@ -59,6 +59,8 @@ packages:
   - shfmt
   - fzf
   - pnpm
+  - planetscale/tap/pscale
+  - mysql-client
 
 default.programs:
   .todo: Visual Studio Code
