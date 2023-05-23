@@ -24,6 +24,7 @@ CASE_SENSITIVE="true"
 HISTSIZE=1000000
 SAVEHIST=1000000
 plugins=(git jira)
+DISABLE_AUTO_UPDATE=true
 
 source $ZSH/oh-my-zsh.sh
 source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
