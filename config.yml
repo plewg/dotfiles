@@ -61,6 +61,7 @@ packages:
   - pnpm
   - planetscale/tap/pscale
   - mysql-client
+  - neovim
 
 default.programs:
   .todo: Visual Studio Code
