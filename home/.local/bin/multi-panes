@@ -1,0 +1,27 @@
+#!/usr/bin/env osascript
+
+tell application "iTerm"
+    tell current window
+        create tab with profile "Hotkey Window"
+    end tell
+
+    tell current session of current window
+        write text "cd ~/Projects/secureframe"
+        write text "make docker"
+        split vertically with profile "Hotkey Window"
+    end tell
+
+    tell first session of current tab of current window
+        write text "cd ~/Projects/secureframe"
+        write text "yarn && make frontend"
+    end tell
+    tell second session of current tab of current window
+        split horizontally with profile "Hotkey Window"
+        write text "cd ~/Projects/secureframe"
+        write text "make bundle && make db_migrate && make server"
+    end tell
+    tell third session of current tab of current window
+        write text "cd ~/Projects/secureframe"
+        write text "make worker"
+    end tell
+end tell

@@ -3,9 +3,10 @@
 export ZSH="${HOME}/.oh-my-zsh"
 export GPG_TTY="$(tty)"
 export NVM_DIR="${HOME}/.nvm"
-export DISABLE_SPRING=true
+export DISABLE_SPRING="true"
 export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 export LESS="-F -R"
+export RAILS_LOG_LEVEL="warn"
 
 #shellcheck disable=SC1091
 [ -s "${HOME}/.profile.private" ] && . "${HOME}/.profile.private"

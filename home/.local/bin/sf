@@ -10,13 +10,25 @@ rspec() {
     run_with_doppler bin/rspec "$@"
 }
 
+
 start() {
+    multi-panes
+    # cd ~/Projects/secureframe
+    # make docker
+    # tmuxit --session "workin-hard" \
+    #     "yarn && make frontend" \
+    #     "h50%" "make bundle && make db_migrate && make server" \
+    #     "50%" "make worker"
+}
+
+
+cypress() {
     cd ~/Projects/secureframe
     make docker
-    tmuxit --session "workin-hard" \
-        "yarn && make frontend" \
-        "h50%" "make bundle && make db_migrate && make server" \
-        "50%" "make worker"
+    tmuxit --session "cypress" \
+        "make cypress_frontend" \
+        "h50%" "make cypress_server" \
+        "50%" "make cypress_open"
 }
 
 console() {
@@ -39,6 +51,9 @@ case "$1" in
         ;;
     db)
         db
+        ;;
+    cypress)
+        cypress
         ;;
     *)
         echo "Usage: $0 {test}"

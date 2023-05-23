@@ -79,6 +79,7 @@ default.programs:
   .xml: Visual Studio Code
   http://: Google Chrome
   file://: Finder
+  .graphql: Visual Studio Code
 
 # macos.terminal.theme: files/mine.terminal
 
@@ -462,8 +463,6 @@ macos.defaults:
       Privileges: true
     resets: Finder
 
-  # % Dock
-
   # Disable: Automatically rearrange Spaces based on most recent use
   - domain: com.apple.dock
     name: mru-spaces
@@ -744,3 +743,6 @@ macos.pmset:
 sudoers:
   defaults: |
     Defaults timestamp_timeout=15
+
+packages:
+  - postgresql@12

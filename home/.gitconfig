@@ -4,18 +4,26 @@
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEocaz+DznGzHgJCzL5vfpXXAxb9i35Ms9TYXJ94u5Qe
 [push]
 	default = simple
+	autoSetupRemote = true
 [pull]
 	rebase = true
-[remote "origin"]
-	push = HEAD
-[branch]
-	autosetupmerge = true
 [color]
 	branch = auto
 	diff = auto
 	ui = true
-[core]
-	commentchar = $
+[rerere]
+	enabled = true
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	allowedSignersFile = ~/.config/git/allowed_signers
+[commit]
+	gpgsign = true
+[branch]
+	autosetupmerge = true
 [fetch]
 	prune = true
 [alias]
@@ -28,27 +36,3 @@
 	ci = commit
 	gud = !git commit --amend --no-edit
 	lp = "!f() { git log --color --pretty=format:\"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)\" --relative-date --decorate $@; }; f"
-[rerere]
-	enabled = true
-[diff]
-	guitool = meld
-	tool = meld
-[difftool]
-	prompt = false
-[difftool "meld"]
-	trustExitCode = true
-[merge]
-	tool = meld
-[mergetool]
-	prompt = false
-[mergetool "meld"]
-	trustExitCode = true
-[init]
-	defaultBranch = main
-[gpg]
-	format = ssh
-[gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
-	allowedSignersFile = ~/.config/git/allowed_signers
-[commit]
-	gpgsign = true
