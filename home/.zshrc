@@ -16,7 +16,10 @@ PATH="/opt/homebrew/sbin:${PATH}"
 if [[ "$HOST" == "work-paige" ]]; then
     PATH="/opt/homebrew/opt/postgresql@12/bin:${PATH}"
     PATH="/opt/homebrew/opt/python@3.10/libexec/bin:${PATH}"
+else
+    PATH="/opt/homebrew/opt/ruby@2.7/bin:${PATH}"
 fi
+
 PATH="${HOME}/.local/bin:${PATH}"
 export PATH
 
