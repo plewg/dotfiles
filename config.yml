@@ -12,6 +12,8 @@ files:
 git.repo:
   - source: https://github.com/ohmyzsh/ohmyzsh.git
     destination: ~/.oh-my-zsh
+  - source: https://github.com/wbthomason/packer.nvim
+    destination: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 link-cleanup:
   - ~/.local/bin
