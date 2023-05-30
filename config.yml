@@ -21,6 +21,7 @@ link-cleanup:
 packages:
   - 1password/tap/1password-cli
   - awscli
+  - session-manager-plugin
   - homebrew/cask/visual-studio-code
   - homebrew/cask/iterm2
   - less

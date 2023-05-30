@@ -14,10 +14,11 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'rose-pine/neovim',
-        as = 'rose-pine',
+        -- 'monokai/neovim',
+        'tanvirtin/monokai.nvim',
+        as = 'monokai',
         config = function()
-            vim.cmd('colorscheme rose-pine')
+            vim.cmd('colorscheme monokai')
         end
     }
 
@@ -78,5 +79,8 @@ return require('packer').startup(function(use)
                 },
             })
         end
+    }
+    use {
+        'brenoprata10/nvim-highlight-colors'
     }
 end)
