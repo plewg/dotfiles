@@ -19,6 +19,7 @@ link-cleanup:
   - ~/.local/bin
 
 packages:
+  - 1password/tap/1password-cli
   - awscli
   - homebrew/cask/visual-studio-code
   - homebrew/cask/iterm2
