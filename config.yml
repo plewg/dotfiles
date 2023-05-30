@@ -19,6 +19,7 @@ link-cleanup:
   - ~/.local/bin
 
 packages:
+  - awscli
   - homebrew/cask/visual-studio-code
   - homebrew/cask/iterm2
   - less
