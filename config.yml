@@ -23,6 +23,7 @@ packages:
   - awscli
   - session-manager-plugin
   - homebrew/cask/visual-studio-code
+  - steam
   - homebrew/cask/iterm2
   - less
   - wget
