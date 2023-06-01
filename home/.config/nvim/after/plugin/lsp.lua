@@ -49,7 +49,15 @@ local lspconfig = require('lspconfig')
 lspconfig.lua_ls.setup {}
 lspconfig.eslint.setup {}
 lspconfig.tsserver.setup {}
--- lspconfig.ruby_ls.setup {}
+lspconfig.ruby_ls.setup {}
+lspconfig.solargraph.setup {
+  settings = {
+    solargraph = {
+      diagnostics = true,
+      completion = true
+    }
+  },
+}
 lspconfig.rust_analyzer.setup {
     -- Server-specific settings. See `:help lspconfig-setup`
     settings = {
