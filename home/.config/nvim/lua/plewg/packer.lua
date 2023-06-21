@@ -12,9 +12,24 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
-
+    -- use {
+    --     'maxmx03/solarized.nvim',
+    --     config = function()
+    --         local success, solarized = pcall(require, 'solarized')
+    --
+    --         vim.o.background = 'light'
+    --
+    --         solarized:setup {
+    --             config = {
+    --                 theme = 'neovim',
+    --                 transparent = false
+    --             }
+    --         }
+    --
+    --         vim.cmd 'colorscheme solarized'
+    --     end
+    -- }
     use {
-        -- 'monokai/neovim',
         'tanvirtin/monokai.nvim',
         as = 'monokai',
         config = function()
@@ -83,4 +98,5 @@ return require('packer').startup(function(use)
     use {
         'brenoprata10/nvim-highlight-colors'
     }
+    use("marilari88/twoslash-queries.nvim")
 end)

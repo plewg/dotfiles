@@ -4,3 +4,15 @@ function ColorMyPencils(color)
 end
 
 ColorMyPencils()
+-- local solarized = require('solarized')
+--
+-- vim.o.background = 'light'
+--
+-- solarized:setup {
+--     config = {
+--         theme = 'neovim',
+--         transparent = false
+--     }
+-- }
+--
+-- vim.cmd.colorscheme('solarized')

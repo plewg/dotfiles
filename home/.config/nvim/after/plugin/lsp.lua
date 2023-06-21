@@ -48,8 +48,11 @@ end)
 local lspconfig = require('lspconfig')
 lspconfig.lua_ls.setup {}
 lspconfig.eslint.setup {}
-lspconfig.tsserver.setup {}
-lspconfig.ruby_ls.setup {}
+lspconfig.tsserver.setup {
+    on_attach = function(client, bufnr)
+       require("twoslash-queries").attach(client, bufnr)
+    end,
+}
 lspconfig.solargraph.setup {
   settings = {
     solargraph = {
