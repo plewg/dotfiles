@@ -48,18 +48,23 @@ end)
 local lspconfig = require('lspconfig')
 lspconfig.lua_ls.setup {}
 lspconfig.eslint.setup {}
+lspconfig.standardrb.setup {
+    -- cmd = { "true" }
+    -- cmd = { "standardrb", "--lsp", "--fail-level", "error", "--display-only-fail-level-offenses" }
+}
 lspconfig.tsserver.setup {
     on_attach = function(client, bufnr)
-       require("twoslash-queries").attach(client, bufnr)
+        require("twoslash-queries").attach(client, bufnr)
     end,
 }
 lspconfig.solargraph.setup {
-  settings = {
-    solargraph = {
-      diagnostics = true,
-      completion = true
-    }
-  },
+    init_options = { formatting = false },
+    settings = {
+        solargraph = {
+            diagnostics = false,
+            completion = true
+        }
+    },
 }
 lspconfig.rust_analyzer.setup {
     -- Server-specific settings. See `:help lspconfig-setup`
@@ -76,42 +81,12 @@ vim.diagnostic.config({
 
 local null_ls = require("null-ls")
 
-local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
-local event = "BufWritePre" -- or "BufWritePost"
-local async = event == "BufWritePost"
-
 null_ls.setup({
-    --  on_attach = function(client, bufnr)
-    --    if client.supports_method("textDocument/formatting") then
-    --      vim.keymap.set("n", "<Leader>f", function()
-    --        vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-    --      end, { buffer = bufnr, desc = "[lsp] format" })
-    --
-    --      -- format on save
-    --      vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
-    --      vim.api.nvim_create_autocmd(event, {
-    --        buffer = bufnr,
-    --        group = group,
-    --        callback = function()
-    --          vim.lsp.buf.format({ bufnr = bufnr, async = async })
-    --        end,
-    --        desc = "[lsp] format on save",
-    --      })
-    --    end
-    --
-    --    if client.supports_method("textDocument/rangeFormatting") then
-    --      vim.keymap.set("x", "<Leader>f", function()
-    --        vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-    --      end, { buffer = bufnr, desc = "[lsp] format" })
-    --    end
-    --  end,
-    null_ls.setup({
-        sources = {
-            null_ls.builtins.formatting.stylua,
-            null_ls.builtins.diagnostics.eslint,
-            null_ls.builtins.completion.spell,
-        },
-    })
+    sources = {
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.completion.spell,
+    },
 })
 
 local status, prettier = pcall(require, "prettier")
@@ -137,11 +112,10 @@ require('Comment').setup({
         ---Block-comment toggle keymap
         block = '<C-?>',
     },
-     opleader = {
+    opleader = {
         ---Line-comment keymap
         line = '<C-/>',
         ---Block-comment keymap
         block = '<C-?>',
     },
 })
-
