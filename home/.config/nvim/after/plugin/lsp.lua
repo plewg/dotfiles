@@ -47,7 +47,11 @@ end)
 
 local lspconfig = require('lspconfig')
 lspconfig.lua_ls.setup {}
-lspconfig.eslint.setup {}
+lspconfig.eslint.setup {
+    on_attach = function(client)
+        client.server_capabilities.documentFormattingProvider = true
+    end
+}
 lspconfig.standardrb.setup {
     -- cmd = { "true" }
     -- cmd = { "standardrb", "--lsp", "--fail-level", "error", "--display-only-fail-level-offenses" }
