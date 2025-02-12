@@ -1,0 +1,8 @@
+[settings]
+# missing_runtime_behavior = "autoinstall"
+trusted_config_paths = ["~/Projects", "~/Work"]
+legacy_version_file = true
+status.missing_tools = "always"
+
+[tools]
+ruby = "3.3.3"

@@ -1,0 +1,16 @@
+sources:
+  - .
+  - ../dotfiles-private
+
+plugins:
+  - ciiqr/nk-plugins#files
+  - ciiqr/nk-plugins#sudoers
+  - ciiqr/nk-plugins#git-repo
+  - ciiqr/nk-plugins#macos-hide
+  - ciiqr/nk-plugins#macos-show
+  - ciiqr/nk-plugins#macos-pmset
+  - ciiqr/nk-plugins#macos-defaults
+  - ciiqr/nk-plugins#macos-terminal-theme
+  - ciiqr/nk-plugins#macos-default-programs
+  - ciiqr/nk-plugins#brew
+  - ./plugins/link-cleanup

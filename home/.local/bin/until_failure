@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -e
+
+. ~/.scripts/lib/output.sh
+
+declare ret_code=0
+declare temp
+temp="$(mktemp)"
+declare count=0
+
+while [[ "$ret_code" == "0" ]]; do
+    ret_code=0
+    "$@" >"$temp" 2>&1 || ret_code="$?"
+
+    # print latest output
+    clear
+    cat "$temp"
+    if [[ "$temp" != *$'\n' ]]; then
+        echo
+    fi
+
+    # print run count
+    if [[ "$ret_code" == "0" ]]; then
+        ((count++)) || true
+        output::success -n "${count} runs without failure"
+        echo ':' "$@"
+    fi
+done
+
+# print final run count
+output::failure -n "${count} runs without failure"
+echo ':' "$@"

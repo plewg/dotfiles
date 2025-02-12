@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+
+set -e
+
+run_with_doppler() {
+    LOG_LEVEL=warn doppler run --preserve-env --command="$*"
+}
+
+rspec() {
+    run_with_doppler bin/rspec "$@"
+}
+
+update() {
+    make bundle frontend_install docker db_migrate
+}
+
+start() {
+    multi-panes
+}
+
+cypress() {
+    # cd ~/Work/secureframe
+    # make docker
+    # tmuxit --session "cypress" \
+    #     "make cypress_frontend" \
+    #     "h50%" "make cypress_server" \
+    #     "50%" "make cypress_open"
+    multi-panes-cypress
+}
+
+console() {
+    run_with_doppler bin/rails console
+}
+
+db() {
+    make psql
+}
+
+db_reset() {
+    redis-cli FLUSHALL
+    make db_reset
+}
+
+db_migrate() {
+    make db_migrate
+}
+
+docker() {
+    make docker
+}
+
+install() {
+    make bundle
+    yarn install --ignore-engines
+}
+
+reset() {
+    docker compose down -v
+    make docker
+    make bundle
+    db_reset
+    make assets_clobber
+    make frontend_reset
+}
+
+case "$1" in
+test)
+    rspec "${@:2}"
+    ;;
+start)
+    start
+    ;;
+console)
+    console
+    ;;
+db)
+    db
+    ;;
+migrate)
+    db_migrate
+    ;;
+db_reset)
+    db_reset
+    ;;
+cypress)
+    cypress
+    ;;
+update)
+    update
+    ;;
+install)
+    install
+    ;;
+reset)
+    reset
+    ;;
+*)
+    echo "Usage: $0 {test}"
+    exit 1
+    ;;
+esac

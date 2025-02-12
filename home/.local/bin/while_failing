@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -e
+
+declare retCode=1
+declare temp="$(mktemp)"
+declare count=0
+
+while [[ "$retCode" != "0" ]]; do
+    "$@" >"$temp" 2>&1
+    retCode="$?"
+
+    clear
+    cat "$temp"
+
+    if [[ "$retCode" != "0" ]]; then
+        ((count++))
+        tput setab 1
+        echo -n "$count runs without success"
+        tput sgr0
+        echo ": $@"
+    fi
+done
+
+tput setab 2
+echo -n "$count runs without success"
+tput sgr0
+echo ": $@"

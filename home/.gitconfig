@@ -1,0 +1,84 @@
+[user]
+	name = Paige Dwight
+	email = 85356912+plewg@users.noreply.github.com
+	signingkey = ~/.ssh/identities/plewg-github.pub
+[push]
+	default = simple
+	autoSetupRemote = true
+[pull]
+	rebase = true
+[color]
+	branch = auto
+	diff = auto
+	ui = true
+[rerere]
+	enabled = true
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	allowedSignersFile = ~/.config/git/allowed_signers
+[commit]
+	gpgsign = true
+[branch]
+	autosetupmerge = true
+[fetch]
+	prune = true
+[pretty]
+	mono = format:%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
+[alias]
+	can = !git commit --amend --no-edit
+	st = status
+	br = branch
+	cm = commit -m
+	co = checkout
+	new = checkout -b
+	lp = log --color --pretty=mono --relative-date --decorate
+	pf = push --force-with-lease --force-if-includes
+	pr-view = !~/.scripts/gh.sh pr
+	reflogp = reflog --pretty=mono
+	anp = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh anp"
+	anpa = !~/.scripts/git.sh anpa
+	anpu = !~/.scripts/git.sh anpu
+	wip = !~/.scripts/git.sh wip
+	new = checkout -b
+	cmb = !~/.scripts/git.sh cmb
+	rebase-self = !~/.scripts/git.sh rebase-self
+	rebase-default = !~/.scripts/git.sh rebase-default
+	# diff
+	dcw = diff --cached -w
+	dc = diff --cached
+	dcow = diff --color-words
+	dcwo = diff --cached --color-words
+	# assume-unchanged
+	hide = update-index --assume-unchanged
+	unhide = update-index --no-assume-unchanged
+	hidden = "!cd -- ${GIT_PREFIX:-.};git ls-files -v | grep \"^[[:lower:]]\" | cut -d\" \" -f2"
+	# misc
+	contributors = shortlog -s -n -e
+	cloc = "!cd -- ${GIT_PREFIX:-.};cloc --vcs git"
+	tree = "!cd -- ${GIT_PREFIX:-.};tree --gitignore -I '.git' -a"
+	repo = "!~/.scripts/git.sh repo"
+	# github
+	clone-all = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh clone-all"
+	admins = !~/.scripts/git.sh admins
+[delta]
+	navigate = true # use n and N to move between diff sections
+[diff]
+	renames = copies
+	# tool = meld
+	colorMoved = default
+[difftool]
+	prompt = false
+[merge]
+	# tool = meld
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+[interactive]
+	diffFilter = delta --color-only
+[core]
+	trustctime = false
+	pager = delta

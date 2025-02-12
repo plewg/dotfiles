@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -e
+
+declare base_url
+base_url=$(git config --get remote.origin.url)
+base_url=${base_url%\.git} # remove .git from end of string
+
+# Fix plewggit@github.com: URLs
+base_url=${base_url//git@plewggithub\.com:/https:\/\/github\.com\/}
+
+# Fix git@github.com: URLs
+base_url=${base_url//git@github\.com:/https:\/\/github\.com\/}
+
+# Fix git://github.com URLS
+base_url=${base_url//git:\/\/github\.com/https:\/\/github\.com\/}
+
+declare branch
+branch="$(git br --show-current)"
+
+declare target
+if [[ -n "$1" ]]; then
+    target="$1...${branch}"
+else
+    target="$branch"
+fi
+
+encoded_title=$(ruby -e "require 'erb'; include ERB::Util; puts url_encode(ARGV.first)" "$branch")
+
+open "${base_url}/compare/${target}?expand=1&title=${encoded_title}"
