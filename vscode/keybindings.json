@@ -110,7 +110,7 @@
     { "key": "alt+cmd+p", "command": "-projectManager.listProjects" },
     {
         "key": "ctrl+cmd+p",
-        "command": "projectManager.listProjects"
+        "command": "projectManager.listProjectsNewWindow"
     },
     // cmd+{num}
     { "key": "cmd+1", "command": "-workbench.action.focusFirstEditorGroup" },
@@ -183,5 +183,10 @@
     {
         "key": "shift+cmd+o",
         "command": "-workbench.action.gotoSymbol"
+    },
+    {
+        "key": "f12",
+        "command": "typescript.goToSourceDefinition",
+        "when": "resourceExtname =~ /.[jt]sx?/"
     }
 ]
