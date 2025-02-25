@@ -54,6 +54,11 @@ lspconfig.eslint.setup({
             command = "EslintFixAll",
         })
     end,
+    settings = {
+        problems = {
+            shortenToSingleLine = true,
+        },
+    },
 })
 lspconfig.standardrb.setup {
     -- cmd = { "true" }
