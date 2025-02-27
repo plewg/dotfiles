@@ -94,6 +94,7 @@ packages:
   - pango
   - getsentry/tools/sentry-cli
   - git-filter-repo
+  - vips
 
 default.programs:
   .todo: Visual Studio Code
