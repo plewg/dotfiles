@@ -1,3 +1,5 @@
+hostname: "{{ machine }}"
+---
 when: os == "macos"
 
 files:
@@ -80,6 +82,8 @@ packages:
   - zed
   - parallel
   - homebrew/cask/iina
+  - mysql
+  - homebrew/cask/mist
   # secureframe stuff
   - postgresql@16
   - dopplerhq/cli/doppler
@@ -93,6 +97,7 @@ packages:
   - getsentry/tools/sentry-cli
   - git-filter-repo
   - vips
+  - prowler
 
 default.programs:
   .todo: Visual Studio Code
@@ -128,12 +133,6 @@ macos.pmset:
     standby: 1
     disksleep: 10
     hibernatemode: 0
-  battery:
-    displaysleep: 15
-    sleep: 15
-  ac:
-    displaysleep: 0
-    sleep: 0
 
 macos.defaults:
   # % System and Menubar
@@ -700,7 +699,9 @@ macos.defaults:
     resets: SystemUIServer
 
 ---
-when: hostname != "work-paige"
+when:
+  - machine != "work-paige"
+  - os == "macos"
 
 sudoers:
   mode: passwordless
@@ -715,10 +716,6 @@ packages:
   - homebrew/cask/1password
 
 macos.pmset:
-  all:
-    standby: 1
-    disksleep: 10
-    hibernatemode: 0
   battery:
     displaysleep: 15
     sleep: 15
@@ -766,13 +763,12 @@ macos.defaults:
 
 # I'M WORKIN HERE
 ---
-when: hostname == "work-paige"
+when:
+  - machine == "work-paige"
+  - os == "macos"
 
 macos.pmset:
   all:
-    standby: 1
-    disksleep: 10
-    hibernatemode: 0
     displaysleep: 15
     sleep: 15
 
