@@ -14,6 +14,7 @@
   "ui_font_size": 18,
   "buffer_font_size": 20,
   "cursor_blink": false,
+  "relative_line_numbers": true,
   "auto_install_extensions": {
     "html": true,
     "ruby": true
@@ -49,9 +50,32 @@
   "lsp": {
     "ruby-lsp": {
       "initialization_options": {
+        "experimentalFeaturesEnabled": true,
         "enabledFeatures": {
-          "diagnostics": false, // Zed currently doesn't support Ruby LSP's pull-based diagnostics
-          "formatting": true
+          "codeActions": true,
+          "codeLens": true,
+          "completion": true,
+          "definition": true,
+          "diagnostics": false, // until Zed supports pull-type diagnostics
+          "documentHighlights": true,
+          "documentLink": true,
+          "documentSymbols": true,
+          "foldingRanges": true,
+          "formatting": true,
+          "hover": true,
+          "inlayHint": true,
+          "onTypeFormatting": true,
+          "selectionRanges": true,
+          "semanticHighlighting": true,
+          "signatureHelp": true,
+          "typeHierarchy": true,
+          "workspaceSymbol": true
+        },
+        "featuresConfiguration": {
+          "inlayHint": {
+            "implicitHashValue": true,
+            "implicitRescue": true
+          }
         },
         "formatter": "standard",
         "linters": [
@@ -105,12 +129,11 @@
     "Ruby": {
       "language_servers": [
         "ruby-lsp",
-        "standardrb",
         "!rubocop",
         "!solargraph"
-      ],
-      "formatter": "language_server",
-      "format_on_save": "on"
+      ]
+      // "formatter": "language_server",
+      // "format_on_save": "on"
     },
     "TypeScript": {
       "format_on_save": {

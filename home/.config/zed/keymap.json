@@ -3,7 +3,7 @@
     "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
     "bindings": {
       "space f": "editor::Format",
-      "ctrl-/": [
+      "cmd-/": [
         "editor::ToggleComments",
         {
           "advance_downwards": true
@@ -14,7 +14,7 @@
   {
     "context": "Editor",
     "bindings": {
-      "ctrl-shift-tab": "pane::ActivatePrevItem",
+      "ctrl-shift-tab": "pane::ActivatePreviousItem",
       "ctrl-tab": "pane::ActivateNextItem",
       "ctrl-cmd-p": null,
       "cmd-shift-d": "editor::DuplicateLineDown",
