@@ -62,11 +62,11 @@ alias rg="rg --hidden --glob '!.git'"
 
 doit() {
     declare dir="$1"
-    dir="$(fzf -1 -q "$dir" <<<"$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -type d -mindepth 1 -maxdepth 1 -print0 | xargs -0 grealpath --relative-to="$HOME")")"
+    dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -type d -mindepth 1 -maxdepth 1 -print0 | xargs -0 grealpath --relative-to="$HOME")")"
     [ -d "${HOME}/${dir}" ] && cd "${HOME}/${dir}" || return 1
 }
 
-if which mise >/dev/null; then
+if which mise > /dev/null; then
     eval "$(mise activate zsh)"
 fi
 
