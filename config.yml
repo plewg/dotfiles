@@ -17,6 +17,8 @@ git.repo:
     destination: ~/External/.oh-my-zsh
   - source: https://github.com/folke/lazy.nvim.git
     destination: ~/.local/share/nvim/lazy/lazy.nvim
+  - source: https://github.com/himynameisjonas/zed-standardrb.git
+    destination: ~/External/zed-standardrb
 
 link-cleanup:
   - ~/.local/bin
