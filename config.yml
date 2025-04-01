@@ -86,6 +86,8 @@ packages:
   - homebrew/cask/iina
   - mysql
   - homebrew/cask/mist
+  - git-filter-repo
+  - rustup
   # secureframe stuff
   - postgresql@16
   - dopplerhq/cli/doppler
@@ -97,7 +99,6 @@ packages:
   - cairo
   - pango
   - getsentry/tools/sentry-cli
-  - git-filter-repo
   - vips
   - prowler
 
