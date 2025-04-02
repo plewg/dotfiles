@@ -12,6 +12,7 @@ export EDITOR="nvim"
 #shellcheck disable=SC1091
 [ -s "${HOME}/.profile.private" ] && . "${HOME}/.profile.private"
 
+PATH="${HOME}/.cargo/bin:${PATH}"
 PATH="${HOME}/.local/bin:${PATH}"
 export PATH
 

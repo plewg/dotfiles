@@ -71,16 +71,18 @@
           "typeHierarchy": true,
           "workspaceSymbol": true
         },
-        "featuresConfiguration": {
-          "inlayHint": {
-            "implicitHashValue": true,
-            "implicitRescue": true
-          }
-        },
         "formatter": "standard",
         "linters": [
           "standard"
         ]
+      }
+    },
+    "standardrb": {
+      "initialization_options": {
+        "enabledFeatures": {
+          "diagnostics": true,
+          "formatting": false // Because we use Standard Ruby's formatting via Ruby LSP
+        }
       }
     },
     "eslint": {
@@ -129,11 +131,10 @@
     "Ruby": {
       "language_servers": [
         "ruby-lsp",
+        "standardrb",
         "!rubocop",
         "!solargraph"
       ]
-      // "formatter": "language_server",
-      // "format_on_save": "on"
     },
     "TypeScript": {
       "format_on_save": {
