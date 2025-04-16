@@ -9,7 +9,8 @@
           "advance_downwards": true
         }
       ],
-      "space p f": "file_finder::Toggle"
+      "space p f": "file_finder::Toggle",
+      "space p s": "workspace::NewSearch"
     }
   },
   {
@@ -70,6 +71,7 @@
       // keybinding, so we're overriding with a random keybinding that
       // doesn't affect the editor...
       // "cmd-shift-e": null,
+      "space p o": "projects::OpenRecent",
       "ctrl-cmd-p": [
         "projects::OpenRecent",
         {

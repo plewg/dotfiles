@@ -15,6 +15,7 @@
   "buffer_font_size": 20,
   "cursor_blink": false,
   "relative_line_numbers": true,
+  "load_direnv": "shell_hook",
   "auto_install_extensions": {
     "html": true,
     "ruby": true
@@ -36,11 +37,11 @@
   },
   // "show_whitespaces": "all",
   // "file_scan_exclusions": null,
-  "git": {
-    "inline_blame": {
-      "enabled": false
-    }
-  },
+  // "git": {
+  //   "inline_blame": {
+  //     "enabled": false
+  //   }
+  // },
   // formatter
   "prettier": {
     // NOTE: for files without an associated prettier config
