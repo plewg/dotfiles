@@ -15,6 +15,13 @@
     }
   },
   {
+    "context": "Editor && vim_mode == visual && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp"
+    }
+  },
+  {
     "context": "Editor",
     "bindings": {
       "ctrl-shift-tab": "pane::ActivatePreviousItem",
