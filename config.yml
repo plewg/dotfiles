@@ -770,6 +770,9 @@ when:
   - machine == "work-paige"
   - os == "macos"
 
+packages:
+  - podman-desktop
+
 macos.pmset:
   all:
     displaysleep: 15
