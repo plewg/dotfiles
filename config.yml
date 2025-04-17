@@ -88,19 +88,6 @@ packages:
   - homebrew/cask/mist
   - git-filter-repo
   - rustup
-  # secureframe stuff
-  - postgresql@16
-  - dopplerhq/cli/doppler
-  - yarn
-  - python@3.10
-  - redis
-  - pkg-config
-  - pixman
-  - cairo
-  - pango
-  - getsentry/tools/sentry-cli
-  - vips
-  - prowler
 
 default.programs:
   .todo: Visual Studio Code
@@ -771,7 +758,20 @@ when:
   - os == "macos"
 
 packages:
+  - podman
   - podman-desktop
+  - postgresql@16
+  - dopplerhq/cli/doppler
+  - yarn
+  - python@3.10
+  - redis
+  - pkg-config
+  - pixman
+  - cairo
+  - pango
+  - getsentry/tools/sentry-cli
+  - vips
+  - prowler
 
 macos.pmset:
   all:
