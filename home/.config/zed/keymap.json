@@ -6,7 +6,7 @@
       "cmd-/": [
         "editor::ToggleComments",
         {
-          "advance_downwards": true
+          "advance_downwards": false
         }
       ],
       "space p o": "projects::OpenRecent",
@@ -85,6 +85,12 @@
           "create_new_window": false
         }
       ]
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "/": null
     }
   }
 ]

@@ -1,7 +1,10 @@
 // documentation: https://zed.dev/docs/configuring-zed
 {
   // editor
-  "vim_mode": true,
+  "scrollbar": {
+    "git_diff": false
+  },
+  // "vim_mode": true,
   "autosave": "on_focus_change",
   "telemetry": {
     "diagnostics": false,
