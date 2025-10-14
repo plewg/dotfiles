@@ -5,5 +5,4 @@ legacy_version_file = true
 status.missing_tools = "always"
 
 [tools]
-ruby = "3.3.3"
 rust = "stable"

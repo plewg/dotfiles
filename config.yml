@@ -24,6 +24,8 @@ link-cleanup:
   - ~/.local/bin
 
 packages:
+  - homebrew/cask/google-chrome
+  - homebrew/cask/1password
   - coreutils
   - git-delta
   - node
@@ -88,6 +90,7 @@ packages:
   - homebrew/cask/mist
   - git-filter-repo
   - rustup
+  - redis
 
 default.programs:
   .todo: Visual Studio Code
@@ -700,10 +703,6 @@ sudoers:
     Defaults env_keep -= "HOME"
     # But do keep PATH so we can run our commands as root
     Defaults exempt_group = {{ user }}
-
-packages:
-  - homebrew/cask/google-chrome
-  - homebrew/cask/1password
 
 macos.pmset:
   battery:
