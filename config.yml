@@ -70,7 +70,7 @@ packages:
   - hub
   - gnupg
   - cloc
-  - homebrew/cask/docker
+  - homebrew/cask/docker-desktop
   - direnv
   - shellcheck
   - shfmt
