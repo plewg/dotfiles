@@ -18,7 +18,7 @@
 [gpg]
 	format = ssh
 [gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	program = /opt/1Password/op-ssh-sign
 	allowedSignersFile = ~/.config/git/allowed_signers
 [commit]
 	gpgsign = true
@@ -39,6 +39,7 @@
 	pf = push --force-with-lease --force-if-includes
 	pr-view = !~/.scripts/gh.sh pr
 	reflogp = reflog --pretty=mono
+	alias = !~/.scripts/git.sh alias
 	anp = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh anp"
 	anpa = !~/.scripts/git.sh anpa
 	anpu = !~/.scripts/git.sh anpu

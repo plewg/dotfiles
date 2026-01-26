@@ -1,5 +1,17 @@
 hostname: "{{ machine }}"
 ---
+when: os == "linux"
+
+files:
+  - source: home
+    destination: ~/
+    link_files: true
+
+git.repo:
+  - source: https://github.com/ohmyzsh/ohmyzsh.git
+    destination: ~/External/ohmyzsh
+
+---
 when: os == "macos"
 
 files:
@@ -14,11 +26,7 @@ directories:
 
 git.repo:
   - source: https://github.com/ohmyzsh/ohmyzsh.git
-    destination: ~/External/.oh-my-zsh
-  - source: https://github.com/folke/lazy.nvim.git
-    destination: ~/.local/share/nvim/lazy/lazy.nvim
-  - source: https://github.com/himynameisjonas/zed-standardrb.git
-    destination: ~/External/zed-standardrb
+    destination: ~/External/ohmyzsh
 
 link-cleanup:
   - ~/.local/bin

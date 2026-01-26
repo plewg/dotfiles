@@ -14,6 +14,7 @@ if [[ -z "$machine" ]]; then
     echo 'missing required argument: <machine>' >&2
     echo '  - laptop-paige' >&2
     echo '  - work-paige' >&2
+    echo '  - carton' >&2
     exit 1
 fi
 

@@ -1,0 +1,34 @@
+ZSH=/usr/share/oh-my-zsh/
+export LESS="-F -R"
+export EDITOR="nvim"
+ZSH_THEME="robbyrussell"
+export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
+
+PATH="${HOME}/.local/bin:${PATH}"
+PATH="${HOME}/.local/share/bob/nvim-bin:${PATH}"
+export PATH
+
+CASE_SENSITIVE="true"
+
+plugins=(z)
+
+ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+if [[ ! -d $ZSH_CACHE_DIR ]]; then
+  mkdir $ZSH_CACHE_DIR
+fi
+
+source $ZSH/oh-my-zsh.sh
+zstyle ':completion:*' rehash true
+
+bindkey "^H" backward-kill-word
+alias ll="ls -lah"
+
+if which mise > /dev/null; then
+    eval "$(mise activate zsh)"
+fi
+
+doit() {
+    declare dir="$1"
+    dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 realpath --relative-to="$HOME")")"
+    [ -d "${HOME}/${dir}" ] && cd "${HOME}/${dir}" || return 1
+}
