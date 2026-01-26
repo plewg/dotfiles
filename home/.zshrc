@@ -57,8 +57,6 @@ bindkey "^X\\x7f" backward-kill-line
 
 alias ll='ls -lah'
 alias dc="docker compose"
-alias op_us="op item edit 'AWS Access Key' 'default region=us-east-1'"
-alias op_uk="op item edit 'AWS Access Key' 'default region=eu-west-2'"
 alias rg="rg --hidden --glob '!.git'"
 
 doit() {
