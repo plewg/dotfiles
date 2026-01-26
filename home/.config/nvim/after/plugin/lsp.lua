@@ -45,9 +45,9 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-local lspconfig = require('lspconfig')
-lspconfig.lua_ls.setup {}
-lspconfig.eslint.setup({
+vim.lsp.enable('lua_ls')
+-- lspconfig.lua_ls.setup {}
+vim.lsp.config('eslint', {
     on_attach = function(client, bufnr)
         vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
@@ -60,30 +60,32 @@ lspconfig.eslint.setup({
         },
     },
 })
-lspconfig.standardrb.setup {
-    -- cmd = { "true" }
-    -- cmd = { "standardrb", "--lsp", "--fail-level", "error", "--display-only-fail-level-offenses" }
-}
-lspconfig.ts_ls.setup {
+vim.lsp.enable('eslint')
+-- lspconfig.standardrb.setup {
+-- cmd = { "true" }
+-- cmd = { "standardrb", "--lsp", "--fail-level", "error", "--display-only-fail-level-offenses" }
+-- }
+vim.lsp.config('ts_ls', {
     on_attach = function(client, bufnr)
         require("twoslash-queries").attach(client, bufnr)
     end,
-}
-lspconfig.solargraph.setup {
-    init_options = { formatting = false },
-    settings = {
-        solargraph = {
-            diagnostics = false,
-            completion = true
-        }
-    },
-}
-lspconfig.rust_analyzer.setup {
-    -- Server-specific settings. See `:help lspconfig-setup`
-    settings = {
-        ['rust-analyzer'] = {},
-    },
-}
+})
+vim.lsp.enable('ts_ls')
+-- lspconfig.solargraph.setup {
+--     init_options = { formatting = false },
+--     settings = {
+--         solargraph = {
+--             diagnostics = false,
+--             completion = true
+--         }
+--     },
+-- }
+-- lspconfig.rust_analyzer.setup {
+--     -- Server-specific settings. See `:help lspconfig-setup`
+--     settings = {
+--         ['rust-analyzer'] = {},
+--     },
+-- }
 
 lsp.setup()
 
