@@ -6,4 +6,6 @@ status.missing_tools = "always"
 
 [tools]
 neovim = "nightly"
+node = "latest"
+prettier = "3.8.1"
 rust = "stable"

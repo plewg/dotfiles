@@ -30,12 +30,16 @@ zstyle ':completion:*' rehash true
 if type brew >/dev/null; then
     source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
     source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+    fpath=(
+        "$(brew --prefix)/share/zsh-completions"
+        "$(brew --prefix)/share/zsh/site-functions"
+        ${fpath[@]}
+    )
 fi
 
 fpath=(
     "$HOME/.zcompletions"
-    "$(brew --prefix)/share/zsh-completions"
-    "$(brew --prefix)/share/zsh/site-functions"
     ${fpath[@]}
 )
 
@@ -58,7 +62,7 @@ alias rg="rg --hidden --glob '!.git'"
 
 doit() {
     declare dir="$1"
-    dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -type d -mindepth 1 -maxdepth 1 -print0 | xargs -0 grealpath --relative-to="$HOME")")"
+    dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 realpath --relative-to="$HOME")")"
     [ -d "${HOME}/${dir}" ] && cd "${HOME}/${dir}" || return 1
 }
 
