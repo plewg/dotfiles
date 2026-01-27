@@ -45,12 +45,7 @@ vim.pack.add({
     { src = "https://github.com/nvim-tree/nvim-tree.lua" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/pmizio/typescript-tools.nvim" },
-    { src = "https://github.com/tanvirtin/monokai.nvim" },
-    { src = "https://github.com/polirritmico/monokai-nightasty.nvim" },
-    { src = "https://github.com/ErichDonGubler/vim-sublime-monokai" },
-    { src = "https://github.com/loctvl842/monokai-pro.nvim" },
-    { src = "https://github.com/rose-pine/neovim" },
-    { src = "https://github.com/Mofiqul/dracula.nvim" },
+    { src = "https://github.com/plewg/monokai.nvim" },
     {
         src = "https://github.com/theprimeagen/harpoon",
         version = "harpoon2",
