@@ -70,6 +70,8 @@ if type mise >/dev/null; then
     eval "$(mise activate zsh)"
 fi
 
-[ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
+if [[ -f "$HOME/.config/op/plugins.sh" ]]; then
+    source "$HOME/.config/op/plugins.sh"
+fi
 
 # zprof
