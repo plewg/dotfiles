@@ -51,7 +51,10 @@ vim.pack.add({
     { src = "https://github.com/loctvl842/monokai-pro.nvim" },
     { src = "https://github.com/rose-pine/neovim" },
     { src = "https://github.com/Mofiqul/dracula.nvim" },
-    { src = "https://github.com/theprimeagen/harpoon", version = "harpoon2" },
+    {
+        src = "https://github.com/theprimeagen/harpoon",
+        version = "harpoon2",
+    },
     { src = "https://github.com/akinsho/toggleterm.nvim" },
 })
 
@@ -84,7 +87,7 @@ vim.o.smartcase = true
 vim.keymap.set("n", "<leader>pf", ":Pick files<CR>")
 vim.keymap.set("n", "<leader>ps", ":Pick grep<CR>")
 
-vim.lsp.enable({ "lua_ls", "eslint", "tailwindcss", "ts_ls", "bashls", "marksman" })
+vim.lsp.enable({ "lua_ls", "eslint", "tailwindcss", "ts_ls", "bashls", "marksman", "prismals" })
 
 -- Theming
 vim.cmd(":hi statusline guibg=NONE")
@@ -107,6 +110,7 @@ null_ls.setup({
     sources = {
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.completion.spell,
+        null_ls.builtins.formatting.prisma_format,
         null_ls.builtins.formatting.prettier.with({
             prefer_local = "node_modules/.bin",
             extra_filetypes = { "sh" },
@@ -236,28 +240,13 @@ require("Comment").setup({
 
 vim.opt.undofile = true
 
-require("nvim-treesitter").install({
-    -- "typescript",
-    -- "javascript",
-    -- "tsx",
-    -- "jsx",
-    -- "css",
-    -- "html",
-    -- "html_tags",
-    -- "bash",
-    "markdown",
-})
-
 local treesitter_filetypes = {
-    --     "typescriptreact",
-    --     "typescript",
-    --     "javacriptreact",
-    --     "javascript",
-    --     "lua",
-    --     "css",
-    --     "html",
     "markdown",
+    "prisma",
 }
+
+require("nvim-treesitter").install(treesitter_filetypes)
+
 for _, v in pairs(treesitter_filetypes) do
     vim.api.nvim_create_autocmd("FileType", {
         pattern = { v },
