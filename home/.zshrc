@@ -1,19 +1,20 @@
 # zmodload zsh/zprof
 
-export ZSH="${HOME}/External/.oh-my-zsh"
+export ZSH="${HOME}/External/ohmyzsh"
 export GPG_TTY="$(tty)"
 export NVM_DIR="${HOME}/.nvm"
 export DISABLE_SPRING="true"
-export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
 export LESS="-F -R"
-export RAILS_LOG_LEVEL="warn"
 export EDITOR="nvim"
+export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
 
 #shellcheck disable=SC1091
 [ -s "${HOME}/.profile.private" ] && . "${HOME}/.profile.private"
 
 PATH="${HOME}/.cargo/bin:${PATH}"
 PATH="${HOME}/.local/bin:${PATH}"
+PATH="${HOME}/.local/share/bob/nvim-bin:${PATH}"
 export PATH
 
 ZSH_THEME="robbyrussell"
@@ -24,8 +25,13 @@ plugins=(z)
 DISABLE_AUTO_UPDATE=true
 
 source $ZSH/oh-my-zsh.sh
-source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+zstyle ':completion:*' rehash true
+
+if type brew >/dev/null; then
+    source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+
 fpath=(
     "$HOME/.zcompletions"
     "$(brew --prefix)/share/zsh-completions"
@@ -44,16 +50,7 @@ unsetopt nomatch
 
 # Key Bindings
 # NOTE: run `bindkey` to see all keybindings
-# bindkey -e # emacs
-# bindkey '^H' backward-kill-word
-bindkey "^X\\x7f" backward-kill-line
-# if [[ "$OSTYPE" == darwin* ]]; then
-#     if [[ "$TERM" == 'xterm'* ]]; then
-#         bindkey '\e^[OA' beginning-of-line # alt + up
-#         bindkey '\e^[OB' end-of-line       # alt + down
-#         bindkey '\e(' kill-word            # alt + delete
-#     fi
-# fi
+bindkey '^H' backward-kill-word
 
 alias ll='ls -lah'
 alias dc="docker compose"
@@ -65,20 +62,10 @@ doit() {
     [ -d "${HOME}/${dir}" ] && cd "${HOME}/${dir}" || return 1
 }
 
-if which mise > /dev/null; then
+if type mise >/dev/null; then
     eval "$(mise activate zsh)"
 fi
 
-# if which rbenv > /dev/null; then
-#     eval "$(rbenv init - zsh)"
-# fi
-# if which nodenv > /dev/null; then
-#     eval "$(nodenv init -)"
-# fi
-eval "$(direnv hook zsh)"
-
-# [ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"                   # This loads nvm
-# [ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion" # This loads nvm bash_completion
 [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
 
 # zprof
