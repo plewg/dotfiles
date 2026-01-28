@@ -1,10 +1,11 @@
+local vim = vim
+
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.wrap = false
 vim.o.tabstop = 4
 vim.o.swapfile = false
 vim.g.mapleader = " "
--- vim.g.editorconfig = false
 vim.o.signcolumn = "yes"
 vim.o.winborder = "single"
 vim.o.laststatus = 3
@@ -34,6 +35,14 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "<leader>sn", ":!sort -n<CR>")
 
+-- Insert Mode
+vim.keymap.set("i", "<Tab>", function()
+    return vim.fn.pumvisible() == 1 and "<CR>" or "<Tab>"
+end, { silent = true, expr = true })
+vim.keymap.set("i", "<CR>", function()
+    return vim.fn.pumvisible() == 1 and "<C-e><CR>" or "<CR>"
+end, { silent = true, expr = true })
+
 vim.pack.add({
     { src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
     { src = "https://github.com/mbbill/undotree" },
@@ -45,12 +54,13 @@ vim.pack.add({
     { src = "https://github.com/nvim-tree/nvim-tree.lua" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/pmizio/typescript-tools.nvim" },
-    { src = "https://github.com/plewg/monokai.nvim" },
+    -- { src = "https://github.com/plewg/monokai.nvim" },
     {
         src = "https://github.com/theprimeagen/harpoon",
         version = "harpoon2",
     },
     { src = "https://github.com/akinsho/toggleterm.nvim" },
+    { src = "https://github.com/dracula/vim.git" },
 })
 
 require("ibl").setup()
@@ -89,7 +99,7 @@ vim.cmd(":hi statusline guibg=NONE")
 vim.cmd(":hi SignColumn guibg=NONE")
 vim.cmd(":hi LineNr guibg=NONE")
 
-vim.cmd("colorscheme monokai")
+vim.cmd("colorscheme dracula")
 -- Transparency
 -- vim.cmd([[
 --   highlight Normal guibg=none
@@ -100,7 +110,7 @@ vim.cmd("colorscheme monokai")
 
 local null_ls = require("null-ls")
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
     sources = {
         null_ls.builtins.formatting.stylua,
@@ -126,9 +136,18 @@ null_ls.setup({
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*" },
     callback = function()
         vim.lsp.buf.format()
+    end,
+})
+
+-- Does this fuckin do anything??
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client:supports_method("textDocument/completion") then
+            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+        end
     end,
 })
 
@@ -217,11 +236,18 @@ end)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.g.undotree_WindowLayout = 3
+
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 
 -- empty setup using defaults
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+    view = {
+        side = "right",
+        -- float = { enable = true },
+    },
+})
 
 vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<CR>")
 

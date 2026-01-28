@@ -97,6 +97,10 @@
       "rev": "178d19e00a643f825ea11d581b1684745d0c4eda",
       "src": "https://github.com/mbbill/undotree"
     },
+    "vim": {
+      "rev": "d4b0823100c702af127cba8dd5595a8f599041ec",
+      "src": "https://github.com/dracula/vim.git"
+    },
     "vim-sublime-monokai": {
       "rev": "85dd8fa17df97d34c63d37788c91b57c1433d9ad",
       "src": "https://github.com/ErichDonGubler/vim-sublime-monokai"

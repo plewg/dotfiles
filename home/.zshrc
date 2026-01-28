@@ -8,6 +8,7 @@ export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
 export LESS="-F -R"
 export EDITOR="nvim"
 export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
+export COLORTERM=truecolor
 
 #shellcheck disable=SC1091
 [ -s "${HOME}/.profile.private" ] && . "${HOME}/.profile.private"
@@ -26,6 +27,14 @@ DISABLE_AUTO_UPDATE=true
 
 source $ZSH/oh-my-zsh.sh
 zstyle ':completion:*' rehash true
+
+if [[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+    source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
+
+if [[ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+    source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
 
 if type brew >/dev/null; then
     source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
