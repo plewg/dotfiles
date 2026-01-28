@@ -10,6 +10,7 @@ vim.o.signcolumn = "yes"
 vim.o.winborder = "single"
 vim.o.laststatus = 3
 vim.o.colorcolumn = "80,120"
+vim.o.fillchars = "eob: "
 
 -- Normal Mode
 vim.keymap.set("n", "<leader>so", ":update<CR> :source<CR>")
@@ -92,6 +93,14 @@ vim.o.smartcase = true
 vim.keymap.set("n", "<leader>pf", ":Pick files<CR>")
 vim.keymap.set("n", "<leader>ps", ":Pick grep<CR>")
 
+vim.lsp.config("eslint", {
+    settings = {
+        rulesCustomizations = {
+            { rule = "*",                        severity = "warn" },
+            { rule = "import/no-unused-modules", severity = "off" },
+        },
+    },
+})
 vim.lsp.enable({ "lua_ls", "eslint", "tailwindcss", "ts_ls", "bashls", "marksman", "prismals" })
 
 -- Theming
@@ -169,7 +178,11 @@ if status then
     })
 end
 
-local opts = { buffer = bufnr, remap = false }
+vim.diagnostic.config({
+    severity_sort = true,
+})
+
+local opts = { remap = false }
 
 -- THESE ARE THE GUYS I ALWAYS FORGET
 vim.keymap.set("n", "gd", function()
