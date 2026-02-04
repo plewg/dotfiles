@@ -10,7 +10,14 @@ vim.o.signcolumn = "yes"
 vim.o.winborder = "single"
 vim.o.laststatus = 3
 vim.o.colorcolumn = "80,120"
-vim.o.fillchars = "eob: "
+vim.opt.fillchars:append({
+    eob = " ",
+    fold = " ",
+    foldopen = "",
+    foldsep = " ",
+    foldclose = "",
+    foldinner = " ",
+})
 
 -- Normal Mode
 vim.keymap.set("n", "<leader>so", ":update<CR> :source<CR>")
@@ -52,21 +59,36 @@ vim.pack.add({
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/nvim-mini/mini.pick" },
     { src = "https://github.com/nvimtools/none-ls.nvim" },
-    { src = "https://github.com/nvim-tree/nvim-tree.lua" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/pmizio/typescript-tools.nvim" },
-    -- { src = "https://github.com/plewg/monokai.nvim" },
     {
         src = "https://github.com/theprimeagen/harpoon",
         version = "harpoon2",
     },
     { src = "https://github.com/akinsho/toggleterm.nvim" },
     { src = "https://github.com/dracula/vim.git" },
+    { src = "https://github.com/Bekaboo/dropbar.nvim" },
+    { src = "https://github.com/kevinhwang91/nvim-ufo" },
+    { src = "https://github.com/kevinhwang91/promise-async" },
+    { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
+    { src = "https://github.com/MunifTanjim/nui.nvim" },
+    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+    { src = "https://github.com/folke/which-key.nvim" },
 })
 
 require("ibl").setup()
 
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+vim.keymap.set("n", "<leader>u", function()
+    vim.cmd.Neotree("close")
+    vim.cmd.UndotreeToggle()
+end)
+
+local whichKey = require("which-key")
+whichKey.setup({ triggers = {} })
+
+vim.keymap.set("n", "<leader>?", function()
+    whichKey.show({ global = true })
+end)
 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("my.lsp", {}),
@@ -101,6 +123,16 @@ vim.lsp.config("eslint", {
         },
     },
 })
+vim.lsp.config("*", {
+    capabilities = {
+        textDocument = {
+            foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+            },
+        },
+    },
+})
 vim.lsp.enable({ "lua_ls", "eslint", "tailwindcss", "ts_ls", "bashls", "marksman", "prismals" })
 
 -- Theming
@@ -109,39 +141,18 @@ vim.cmd(":hi SignColumn guibg=NONE")
 vim.cmd(":hi LineNr guibg=NONE")
 
 vim.cmd("colorscheme dracula")
--- Transparency
--- vim.cmd([[
---   highlight Normal guibg=none
---   highlight NonText guibg=none
---   highlight Normal ctermbg=none
---   highlight NonText ctermbg=none
--- ]])
 
 local null_ls = require("null-ls")
 
--- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
     sources = {
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.completion.spell,
-        -- null_ls.builtins.formatting.prisma_format,
         null_ls.builtins.formatting.prettier.with({
             prefer_local = "node_modules/.bin",
             extra_filetypes = { "sh" },
         }),
     },
-    -- on_attach = function(client, bufnr)
-    --     if client:supports_method("textDocument/formatting") then
-    --         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    --         vim.api.nvim_create_autocmd("BufWritePre", {
-    --             group = augroup,
-    --             buffer = bufnr,
-    --             callback = function()
-    --                 vim.lsp.buf.format()
-    --             end,
-    --         })
-    --     end
-    -- end,
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -245,24 +256,21 @@ vim.keymap.set("n", "<leader>4", function()
     harpoon:list():select(4)
 end)
 
--- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.g.undotree_WindowLayout = 3
-
--- optionally enable 24-bit colour
 vim.opt.termguicolors = true
-
--- empty setup using defaults
-require("nvim-tree").setup({
-    view = {
-        side = "right",
-        -- float = { enable = true },
+require("neo-tree").setup({
+    window = { position = "right" },
+    filesystem = {
+        filtered_items = { visible = true },
+        follow_current_file = { enabled = true },
+        hijack_netrw_behavior = "open_current",
     },
 })
 
-vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<leader>pv", function()
+    vim.cmd.UndotreeHide()
+    vim.cmd(":Neotree toggle reveal")
+end)
 
 require("Comment").setup({
     toggler = {
@@ -303,3 +311,13 @@ require("toggleterm").setup({
     size = 80,
     autochdir = true,
 })
+
+vim.cmd(":hi foldcolumn guibg=NONE guifg=White")
+vim.cmd(":hi CursorLineFold guibg=NONE guifg=White")
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.opt.foldcolumn = "1"
+
+vim.cmd(":hi Folded guibg=NONE")
+require("ufo").setup()

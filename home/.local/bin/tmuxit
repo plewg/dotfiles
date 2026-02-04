@@ -58,6 +58,7 @@ parse_cli_args() {
 }
 
 setup_panes() {
+    sleep 1
     declare pane_index=0
 
     # get first command
@@ -89,6 +90,7 @@ setup_panes() {
         fi
 
         # split last pane
+        echo tmux split-window -t "${session}.${pane_index}" "${split_args[@]}"
         tmux split-window -t "${session}.${pane_index}" "${split_args[@]}"
 
         # run command in new pane (blank commands means just open the pane)
@@ -135,7 +137,7 @@ fi
 tmux new -d -s "$session"
 
 # setup panes
-setup_panes "${commands[@]}"
+setup_panes "${commands[@]}" &
 
 # set layout
 if [[ -n "$layout" ]]; then

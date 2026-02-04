@@ -4,7 +4,5 @@ keybind = ctrl+t=new_tab
 gtk-custom-css = tab-style.css
 theme = Dracula
 window-inherit-working-directory = false
-# font-family = CaskaydiaCove NF Regular
 font-family = CaskaydiaCove Nerd Font Mono
-# adjust-cell-height = 10%
 font-size = 14

@@ -34,7 +34,6 @@
 	br = branch
 	cm = commit -m
 	co = checkout
-	new = checkout -b
 	lp = log --color --pretty=mono --relative-date --decorate
 	pf = push --force-with-lease --force-if-includes
 	pr-view = !~/.scripts/gh.sh pr
