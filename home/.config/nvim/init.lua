@@ -127,8 +127,9 @@ vim.keymap.set("n", "<leader>ps", ":Pick grep<CR>")
 vim.lsp.config("eslint", {
     settings = {
         rulesCustomizations = {
-            { rule = "*",                        severity = "warn" },
-            { rule = "import/no-unused-modules", severity = "off" },
+            { rule = "*",                          severity = "warn" },
+            { rule = "import/no-unused-modules",   severity = "off" },
+            { rule = "import-x/no-unused-modules", severity = "off" },
         },
     },
 })
