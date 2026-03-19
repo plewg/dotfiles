@@ -2,18 +2,18 @@
 
 set -e
 
-declare base_url
-base_url=$(git config --get remote.origin.url)
-base_url=${base_url%\.git} # remove .git from end of string
+declare baseUrl
+baseUrl=$(git config --get remote.origin.url)
+baseUrl=${baseUrl%\.git} # remove .git from end of string
 
 # Fix plewggit@github.com: URLs
-base_url=${base_url//git@plewggithub\.com:/https:\/\/github\.com\/}
+baseUrl=${baseUrl//git@plewggithub\.com:/https:\/\/github\.com\/}
 
 # Fix git@github.com: URLs
-base_url=${base_url//git@github\.com:/https:\/\/github\.com\/}
+baseUrl=${baseUrl//git@github\.com:/https:\/\/github\.com\/}
 
 # Fix git://github.com URLS
-base_url=${base_url//git:\/\/github\.com/https:\/\/github\.com\/}
+baseUrl=${baseUrl//git:\/\/github\.com/https:\/\/github\.com\/}
 
 declare branch
 branch="$(git br --show-current)"
@@ -25,6 +25,16 @@ else
     target="$branch"
 fi
 
-encoded_title=$(ruby -e "require 'erb'; include ERB::Util; puts url_encode(ARGV.first)" "$branch")
+declare encodedTitle
+encodedTitle=$(echo -n "${branch}" | jq -sRr @uri)
 
-open "${base_url}/compare/${target}?expand=1&title=${encoded_title}"
+declare url
+url="${baseUrl}/compare/${target}?expand=2&title=${encodedTitle}"
+
+if [[ "$OSTYPE" == "linux"* ]]; then
+    xdg-open "$url"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    open "$url"
+else
+    echo "do it yourself: $url"
+fi
