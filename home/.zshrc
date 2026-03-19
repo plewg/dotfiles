@@ -68,7 +68,6 @@ bindkey '^H' backward-kill-word
 
 alias ll='ls -lah'
 alias dc="docker compose"
-alias rg="rg --hidden --glob '!.git'"
 
 doit() {
     declare dir="$1"
