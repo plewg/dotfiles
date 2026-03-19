@@ -19,12 +19,21 @@ vim.opt.fillchars:append({
     foldinner = " ",
 })
 
+function format_without_ts()
+    vim.lsp.buf.format({
+        filter = function(client)
+            return client.name ~= "ts_ls"
+        end,
+        bufnr = vim.api.nvim_get_current_buf(),
+    })
+end
+
 -- Normal Mode
 vim.keymap.set("n", "<leader>so", ":update<CR> :source<CR>")
 vim.keymap.set("n", "<leader>w", ":write<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>f", format_without_ts)
 vim.keymap.set("n", "<leader>sv", ":vnew<CR>")
 vim.keymap.set("n", "<leader>sh", ":new<CR>")
 vim.keymap.set({ "n", "v" }, "<leader>ds", ":put =strftime('%Y-%m-%d')<CR>")
@@ -156,9 +165,7 @@ null_ls.setup({
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-    callback = function()
-        vim.lsp.buf.format()
-    end,
+    callback = format_without_ts,
 })
 
 -- Does this fuckin do anything??
