@@ -143,6 +143,9 @@ vim.lsp.config("*", {
         },
     },
 })
+vim.lsp.config("ts_ls", {
+    init_options = { preferences = { includePackageJsonAutoImports = "on" } },
+})
 vim.lsp.enable({ "lua_ls", "eslint", "tailwindcss", "ts_ls", "bashls", "marksman", "prismals" })
 
 -- Theming
