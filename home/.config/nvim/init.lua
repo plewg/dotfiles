@@ -42,6 +42,9 @@ vim.keymap.set("n", "-", "<C-x>")
 vim.keymap.set("n", "+", "<C-a>")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+vim.keymap.set({ "n", "v" }, "<S-Up>", "<Nop>")
+vim.keymap.set({ "n", "v" }, "<S-Down>", "<Nop>")
+
 -- Copy rel path to current file
 vim.keymap.set("n", "<leader>rp", [[:let @+ = expand("%")<CR>]])
 vim.keymap.set("n", "<leader>fp", [[:let @+ = expand("%:p")<CR>]])
