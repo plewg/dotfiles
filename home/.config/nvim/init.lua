@@ -2,7 +2,7 @@ local vim = vim
 
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.wrap = false
+vim.o.wrap = true
 vim.o.tabstop = 4
 vim.o.swapfile = false
 vim.g.mapleader = " "
@@ -127,8 +127,8 @@ vim.keymap.set("n", "<leader>ps", ":Pick grep<CR>")
 vim.lsp.config("eslint", {
     settings = {
         rulesCustomizations = {
-            { rule = "*",                          severity = "warn" },
-            { rule = "import/no-unused-modules",   severity = "off" },
+            { rule = "*", severity = "warn" },
+            { rule = "import/no-unused-modules", severity = "off" },
             { rule = "import-x/no-unused-modules", severity = "off" },
         },
     },
@@ -270,7 +270,7 @@ end)
 vim.g.undotree_WindowLayout = 3
 vim.opt.termguicolors = true
 require("neo-tree").setup({
-    window = { position = "right" },
+    window = { position = "right", width = 27 },
     filesystem = {
         filtered_items = { visible = true },
         follow_current_file = { enabled = true },
