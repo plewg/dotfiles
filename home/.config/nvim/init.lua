@@ -2,7 +2,7 @@ local vim = vim
 
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.wrap = true
+vim.o.wrap = false
 vim.o.tabstop = 4
 vim.o.swapfile = false
 vim.g.mapleader = " "
@@ -148,7 +148,12 @@ vim.lsp.config("*", {
     },
 })
 vim.lsp.config("ts_ls", {
-    init_options = { preferences = { includePackageJsonAutoImports = "on" } },
+    init_options = {
+        preferences = {
+            includePackageJsonAutoImports = "on",
+            importModuleSpecifierPreference = "non-relative",
+        },
+    },
 })
 vim.lsp.enable({ "lua_ls", "eslint", "tailwindcss", "ts_ls", "bashls", "marksman", "prismals" })
 
