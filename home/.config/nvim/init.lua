@@ -19,7 +19,7 @@ vim.opt.fillchars:append({
     foldinner = " ",
 })
 
-function format_without_ts()
+local function format_without_ts()
     vim.lsp.buf.format({
         filter = function(client)
             return client.name ~= "ts_ls"
