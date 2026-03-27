@@ -90,6 +90,17 @@ vim.pack.add({
     { src = "https://github.com/folke/which-key.nvim" },
 })
 
+local packagesToDelete = vim.iter(vim.pack.get())
+    :filter(function(x)
+        return not x.active
+    end)
+    :map(function(x)
+        return x.spec.name
+    end)
+    :totable()
+
+vim.pack.del(packagesToDelete)
+
 require("ibl").setup()
 
 vim.keymap.set("n", "<leader>u", function()
