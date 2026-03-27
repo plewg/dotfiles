@@ -41,6 +41,7 @@ vim.keymap.set("n", "<leader>in", ":Inspect<CR>")
 vim.keymap.set("n", "-", "<C-x>")
 vim.keymap.set("n", "+", "<C-a>")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "o", "<Nop>")
 
 vim.keymap.set({ "n", "v" }, "<S-Up>", "<Nop>")
 vim.keymap.set({ "n", "v" }, "<S-Down>", "<Nop>")
