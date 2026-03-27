@@ -48,6 +48,9 @@
 	cmb = !~/.scripts/git.sh cmb
 	rebase-self = !~/.scripts/git.sh rebase-self
 	rebase-default = !~/.scripts/git.sh rebase-default
+	reset-new = "!git diff --name-only --diff-filter=A | xargs git reset"
+	reset-new-staged = "!git diff --name-only --diff-filter=A --cached | xargs git reset"
+	reset-new-all = "!git diff --name-only --diff-filter=A HEAD | xargs git reset"
 	# diff
 	dcw = diff --cached -w
 	dc = diff --cached
