@@ -301,13 +301,13 @@ require("Comment").setup({
         ---Line-comment toggle keymap
         line = "<C-/>",
         ---Block-comment toggle keymap
-        block = "<C-?>",
+        block = "<C-S-/>",
     },
     opleader = {
         ---Line-comment keymap
         line = "<C-/>",
         ---Block-comment keymap
-        block = "<C-?>",
+        block = "<C-S-/>",
     },
 })
 
