@@ -130,8 +130,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
     end,
 })
-
-vim.cmd([[set completeopt+=menuone,noinsert]])
+vim.o.complete = ".,o"
+vim.o.autocomplete = true
+vim.o.pumheight = 7
+-- vim.cmd([[set completeopt+=menuone,noinsert,popup]])
+vim.cmd([[set completeopt+=menuone,fuzzy,noselect,popup]])
 
 require("mini.pick").setup()
 -- Only search case sensitive when a capital letter is present in the term
@@ -180,8 +183,8 @@ local null_ls = require("null-ls")
 
 null_ls.setup({
     sources = {
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.completion.spell,
+        -- null_ls.builtins.formatting.stylua,
+        -- null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.prettier.with({
             prefer_local = "node_modules/.bin",
             extra_filetypes = { "sh" },
@@ -198,7 +201,32 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
         if client:supports_method("textDocument/completion") then
-            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+            vim.lsp.completion.enable(true, client.id, ev.buf, {
+                autotrigger = true,
+                convert = function(item)
+                    -- Remove leading misc chars for abbr name,
+                    -- and cap field to 25 chars
+                    --local abbr = item.label
+                    --abbr = abbr:match("[%w_.]+.*") or abbr
+                    --abbr = #abbr > 25 and abbr:sub(1, 24) .. "…" or abbr
+                    --
+                    -- Remove return value
+                    --local menu = ""
+
+                    -- Only show abbr name, remove leading misc chars (bullets etc.),
+                    -- and cap field to 15 chars
+                    local abbr = item.label
+                    abbr = abbr:gsub("%b()", ""):gsub("%b{}", "")
+                    abbr = abbr:match("[%w_.]+.*") or abbr
+                    abbr = #abbr > 15 and abbr:sub(1, 14) .. "…" or abbr
+
+                    -- Cap return value field to 15 chars
+                    local menu = item.detail or ""
+                    menu = #menu > 15 and menu:sub(1, 14) .. "…" or menu
+
+                    return { abbr = abbr, menu = menu }
+                end,
+            })
         end
     end,
 })
