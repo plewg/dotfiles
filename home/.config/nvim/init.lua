@@ -195,26 +195,29 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     callback = format_without_ts,
 })
 
-local status, prettier = pcall(require, "prettier")
-if status then
-    prettier.setup({
-        filetypes = {
-            "css",
-            "javascript",
-            "javacriptreact",
-            "typescript",
-            "typescriptreact",
-            "json",
-            "scss",
-            "less",
-            "markdown",
-            "sh",
-        },
-    })
-end
+-- local status, prettier = pcall(require, "prettier")
+-- if status then
+--     prettier.setup({
+--         filetypes = {
+--             "css",
+--             "javascript",
+--             "javacriptreact",
+--             "typescript",
+--             "typescriptreact",
+--             "json",
+--             "scss",
+--             "less",
+--             "markdown",
+--             "sh",
+--         },
+--     })
+-- end
 
 vim.diagnostic.config({
     severity_sort = true,
+    -- float = {
+    --     relative = "editor"
+    -- }
 })
 
 local opts = { remap = false }
@@ -316,6 +319,7 @@ vim.opt.undofile = true
 local treesitter_filetypes = {
     "markdown",
     "prisma",
+    "yaml",
 }
 
 require("nvim-treesitter").install(treesitter_filetypes)

@@ -7,3 +7,5 @@ window-inherit-working-directory = false
 font-family = CaskaydiaCove Nerd Font Mono
 font-size = 14
 font-feature = -calt
+clipboard-read = allow
+clipboard-write = allow

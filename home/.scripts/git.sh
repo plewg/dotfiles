@@ -188,7 +188,7 @@ git::repo() {
     fi
 
     # open manually so it doesn't print "Opening ... in your browser"
-    open "$(op plugin run -- gh browse --no-browser "${browse_args[@]}")"
+    xdg-open "$(op plugin run -- gh browse --no-browser "${browse_args[@]}")"
 }
 
 git::admins() {
