@@ -19,16 +19,21 @@
   "theme": {
     "mode": "dark",
     "light": "Dracula Solid",
-    "dark": "Dracula Solid",
+    "dark": "Dracula",
   },
   "ui_font_family": "Inconsolata",
   "buffer_font_family": "Inconsolata",
   "buffer_line_height": { "custom": 1.3 },
-  "diagnostics": { "inline": { "enabled": true } },
+  // "diagnostics": { "inline": { "enabled": true } },
   "relative_line_numbers": "enabled",
   "cursor_blink": false,
   "wrap_guides": [80, 120],
-  "tabs": { "show_diagnostics": "all" },
+  "tabs": {
+    // "show_diagnostics": "all",
+    "activate_on_close": "left_neighbour",
+
+    "git_status": true,
+  },
   "languages": {
     "TypeScript": {
       "code_actions_on_format": {
@@ -99,6 +104,23 @@
     "metrics": false,
   },
   "lsp": {
+    "tailwindcss-language-server": {
+      "settings": {
+        "experimental": {
+          "classRegex": [
+            "\\.className\\s*[+]?=\\s*['\"]([^'\"]*)['\"]",
+            "\\.setAttributeNS\\(.*,\\s*['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
+            "\\.setAttribute\\(['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
+            "\\.classList\\.add\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.remove\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.toggle\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.contains\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.replace\\(\\s*['\"]([^'\"]*)['\"]",
+            "\\.classList\\.replace\\([^,)]+,\\s*['\"]([^'\"]*)['\"]",
+          ],
+        },
+      },
+    },
     "eslint": {
       "settings": {
         "workingDirectory": {
@@ -122,4 +144,5 @@
       },
     },
   },
+  // "colorize_brackets": true,
 }
