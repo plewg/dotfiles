@@ -1,25 +1,14 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
 [
   {
-    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
-    "bindings": {
-      "space f": "editor::Format",
-      "cmd-/": [
-        "editor::ToggleComments",
-        {
-          "advance_downwards": false
-        }
-      ],
-      "space p o": "projects::OpenRecent",
-      "space p f": "file_finder::Toggle",
-      "space p s": "workspace::NewSearch"
-    }
-  },
-  {
-    "context": "Editor && vim_mode == visual && vim_operator == none && !VimWaiting",
-    "bindings": {
-      "shift-j": "editor::MoveLineDown",
-      "shift-k": "editor::MoveLineUp"
-    }
+    "context": "Workspace",
+    "bindings": {},
   },
   {
     "context": "Editor",
@@ -27,70 +16,50 @@
       "ctrl-shift-tab": "pane::ActivatePreviousItem",
       "ctrl-tab": "pane::ActivateNextItem",
       "ctrl-cmd-p": null,
-      "cmd-shift-d": "editor::DuplicateLineDown",
-      "ctrl-cmd-up": "editor::MoveLineUp",
-      "ctrl-cmd-down": "editor::MoveLineDown",
+      "ctrl-shift-d": "editor::DuplicateLineDown",
       "pageup": "editor::MovePageUp",
-      "pagedown": "editor::MovePageDown"
-    }
+      "pagedown": "editor::MovePageDown",
+    },
   },
   {
-    "context": "Pane",
+    "context": "Editor && vim_node == normal",
     "bindings": {
-      "cmd-1": [
-        "pane::ActivateItem",
-        0
-      ],
-      "cmd-2": [
-        "pane::ActivateItem",
-        1
-      ],
-      "cmd-3": [
-        "pane::ActivateItem",
-        2
-      ],
-      "cmd-4": [
-        "pane::ActivateItem",
-        3
-      ],
-      "cmd-5": [
-        "pane::ActivateItem",
-        4
-      ],
-      "cmd-6": [
-        "pane::ActivateItem",
-        5
-      ],
-      "cmd-7": [
-        "pane::ActivateItem",
-        6
-      ],
-      "cmd-8": [
-        "pane::ActivateItem",
-        7
-      ],
-      "cmd-9": "pane::ActivateLastItem"
-    }
+      "] d": "project_panel::SelectNextDiagnostic",
+      "[ d": "project_panel::SelectPrevDiagnostic",
+      "qwe": "editor::ToggleComments",
+    },
   },
   {
-    "context": "Workspace",
+    "context": "Editor && vim_mode == insert",
     "bindings": {
-      // TODO: fix, "zed::NoAction" doesn't seem to work to override this
-      // keybinding, so we're overriding with a random keybinding that
-      // doesn't affect the editor...
-      // "cmd-shift-e": null,
-      "ctrl-cmd-p": [
-        "projects::OpenRecent",
-        {
-          "create_new_window": false
-        }
-      ]
-    }
+      // "j k": "vim::NormalBefore"
+    },
   },
   {
-    "context": "ProjectPanel && not_editing",
+    "context": "Editor && vim_mode == visual",
     "bindings": {
-      "/": null
-    }
-  }
+      "shift-k": "editor::MoveLineUp",
+      "shift-j": "editor::MoveLineDown",
+    },
+  },
+  {
+    "context": "(VimControl && !menu) || (!Editor && !Terminal)",
+    "bindings": {
+      "space q": "pane::CloseActiveItem",
+      "space w": "workspace::Save",
+      "space v d": "editor::Hover",
+      "space f": "editor::Format",
+      "space p o": "projects::OpenRecent",
+      "space p f": "file_finder::Toggle",
+      "space p s": ["workspace::NewSearch", {}],
+      "space p v": "workspace::ToggleLeftDock",
+    },
+  },
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "enter": "editor::Newline",
+      "tab": "editor::ConfirmCompletion",
+    },
+  },
 ]
