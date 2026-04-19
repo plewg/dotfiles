@@ -6,63 +6,81 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  {
-    "context": "Workspace",
-    "bindings": {},
-  },
-  {
-    "context": "Editor",
-    "bindings": {
-      "ctrl-shift-tab": "pane::ActivatePreviousItem",
-      "ctrl-tab": "pane::ActivateNextItem",
-      "ctrl-cmd-p": null,
-      "ctrl-shift-d": "editor::DuplicateLineDown",
-      "pageup": "editor::MovePageUp",
-      "pagedown": "editor::MovePageDown",
+    {
+        "context": "Workspace",
+        "bindings": {},
     },
-  },
-  {
-    "context": "Editor && vim_node == normal",
-    "bindings": {
-      "] d": "project_panel::SelectNextDiagnostic",
-      "[ d": "project_panel::SelectPrevDiagnostic",
-      "[ d": "project_panel::SelectPrevDiagnostic",
-      "qwe": "editor::ToggleComments",
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-shift-tab": "pane::ActivatePreviousItem",
+            "ctrl-tab": "pane::ActivateNextItem",
+            "ctrl-cmd-p": null,
+            "ctrl-shift-d": "editor::DuplicateLineDown",
+            "ctrl-u": "editor::MovePageUp",
+            "ctrl-d": "editor::MovePageDown",
+            // "ctrl-e": "vim::ToggleMarksView",
+            // "space a": "vim::PushMark",
+        },
     },
-  },
-  {
-    "context": "Editor && vim_mode == insert",
-    "bindings": {
-      // "j k": "vim::NormalBefore"
+    {
+        "context": "Editor && vim_mode == normal",
+        "bindings": {
+            "] d": "editor::GoToDiagnostic",
+            // "[ d": "project_panel::SelectPrevDiagnostic",
+        },
     },
-  },
-  {
-    "context": "Editor && vim_mode == visual",
-    "bindings": {
-      "shift-k": "editor::MoveLineUp",
-      "shift-j": "editor::MoveLineDown",
+    {
+        "context": "Editor && vim_mode == insert",
+        "bindings": {
+            "ctrl-h": "editor::ShowSignatureHelp",
+        },
     },
-  },
-  {
-    "context": "(VimControl && !menu) || (!Editor && !Terminal)",
-    "bindings": {
-      "space q": "pane::CloseActiveItem",
-      // Well, well, well. What do we want to do with you, now?
-      // "space q a": "zed::Quit",
-      "space w": "workspace::Save",
-      "space v d": "editor::Hover",
-      "space f": "editor::Format",
-      "space p o": "projects::OpenRecent",
-      "space p f": "file_finder::Toggle",
-      "space p s": ["workspace::NewSearch", {}],
-      "space p v": "workspace::ToggleLeftDock",
+    {
+        "context": "Editor && vim_mode == visual",
+        "bindings": {
+            "shift-k": "editor::MoveLineUp",
+            "shift-j": "editor::MoveLineDown",
+            // "space v c a": "editor::ToggleCodeActions",
+            // "space s": "sortline"
+        },
     },
-  },
-  {
-    "context": "Editor && showing_completions",
-    "bindings": {
-      "enter": "editor::Newline",
-      "tab": "editor::ConfirmCompletion",
+    {
+        "context": "(VimControl && !menu) || (!Editor && !Terminal)",
+        "bindings": {
+            "space q": "pane::CloseActiveItem",
+            // Well, well, well. What do we want to do with you, now?
+            // "space q a": "zed::Quit",
+            "space w": "workspace::Save",
+            "space v d": "editor::Hover",
+            "space f": "editor::Format",
+            "space p o": "projects::OpenRecent",
+            "space p f": "file_finder::Toggle",
+            "space p s": "workspace::NewSearch",
+            "space p v": "workspace::ToggleRightDock",
+            "space v c a": "editor::ToggleCodeActions",
+            "ctrl-h": "editor::ShowSignatureHelp",
+            "space o f": "workspace::Open",
+            "space r p": "workspace::CopyRelativePath",
+            "space a p": "workspace::CopyPath",
+            "space s v": "workspace::NewFileSplitVertical",
+            "space s h": "workspace::NewFileSplitHorizontal",
+            "space v w s": "project_symbols::Toggle",
+            "space v r n": "editor::Rename",
+            "space v r r": "editor::FindAllReferences",
+        },
     },
-  },
+    {
+        "context": "Editor && showing_completions",
+        "bindings": {
+            "enter": "editor::Newline",
+            "tab": "editor::ConfirmCompletion",
+        },
+    },
+    // TODO: fuckin marks, man
+    // {
+    //     "bindings": {
+    //         "space 1": "vim::ArgumentRequired",
+    //     },
+    // },
 ]

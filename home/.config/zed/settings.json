@@ -7,142 +7,184 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "icon_theme": {
-    "mode": "dark",
-    "light": "Zed (Default)",
-    "dark": "Zed (Default)",
-  },
-  "base_keymap": "SublimeText",
-  "vim_mode": true,
-  "ui_font_size": 16,
-  "buffer_font_size": 17,
-  "theme": {
-    "mode": "dark",
-    "light": "Dracula Solid",
-    "dark": "Dracula",
-  },
-  "ui_font_family": "Inconsolata",
-  "buffer_font_family": "Inconsolata",
-  "buffer_line_height": { "custom": 1.3 },
-  // "diagnostics": { "inline": { "enabled": true } },
-  "relative_line_numbers": "enabled",
-  "cursor_blink": false,
-  "wrap_guides": [80, 120],
-  "tabs": {
-    // "show_diagnostics": "all",
-    "activate_on_close": "left_neighbour",
+    "git": {
+        "inline_blame": {
+            "enabled": false,
+        },
+    },
+    "icon_theme": {
+        "mode": "dark",
+        "light": "Zed (Default)",
+        "dark": "Zed (Default)",
+    },
+    "base_keymap": "SublimeText",
+    "vim_mode": true,
+    "ui_font_size": 16,
+    "buffer_font_size": 16,
+    "inline_code_actions": false,
+    "theme": {
+        "mode": "dark",
+        "light": "Dark Material Dracula",
+        "dark": "Dark Pegle",
+    },
+    "auto_install_extensions": {
+        "html": true,
+        "editorconfig": true,
+        "dark-material-dracula": true,
+    },
+    "indent_guides": {
+        "coloring": "indent_aware",
+    },
+    "lsp_document_colors": "background",
+    "ui_font_family": "Inconsolata LGC Nerd Font Mono",
+    "buffer_font_family": "Inconsolata LGC Nerd Font Mono",
+    "buffer_line_height": { "custom": 1.5 },
+    "project_panel": {
+        "dock": "right",
+        "default_width": 300,
+    },
+    // "diagnostics": { "inline": { "enabled": true } },
+    "relative_line_numbers": "enabled",
+    "cursor_blink": false,
+    "wrap_guides": [80, 120],
+    "tabs": {
+        "activate_on_close": "left_neighbour",
+        "git_status": true,
+    },
+    "tab_size": 4,
+    "prettier": {
+        "tabWidth": 4,
+    },
+    "languages": {
+        "TypeScript": {
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true,
+            },
+            "formatter": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+            "format_on_save": "on",
+        },
+        "TSX": {
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true,
+            },
+            "formatter": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+            "format_on_save": "on",
+        },
+        "JavaScript": {
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true,
+            },
+            "formatter": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+            "format_on_save": "on",
+        },
+        "Markdown": {
+            "formatter": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+            "format_on_save": "on",
+        },
+        "JSON": {
+            "formatter": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+            "format_on_save": "on",
+        },
+        "Shell Script": {
+            "formatter": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+            "format_on_save": "on",
+        },
+    },
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false,
+    },
+    "extend_comment_on_newline": false,
+    "lsp": {
+        // "typescript-language-server": {
+        //     "settings": {
 
-    "git_status": true,
-  },
-  "languages": {
-    "TypeScript": {
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true,
-      },
-      "formatter": {
-        "external": {
-          "command": "node_modules/.bin/prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"],
+        //     },
+        //     // TODO: is this right?
+        //     "initialization_options": {
+        //         "preferences": {
+        //             "includePackageJsonAutoImports": "on",
+        //             "importModuleSpecifierPreference": "relative",
+        //         },
+        //     },
+        // },
+        // "vtsls": {
+        //     "initialization_options": {
+        //         "preferences": {
+        //             "includePackageJsonAutoImports": "on",
+        //             "importModuleSpecifierPreference": "relative",
+        //         },
+        //     },
+        // },
+        "tailwindcss-language-server": {
+            "settings": {
+                "experimental": {
+                    "classRegex": [
+                        "\\.className\\s*[+]?=\\s*['\"]([^'\"]*)['\"]",
+                        "\\.setAttributeNS\\(.*,\\s*['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
+                        "\\.setAttribute\\(['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
+                        "\\.classList\\.add\\(['\"]([^'\"]*)['\"]",
+                        "\\.classList\\.remove\\(['\"]([^'\"]*)['\"]",
+                        "\\.classList\\.toggle\\(['\"]([^'\"]*)['\"]",
+                        "\\.classList\\.contains\\(['\"]([^'\"]*)['\"]",
+                        "\\.classList\\.replace\\(\\s*['\"]([^'\"]*)['\"]",
+                        "\\.classList\\.replace\\([^,)]+,\\s*['\"]([^'\"]*)['\"]",
+                    ],
+                },
+            },
         },
-      },
-      "format_on_save": "on",
+        "eslint": {
+            "settings": {
+                "workingDirectory": {
+                    "mode": "auto",
+                },
+                "problems": {
+                    "shortenToSingleLine": true,
+                },
+                "rulesCustomizations": [
+                    // set all eslint errors/warnings to show as warnings
+                    {
+                        "rule": "*",
+                        "severity": "warn",
+                    },
+                    // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
+                    {
+                        "rule": "import/no-unused-modules",
+                        "severity": "off",
+                    },
+                ],
+            },
+        },
     },
-    "TSX": {
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true,
-      },
-      "formatter": {
-        "external": {
-          "command": "node_modules/.bin/prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"],
-        },
-      },
-      "format_on_save": "on",
-    },
-    "JavaScript": {
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true,
-      },
-      "formatter": {
-        "external": {
-          "command": "node_modules/.bin/prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"],
-        },
-      },
-      "format_on_save": "on",
-    },
-    "Markdown": {
-      "formatter": {
-        "external": {
-          "command": "node_modules/.bin/prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"],
-        },
-      },
-      "format_on_save": "on",
-    },
-    "JSON": {
-      "formatter": {
-        "external": {
-          "command": "node_modules/.bin/prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"],
-        },
-      },
-      "format_on_save": "on",
-    },
-    "Shell Script": {
-      "formatter": {
-        "external": {
-          "command": "node_modules/.bin/prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"],
-        },
-      },
-      "format_on_save": "on",
-    },
-  },
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false,
-  },
-  "lsp": {
-    "tailwindcss-language-server": {
-      "settings": {
-        "experimental": {
-          "classRegex": [
-            "\\.className\\s*[+]?=\\s*['\"]([^'\"]*)['\"]",
-            "\\.setAttributeNS\\(.*,\\s*['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
-            "\\.setAttribute\\(['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
-            "\\.classList\\.add\\(['\"]([^'\"]*)['\"]",
-            "\\.classList\\.remove\\(['\"]([^'\"]*)['\"]",
-            "\\.classList\\.toggle\\(['\"]([^'\"]*)['\"]",
-            "\\.classList\\.contains\\(['\"]([^'\"]*)['\"]",
-            "\\.classList\\.replace\\(\\s*['\"]([^'\"]*)['\"]",
-            "\\.classList\\.replace\\([^,)]+,\\s*['\"]([^'\"]*)['\"]",
-          ],
-        },
-      },
-    },
-    "eslint": {
-      "settings": {
-        "workingDirectory": {
-          "mode": "auto",
-        },
-        "problems": {
-          "shortenToSingleLine": true,
-        },
-        "rulesCustomizations": [
-          // set all eslint errors/warnings to show as warnings
-          {
-            "rule": "*",
-            "severity": "warn",
-          },
-          // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
-          {
-            "rule": "import/no-unused-modules",
-            "severity": "off",
-          },
-        ],
-      },
-    },
-  },
-  // "colorize_brackets": true,
+    // "colorize_brackets": true,
 }
