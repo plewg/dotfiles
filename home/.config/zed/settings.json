@@ -30,7 +30,8 @@
     "auto_install_extensions": {
         "html": true,
         "editorconfig": true,
-        "dark-material-dracula": true,
+        "color-highlight": true,
+        "json5": true,
     },
     "indent_guides": {
         "coloring": "indent_aware",
