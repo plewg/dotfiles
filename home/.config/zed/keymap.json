@@ -68,6 +68,7 @@
             "space v w s": "project_symbols::Toggle",
             "space v r n": "editor::Rename",
             "space v r r": "editor::FindAllReferences",
+            "ctrl-q": "zed::Quit",
         },
     },
     {
