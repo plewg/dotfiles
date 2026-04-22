@@ -7,6 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+    "document_folding_ranges": "on",
+    "gutter": {
+        "folds": false,
+        "breakpoints": false,
+        "runnables": false,
+    },
     "git": {
         "inline_blame": {
             "enabled": false,
@@ -26,7 +32,6 @@
         "use_system_clipboard": "never",
     },
     "disable_ai": true,
-    // "base_keymap": "SublimeText",
     "base_keymap": "None",
     "vim_mode": true,
     "ui_font_size": 16,
@@ -41,7 +46,8 @@
         "html": true,
         "editorconfig": true,
         "color-highlight": true,
-        "json5": true,
+        "toml": true,
+        "comment": true,
     },
     "indent_guides": {
         "coloring": "indent_aware",
@@ -54,7 +60,6 @@
         "dock": "right",
         "default_width": 300,
     },
-    // "diagnostics": { "inline": { "enabled": true } },
     "relative_line_numbers": "enabled",
     "cursor_blink": false,
     "wrap_guides": [80, 120],
@@ -137,26 +142,6 @@
     },
     "extend_comment_on_newline": false,
     "lsp": {
-        // "typescript-language-server": {
-        //     "settings": {
-
-        //     },
-        //     // TODO: is this right?
-        //     "initialization_options": {
-        //         "preferences": {
-        //             "includePackageJsonAutoImports": "on",
-        //             "importModuleSpecifierPreference": "relative",
-        //         },
-        //     },
-        // },
-        // "vtsls": {
-        //     "initialization_options": {
-        //         "preferences": {
-        //             "includePackageJsonAutoImports": "on",
-        //             "importModuleSpecifierPreference": "relative",
-        //         },
-        //     },
-        // },
         "tailwindcss-language-server": {
             "settings": {
                 "experimental": {

@@ -2,6 +2,8 @@
 	name = Paige Dwight
 	email = 85356912+plewg@users.noreply.github.com
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDSn6p9qnBl879jJBU8PhuIOu3Mnw0DKOInT6OKnMwei
+[url "ssh://git@github.com/"]
+	pushInsteadOf = https://github.com/
 [push]
 	default = simple
 	autoSetupRemote = true
