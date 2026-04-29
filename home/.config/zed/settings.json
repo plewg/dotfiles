@@ -7,6 +7,11 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+    "tab_bar": {
+        "show_nav_history_buttons": false,
+        "show_tab_bar_buttons": false,
+    },
+    "semantic_tokens": "combined",
     "document_folding_ranges": "on",
     "gutter": {
         "folds": false,
@@ -17,6 +22,15 @@
         "inline_blame": {
             "enabled": false,
         },
+    },
+    "global_lsp_settings": {
+        "semantic_token_rules": [
+            {
+                "token_type": "function",
+                "token_modifiers": ["declaration"],
+                "style": ["function.definition"],
+            },
+        ],
     },
     "icon_theme": {
         "mode": "dark",
@@ -66,6 +80,9 @@
     "tabs": {
         "activate_on_close": "left_neighbour",
         "git_status": true,
+    },
+    "status_bar": {
+        "show_active_file": true,
     },
     "tab_size": 4,
     "prettier": {
@@ -182,5 +199,5 @@
             },
         },
     },
-    // "colorize_brackets": true,
+    "colorize_brackets": true,
 }
