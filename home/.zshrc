@@ -61,6 +61,7 @@ setopt INC_APPEND_HISTORY
 setopt HIST_VERIFY
 setopt HIST_IGNORE_ALL_DUPS
 unsetopt nomatch
+unsetopt autocd
 
 # Key Bindings
 # NOTE: run `bindkey` to see all keybindings
