@@ -3,9 +3,11 @@ hostname: "{{ machine }}"
 when: os == "linux"
 
 files:
-  - source: home
+  - source: shared/home
     destination: ~/
     link_files: true
+  - source: linux/home
+    destination: ~/
 
 git.repo:
   - source: https://github.com/ohmyzsh/ohmyzsh.git
@@ -15,9 +17,11 @@ git.repo:
 when: os == "macos"
 
 files:
-  - source: home
+  - source: shared/home
     destination: ~/
     link_files: true
+  - source: mac/home
+    destination: ~/
   - source: files/com.googlecode.iterm2.plist
     destination: ~/Library/Preferences/com.googlecode.iterm2.plist
 
