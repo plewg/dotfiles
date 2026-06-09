@@ -702,8 +702,8 @@
             "alt-8": ["workspace::ActivatePane", 7],
             "alt-9": ["workspace::ActivatePane", 8],
             "ctrl-alt-b": "workspace::ToggleRightDock",
-            "ctrl-b": "workspace::ToggleLeftDock",
-            "ctrl-j": "workspace::ToggleBottomDock",
+            // "ctrl-b": "workspace::ToggleLeftDock",
+            // "ctrl-j": "workspace::ToggleBottomDock",
             "ctrl-alt-j": "multi_workspace::ToggleWorkspaceSidebar",
             "ctrl-alt-;": "multi_workspace::FocusWorkspaceSidebar",
             "ctrl-alt-y": "workspace::ToggleAllDocks",
@@ -1696,7 +1696,7 @@
     {
         "context": "Workspace",
         "bindings": {
-            "ctrl-k ctrl-b": "workspace::ToggleLeftDock",
+            // "ctrl-k ctrl-b": "workspace::ToggleLeftDock",
             // "ctrl-0": "project_panel::ToggleFocus", // normally resets zoom
             "shift-ctrl-r": "project_symbols::Toggle",
         },
@@ -1821,7 +1821,7 @@
             "g y": "editor::GoToTypeDefinition",
             "g shift-i": "editor::GoToImplementation",
             "g x": "editor::OpenUrl",
-            "g f": "editor::OpenSelectedFilename",
+            // "g f": "editor::OpenSelectedFilename",
             "g n": "vim::SelectNextMatch",
             "g shift-n": "vim::SelectPreviousMatch",
             "g l": "vim::SelectNext",
@@ -1834,7 +1834,7 @@
             "g shift-s": "project_symbols::Toggle",
             "g .": "editor::ToggleCodeActions", // zed specific
             "g shift-a": "editor::FindAllReferences", // zed specific
-            "g space": "editor::OpenExcerpts", // zed specific
+            "g f": "editor::OpenExcerpts", // zed specific
             "g *": ["vim::MoveToNext", { "partial_word": true }],
             "g #": ["vim::MoveToPrevious", { "partial_word": true }],
             "g j": ["vim::Down", { "display_lines": true }],
@@ -1853,9 +1853,9 @@
             "g i": "vim::InsertAtPrevious",
             "g ,": "vim::ChangeListNewer",
             "g ;": "vim::ChangeListOlder",
-            "shift-h": "vim::WindowTop",
+            // "shift-h": "vim::WindowTop",
             "shift-m": "vim::WindowMiddle",
-            "shift-l": "vim::WindowBottom",
+            // "shift-l": "vim::WindowBottom",
             "q": "vim::ToggleRecord",
             "shift-q": "vim::ReplayLastRecording",
             "@": "vim::PushReplayRegister",
@@ -2063,7 +2063,7 @@
             "shift-j": "vim::JoinLines",
             "i": "vim::InsertBefore",
             "a": "vim::InsertAfter",
-            "o": "vim::InsertLineBelow",
+            // "o": "vim::InsertLineBelow",
             "shift-o": "vim::InsertLineAbove",
             "p": "vim::Paste",
             "u": "vim::Undo",
@@ -2127,7 +2127,7 @@
             "shift-y": "vim::YankLine",
             "shift-i": "vim::InsertFirstNonWhitespace",
             "shift-a": "vim::InsertEndOfLine",
-            "o": "vim::InsertLineBelow",
+            // "o": "vim::InsertLineBelow",
             "shift-o": "vim::InsertLineAbove",
             "~": "vim::ChangeCase",
             "ctrl-a": "vim::Increment",

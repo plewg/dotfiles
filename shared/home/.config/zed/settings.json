@@ -7,19 +7,20 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+    "cli_default_open_behavior": "new_window",
     "outline_panel": {
-        "dock": "left"
+        "dock": "left",
     },
     "collaboration_panel": {
-        "dock": "left"
+        "dock": "left",
     },
     "agent": {
         "dock": "right",
         "favorite_models": [],
-        "model_parameters": []
+        "model_parameters": [],
     },
     "git_panel": {
-        "dock": "left"
+        "dock": "left",
     },
     "tab_bar": {
         "show_nav_history_buttons": false,
@@ -31,6 +32,7 @@
         "folds": false,
         "breakpoints": false,
         "runnables": false,
+        "bookmarks": false,
     },
     "git": {
         "inline_blame": {
@@ -98,11 +100,16 @@
     "status_bar": {
         "show_active_file": true,
     },
-    "tab_size": 4,
     "prettier": {
         "tabWidth": 4,
     },
+    "tab_size": 4,
     "languages": {
+        "YAML": {
+            "prettier": {
+                "tabWidth": 2,
+            },
+        },
         "TypeScript": {
             "code_actions_on_format": {
                 "source.fixAll.eslint": true,
@@ -148,6 +155,15 @@
             },
             "format_on_save": "on",
         },
+        "JSONC": {
+            "formatter": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+            "format_on_save": "on",
+        },
         "JSON": {
             "formatter": {
                 "external": {
@@ -165,6 +181,7 @@
                 },
             },
             "format_on_save": "on",
+            "enable_language_server": true,
         },
     },
     "telemetry": {
@@ -173,6 +190,28 @@
     },
     "extend_comment_on_newline": false,
     "lsp": {
+        "vtsls": {
+            "settings": {
+                "typescript": {
+                    "updateImportsOnFileMove": {
+                        "enabled": "always",
+                    },
+                },
+                "javascript": {
+                    "updateImportsOnFileMove": {
+                        "enabled": "always",
+                    },
+                },
+            },
+            "enable_lsp_tasks": true,
+        },
+        "rust-analyzer": {
+            "initialization_options": {
+                "cargo": {
+                    "allFeatures": true,
+                },
+            },
+        },
         "tailwindcss-language-server": {
             "settings": {
                 "experimental": {
