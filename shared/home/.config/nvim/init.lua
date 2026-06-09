@@ -88,10 +88,10 @@ vim.pack.add({
     { src = "https://github.com/MunifTanjim/nui.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
     { src = "https://github.com/folke/which-key.nvim" },
-    { src = "https://github.com/nvim-mini/mini.completion" },
+    -- { src = "https://github.com/nvim-mini/mini.completion" },
 })
 
-require('mini.completion').setup()
+-- require('mini.completion').setup()
 
 local packagesToDelete = vim.iter(vim.pack.get())
     :filter(function(x)
@@ -195,29 +195,26 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     callback = format_without_ts,
 })
 
--- local status, prettier = pcall(require, "prettier")
--- if status then
---     prettier.setup({
---         filetypes = {
---             "css",
---             "javascript",
---             "javacriptreact",
---             "typescript",
---             "typescriptreact",
---             "json",
---             "scss",
---             "less",
---             "markdown",
---             "sh",
---         },
---     })
--- end
+local status, prettier = pcall(require, "prettier")
+if status then
+    prettier.setup({
+        filetypes = {
+            "css",
+            "javascript",
+            "javacriptreact",
+            "typescript",
+            "typescriptreact",
+            "json",
+            "scss",
+            "less",
+            "markdown",
+            "sh",
+        },
+    })
+end
 
 vim.diagnostic.config({
     severity_sort = true,
-    -- float = {
-    --     relative = "editor"
-    -- }
 })
 
 local opts = { remap = false }
@@ -319,7 +316,6 @@ vim.opt.undofile = true
 local treesitter_filetypes = {
     "markdown",
     "prisma",
-    "yaml",
 }
 
 require("nvim-treesitter").install(treesitter_filetypes)

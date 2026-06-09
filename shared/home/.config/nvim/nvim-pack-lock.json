@@ -17,10 +17,6 @@
       "rev": "005b56001b2cb30bfa61b7986bc50657816ba4ba",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
-    "mini.completion": {
-      "rev": "4f94cafdeef02bf3ef9997cd6862658801caa22c",
-      "src": "https://github.com/nvim-mini/mini.completion"
-    },
     "mini.pick": {
       "rev": "8cb40ee55dd156957b1116eded6135e6aeaa078b",
       "src": "https://github.com/nvim-mini/mini.pick"
