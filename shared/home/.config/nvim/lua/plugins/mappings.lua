@@ -14,6 +14,7 @@ return {
                         function() require("snacks").picker.grep { hidden = true, ignored = false } end,
                         desc = "Search in all files",
                     },
+                    ["<Leader>s"] = { desc = "Split" },
                     ["<Leader>sv"] = {
                         ":vnew<CR>",
                         desc = "New vertical split",
@@ -40,7 +41,7 @@ return {
                         end,
                         desc = "Toggle explorer",
                     },
-                    ["<Leader>ss"] = {
+                    ["<Leader>r"] = {
                         [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
                         desc = "Replace all",
                     },
@@ -54,29 +55,33 @@ return {
                     ["<S-Down>"] = { "<Nop>" },
                     ["<F1>"] = { "<Nop>" },
                     ["<C-/>"] = { "gcc", remap = true, desc = "Toggle comment line" },
-                    ["<Leader>vd"] = {
-                        function() vim.diagnostic.open_float() end,
-                        desc = "View diagnostics",
-                    },
-                    ["<Leader>va"] = {
-                        function() vim.diagnostic.setloclist() end,
-                        desc = "Add buffer diagnostics to the location list",
-                    },
-                    ["<Leader>vca"] = {
-                        function() vim.lsp.buf.code_action() end,
-                        desc = "View code actions",
-                    },
-                    ["<Leader>vrr"] = {
-                        function() require("snacks.picker").lsp_references() end,
-                        desc = "View references",
-                    },
-                    ["<Leader>vrn"] = {
-                        function() vim.lsp.buf.rename() end,
-                        desc = "Rename",
-                    },
-                    ["<Leader>vws"] = {
-                        function() require("snacks.picker").lsp_workspace_symbols() end,
-                    },
+                    -- ["<Leader>v"] = { desc = "LSP Functions" },
+                    -- ["<Leader>vd"] = {
+                    --     function() vim.diagnostic.open_float() end,
+                    --     desc = "View diagnostics",
+                    -- },
+                    -- C-q
+                    -- ["<Leader>va"] = {
+                    --     function() vim.diagnostic.setloclist() end,
+                    --     desc = "Add buffer diagnostics to the location list",
+                    -- },
+                    -- ["<Leader>vca"] = {
+                    --     function() vim.lsp.buf.code_action() end,
+                    --     desc = "View code actions",
+                    -- },
+                    -- ["<Leader>vrr"] = {
+                    --     function() require("snacks.picker").lsp_references() end,
+                    --     desc = "View references",
+                    -- },
+                    -- ["<Leader>vrn"] = {
+                    --     function() vim.lsp.buf.rename() end,
+                    --     desc = "Rename",
+                    -- },
+                    -- ["<Leader>vws"] = {
+                    --     function() require("snacks.picker").lsp_workspace_symbols() end,
+                    -- },
+                    ["<Leader>ls"] = false,
+                    ["<Leader>lS"] = false,
                     ["<Leader>a"] = {
                         function() require("harpoon"):list():add() end,
                         desc = "Add mark",
@@ -99,6 +104,10 @@ return {
                     ["<Leader>4"] = {
                         function() require("harpoon"):list():select(4) end,
                         desc = "Go to mark 4",
+                    },
+                    ["<Leader>ld"] = {
+                        function() require("snacks").picker.diagnostics() end,
+                        desc = "Search diagnostics",
                     },
                     ["<Leader>fa"] = false,
                     ["<Leader>fb"] = false,
@@ -136,6 +145,25 @@ return {
                     ["<Leader>pS"] = false,
                     ["<Leader>pu"] = false,
                     ["<Leader>pU"] = false,
+                    ["<Leader>h"] = false,
+                    ["<Leader>bb"] = false,
+                    ["<Leader>bd"] = false,
+                    ["<Leader>bl"] = false,
+                    ["<Leader>br"] = false,
+                    ["<Leader>b\\"] = false,
+                    ["<Leader>b|"] = false,
+                    ["<Leader>bs"] = false,
+                    ["<Leader>bse"] = false,
+                    ["<Leader>bsi"] = false,
+                    ["<Leader>bsm"] = false,
+                    ["<Leader>bsp"] = false,
+                    ["<Leader>bsr"] = false,
+                    ["<Leader>li"] = false,
+                    ["<Leader>lD"] = false,
+                    ["<Leader>n"] = false,
+                    ["<Leader><Leader>e"] = false,
+                    ["<Leader><Leader>a"] = false,
+                    ["<Leader><Leader>t"] = false,
                 },
                 v = {
                     ["<S-Up>"] = { "<Nop>" },
@@ -172,14 +200,41 @@ return {
     },
     {
         "AstoNvim/astrolsp",
-        ---@type AstroLspOpts
+        ---@type AstroLSPOpts
         opts = {
             mappings = {
                 n = {
-                    ["<Leader>f"] = {
-                        vim.lsp.buf.format,
-                        desc = "Format buffer",
+                    -- ["<Leader>f"] = {
+                    --     vim.lsp.buf.format,
+                    --     desc = "Format buffer",
+                    -- },
+                    ["<Leader>ll"] = false,
+                    ["<Leader>lL"] = false,
+                    ["<Leader>lI"] = false,
+                    ["<Leader>lA"] = false,
+                    ["<Leader>lG"] = false,
+                    ["<Leader>ls"] = {
+                        function() vim.lsp.buf.code_action { context = { only = { "source" }, diagnostics = {} } } end,
+                        desc = "LSP source action",
+                        cond = "textDocument/codeAction",
                     },
+                    ["<Leader>lw"] = {
+                        function() vim.lsp.buf.workspace_symbol() end,
+                        desc = "Search workspace symbols",
+                        cond = "workspace/symbol",
+                    },
+                    ["<Leader>lh"] = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
+                    ["<Leader>lr"] = {
+                        function() vim.lsp.buf.references() end,
+                        desc = "Search references",
+                        cond = "textDocument/references",
+                    },
+                    ["<Leader>ln"] = {
+                        function() vim.lsp.buf.rename() end,
+                        desc = "Rename current symbol",
+                        cond = "textDocument/rename",
+                    },
+                    ["<Leader>lR"] = false,
                 },
             },
         },
