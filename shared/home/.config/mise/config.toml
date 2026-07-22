@@ -5,7 +5,7 @@ legacy_version_file = true
 status.missing_tools = "always"
 
 [tools]
-neovim = "0.12.1"
+neovim = "0.12.4"
 node = "latest"
 prettier = "3.8.1"
 rust = "stable"
