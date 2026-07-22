@@ -12,6 +12,7 @@ return {
     { import = "astrocommunity.pack.prettier" },
     { import = "astrocommunity.pack.eslint" },
     { import = "astrocommunity.pack.tailwindcss" },
+    { import = "astrocommunity.pack.prisma" },
     { import = "astrocommunity.motion.harpoon" },
     -- import/override with your plugins folder
 }
