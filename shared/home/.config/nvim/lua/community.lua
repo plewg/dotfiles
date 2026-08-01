@@ -13,6 +13,9 @@ return {
     { import = "astrocommunity.pack.eslint" },
     { import = "astrocommunity.pack.tailwindcss" },
     { import = "astrocommunity.pack.prisma" },
+    { import = "astrocommunity.pack.sql" },
+    { import = "astrocommunity.motion.nvim-surround" },
     { import = "astrocommunity.motion.harpoon" },
+    { import = "astrocommunity.ai.codecompanion-nvim" },
     -- import/override with your plugins folder
 }

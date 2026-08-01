@@ -91,13 +91,26 @@ background = "#282a36"
 
 # font
 [font]
-size = 12
-offset = { y = -2 }
-glyph_offset = { y = 1 }
-normal = { family = "Inconsolata LGC Nerd Font Mono", style = "Regular" }
-bold = { family = "Inconsolata LGC Nerd Font Mono", style = "Bold" }
-italic = { family = "Inconsolata LGC Nerd Font Mono", style = "Condensed Light" }
-bold_italic = { family = "Inconsolata LGC Nerd Font Mono", style = "Condensed Bold" }
+# glyph_offset = { y = 1 }
+
+# size = 16
+# normal = { family = "Inconsolata", style = "Regular" }
+# offset = { y = -2 }
+# size = 14
+# normal = { family = "RobotoMono Nerd Font", style = "Regular" }
+# offset = { y = 2 }
+# size = 16
+# normal = { family = "UbuntuMono Nerd Font", style = "Regular" }
+# offset = { y = 4 }
+# size = 12
+# normal = { family = "MartianMono Nerd Font", style = "Regular" }
+offset = { y = 1 }
+size = 14
+normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Regular" }
+
+# bold = { family = "Inconsolata", style = "Bold" }
+# italic = { family = "Inconsolata", style = "Condensed Light" }
+# bold_italic = { family = "Inconsolata", style = "Condensed Bold" }
 
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"

@@ -73,9 +73,9 @@ alias dc="docker compose"
 doit() {
     declare dir="$1"
     if type grealpath >/dev/null; then
-        dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -type d -mindepth 1 -maxdepth 1 -print0 | xargs -0 grealpath --relative-to="$HOME")")"
+        dir="$(fzf -1 -q "$dir" <<<"$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -type d -mindepth 1 -maxdepth 1 -print0 | xargs -0 grealpath --relative-to="$HOME")")"
     else
-        dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 realpath --relative-to="$HOME")")"
+        dir="$(fzf -1 -q "$dir" <<<"$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 realpath --relative-to="$HOME")")"
     fi
     [ -d "${HOME}/${dir}" ] && cd "${HOME}/${dir}" || return 1
 }
@@ -89,3 +89,7 @@ if [[ -f "$HOME/.config/op/plugins.sh" ]]; then
 fi
 
 # zprof
+
+# Added by LM Studio CLI (lms)
+export PATH="${PATH}:${HOME}/.lmstudio/bin"
+# End of LM Studio CLI section
