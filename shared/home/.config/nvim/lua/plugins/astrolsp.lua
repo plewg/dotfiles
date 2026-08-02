@@ -16,7 +16,7 @@ return {
         },
         -- customize lsp formatting options
         formatting = {
-            filter = function(client) return client.name ~= "vtsls" end,
+            filter = function(client) return client.name ~= "vtsls" and client.name ~= "jsonls" end,
             --         -- control auto formatting on save
             --         format_on_save = {
             --             enabled = true, -- enable or disable format on save globally
