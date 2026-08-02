@@ -16,7 +16,6 @@ export TURBO_TELEMETRY_DISABLED=1
 
 PATH="${HOME}/.cargo/bin:${PATH}"
 PATH="${HOME}/.local/bin:${PATH}"
-PATH="${HOME}/.local/share/bob/nvim-bin:${PATH}"
 export PATH
 
 ZSH_THEME="robbyrussell"
@@ -26,7 +25,7 @@ SAVEHIST=1000000
 plugins=(z)
 DISABLE_AUTO_UPDATE=true
 
-source $ZSH/oh-my-zsh.sh
+source "${ZSH}/oh-my-zsh.sh"
 zstyle ':completion:*' rehash true
 
 if [[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then

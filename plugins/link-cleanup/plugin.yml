@@ -1,5 +1,5 @@
 name: link-cleanup
-when: os in ["macos"]
+when: os in ["macos", "linux"]
 after: files
 
 provision:

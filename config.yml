@@ -1,32 +1,10 @@
 hostname: "{{ machine }}"
 ---
-when: os == "linux"
-
+when: os in ["linux", "macos"]
 files:
   - source: shared/home
     destination: ~/
     link_files: true
-  - source: linux/home
-    destination: ~/
-
-git.repo:
-  - source: https://github.com/ohmyzsh/ohmyzsh.git
-    destination: ~/External/ohmyzsh
-
----
-when: os == "macos"
-
-files:
-  - source: shared/home
-    destination: ~/
-    link_files: true
-  - source: mac/home
-    destination: ~/
-  - source: files/com.googlecode.iterm2.plist
-    destination: ~/Library/Preferences/com.googlecode.iterm2.plist
-
-directories:
-  - ~/Screenshots/{{ machine }}
 
 git.repo:
   - source: https://github.com/ohmyzsh/ohmyzsh.git
@@ -34,6 +12,25 @@ git.repo:
 
 link-cleanup:
   - ~/.local/bin
+  - ~/.config/nvim/lua/plugins
+---
+when: os == "linux"
+
+files:
+  - source: linux/home
+    destination: ~/
+
+---
+when: os == "macos"
+
+files:
+  - source: mac/home
+    destination: ~/
+  - source: files/com.googlecode.iterm2.plist
+    destination: ~/Library/Preferences/com.googlecode.iterm2.plist
+
+directories:
+  - ~/Screenshots/{{ machine }}
 
 packages:
   - homebrew/cask/google-chrome

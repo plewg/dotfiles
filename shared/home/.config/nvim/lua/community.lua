@@ -17,5 +17,6 @@ return {
     { import = "astrocommunity.motion.nvim-surround" },
     { import = "astrocommunity.motion.harpoon" },
     { import = "astrocommunity.ai.codecompanion-nvim" },
+    { import = "astrocommunity.editing-support.conform-nvim" },
     -- import/override with your plugins folder
 }
