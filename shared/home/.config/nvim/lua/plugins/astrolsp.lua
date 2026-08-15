@@ -11,9 +11,7 @@ return {
         },
         -- customize lsp formatting options
         formatting = {
-            filter = function(client)
-                return client.name ~= "vtsls" and client.name ~= "jsonls" and client.name ~= "bashls"
-            end,
+            disabled = { "vtsls", "jsonls", "bashls" },
             timeout_ms = 10000, -- default format timeout
         },
         config = {
