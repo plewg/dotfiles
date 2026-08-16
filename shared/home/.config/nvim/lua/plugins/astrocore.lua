@@ -14,6 +14,8 @@ return {
                 completeopt = "menuone,noinsert,popup",
                 colorcolumn = "80,120",
                 swapfile = false,
+                -- smartcase = false,
+                -- ignorecase = false,
             },
             g = { undotree_WindowLayout = 3 },
         },
