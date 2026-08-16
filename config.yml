@@ -89,7 +89,6 @@ packages:
   - neovim
   - discord
   - mise
-  - jdx/tap/usage
   - tree
   - zed
   - parallel
