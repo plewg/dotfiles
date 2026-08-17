@@ -18,5 +18,6 @@ return {
     { import = "astrocommunity.motion.harpoon" },
     { import = "astrocommunity.ai.codecompanion-nvim" },
     { import = "astrocommunity.editing-support.conform-nvim" },
+    { import = "astrocommunity.lsp.lsp-signature-nvim" },
     -- import/override with your plugins folder
 }

@@ -33,6 +33,9 @@ return {
                             importModuleSpecifier = "non-relative",
                         },
                     },
+                    vtsls = {
+                        autoUseWorkspaceTsdk = true,
+                    },
                 },
             },
         },
