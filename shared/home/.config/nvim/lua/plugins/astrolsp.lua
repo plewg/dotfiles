@@ -15,7 +15,7 @@ return {
             timeout_ms = 10000, -- default format timeout
         },
         config = {
-            ["eslint"] = {
+            eslint = {
                 settings = {
                     rulesCustomizations = {
                         { rule = "*", severity = "warn" },
@@ -24,7 +24,7 @@ return {
                     },
                 },
             },
-            ["vtsls"] = {
+            vtsls = {
                 ["js/ts.format.enabled"] = false,
                 settings = {
                     typescript = {
@@ -36,6 +36,14 @@ return {
                     vtsls = {
                         autoUseWorkspaceTsdk = true,
                     },
+                },
+            },
+            jsonls = {
+                settings = {
+                    json = {
+                        schemas = require("schemastore").json.schemas(),
+                    },
+                    validate = { enable = true },
                 },
             },
         },

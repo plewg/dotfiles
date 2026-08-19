@@ -70,7 +70,7 @@
     "theme": {
         "mode": "dark",
         "light": "Dark Pegle",
-        "dark": "Dark Pegle",
+        "dark": "Kaio",
     },
     "auto_install_extensions": {
         "html": true,

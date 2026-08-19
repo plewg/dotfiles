@@ -8,8 +8,9 @@ export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
 export LESS="-F -R"
 export EDITOR="nvim"
 export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
-export COLORTERM=truecolor
+export COLORTERM="truecolor"
 export TURBO_TELEMETRY_DISABLED=1
+export TERM="alacritty"
 
 #shellcheck disable=SC1091
 [ -s "${HOME}/.profile.private" ] && . "${HOME}/.profile.private"
