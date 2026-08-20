@@ -31,22 +31,24 @@ return {
             },
         },
     },
-    -- {
-    --     "HiPhish/rainbow-delimiters.nvim",
-    --     config = function()
-    --         require("rainbow-delimiters.setup").setup {
-    --             query = {
-    --                 tsx = "rainbow-parens",
-    --             },
-    --             highlight = {
-    --                 "RainbowDelimiterYellow",
-    --                 "RainbowDelimiterPurple",
-    --                 "RainbowDelimiterBlue",
-    --                 "RainbowDelimiterRed",
-    --                 "RainbowDelimiterOrange",
-    --                 "RainbowDelimiterGreen",
-    --             },
-    --         }
-    --     end,
-    -- },
+    {
+        "HiPhish/rainbow-delimiters.nvim",
+        config = function()
+            require("rainbow-delimiters.setup").setup {
+                query = {
+                    tsx = "rainbow-parens-custom",
+                    typescript = "rainbow-parens-custom",
+                    javascript = "rainbow-parens-custom",
+                },
+                highlight = {
+                    "RainbowDelimiterYellow",
+                    "RainbowDelimiterPurple",
+                    "RainbowDelimiterBlue",
+                    "RainbowDelimiterRed",
+                    "RainbowDelimiterOrange",
+                    "RainbowDelimiterGreen",
+                },
+            }
+        end,
+    },
 }
