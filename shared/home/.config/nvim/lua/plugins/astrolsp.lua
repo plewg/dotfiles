@@ -25,6 +25,15 @@ return {
                 },
             },
             vtsls = {
+                capabilities = {
+                    textDocument = {
+                        completion = {
+                            completionItem = {
+                                preselectSupport = true,
+                            },
+                        },
+                    },
+                },
                 ["js/ts.format.enabled"] = false,
                 settings = {
                     typescript = {
