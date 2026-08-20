@@ -1,8 +1,6 @@
 ;; extends
 
 [
-    "interface"
-    "type"
     "const"
     "var"
     "let"
