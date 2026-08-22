@@ -15,7 +15,7 @@ link_cleanup() {
         rm "$file" \
             || return "$(nk::error "$?" "failed removing link ${file}")"
         changed='true'
-    done <<< "$(find "$resolved_path" -mindepth 1 -maxdepth 1 -type l -exec test ! -e {} ";" -print)"
+    done <<< "$(find "$resolved_path" -mindepth 1 -type l -exec test ! -e {} ";" -print)"
 }
 
 while read -r path; do

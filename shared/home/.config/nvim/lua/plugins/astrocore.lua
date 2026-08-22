@@ -3,6 +3,9 @@ return {
     "AstroNvim/astrocore",
     ---@type AstroCoreOpts
     opts = {
+        treesitter = {
+            ensure_installed = { "sql" },
+        },
         diagnostics = {
             severity_sort = true,
         },

@@ -12,7 +12,7 @@ git.repo:
 
 link-cleanup:
   - ~/.local/bin
-  - ~/.config/nvim/lua/plugins
+  - ~/.config/nvim/
 ---
 when: os == "linux"
 
