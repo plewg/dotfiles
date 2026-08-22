@@ -9,8 +9,6 @@ files:
 git.repo:
   - source: https://github.com/ohmyzsh/ohmyzsh.git
     destination: ~/External/ohmyzsh
-  - source: git@github.com:plewg/eida.git
-    destination: ~/Projects/eida
 
 link-cleanup:
   - ~/.local/bin

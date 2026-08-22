@@ -1,7 +1,7 @@
 -- if true then return {} end
 
 return {
-    { dir = "~/Projects/eida" },
+    { "plewg/eida" },
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
