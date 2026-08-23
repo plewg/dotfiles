@@ -3,8 +3,9 @@
 -- fit in the normal config locations above can go here
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "snacks_picker_input",
-    callback = function() vim.b.minicompletion_disable = true end,
+    callback = function()
+        if vim.bo.buftype ~= "" then vim.b.minicompletion_disable = true end
+    end,
 })
 
 vim.api.nvim_create_autocmd("User", {
