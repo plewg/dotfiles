@@ -46,6 +46,12 @@ return {
                 },
             },
             n = {
+                ["<Tab>"] = {
+                    function() require("astrocore.buffer").nav(1) end,
+                },
+                ["<S-Tab>"] = {
+                    function() require("astrocore.buffer").nav(-1) end,
+                },
                 ["<Leader>fw"] = {
                     function() require("snacks").picker.grep { hidden = true } end,
                     desc = "Find words",
