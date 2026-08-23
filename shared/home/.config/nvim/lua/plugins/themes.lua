@@ -1,4 +1,5 @@
 return {
+    { "rktjmp/lush.nvim" },
     { "plewg/eida" },
     {
         "folke/todo-comments.nvim",
