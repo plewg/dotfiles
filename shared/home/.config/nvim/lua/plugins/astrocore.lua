@@ -18,6 +18,7 @@ return {
                 colorcolumn = "80,120",
                 swapfile = false,
                 pumborder = "rounded",
+                -- showtabline = 0,
                 -- smartcase = false,
                 -- ignorecase = false,
             },
