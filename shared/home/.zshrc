@@ -8,6 +8,7 @@ export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
 export LESS="-F -R"
 export EDITOR="nvim"
 export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
+export PRETTIERD_DEFAULT_CONFIG="${HOME}/.prettierrc.toml"
 export COLORTERM="truecolor"
 export TURBO_TELEMETRY_DISABLED=1
 export TERM="alacritty"
