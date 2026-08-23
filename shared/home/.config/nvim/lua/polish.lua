@@ -10,13 +10,23 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("User", {
     pattern = "TSUpdate",
     callback = function()
-        require("nvim-treesitter.parsers").typescript = {
+        local treesitter = require "nvim-treesitter.parsers"
+        treesitter.typescript = {
             tier = 0,
             install_info = {
                 url = "https://github.com/plewg/tree-sitter-typescript",
-                revision = "9c409f23e5e5b830c1387dec520ad4839bccba87",
+                revision = "f1bcf835fd159760375acc3c2915bb4ac13d2c5f",
                 branch = "last_working_version",
                 location = "typescript",
+            },
+        }
+        treesitter.tsx = {
+            tier = 0,
+            install_info = {
+                url = "https://github.com/plewg/tree-sitter-typescript",
+                revision = "f1bcf835fd159760375acc3c2915bb4ac13d2c5f",
+                branch = "last_working_version",
+                location = "tsx",
             },
         }
     end,
