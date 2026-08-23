@@ -28,6 +28,22 @@ return {
             i = {
                 -- false isn't working to unmap here, so doing a noop instead
                 ["<C-x><C-o>"] = function() end,
+                ["<Tab>"] = {
+                    function() return vim.fn.pumvisible() == 1 and "<CR>" or "<Tab>" end,
+                    expr = true,
+                },
+                ["<CR>"] = {
+                    function()
+                        local npairs = require "nvim-autopairs"
+                        if vim.fn.pumvisible() ~= 0 then
+                            return npairs.esc "<C-e><CR>"
+                        else
+                            return vim.api.nvim_feedkeys(npairs.autopairs_cr(), "in", false)
+                        end
+                    end,
+                    expr = true,
+                    noremap = true,
+                },
             },
             n = {
                 ["<Leader>fw"] = {
