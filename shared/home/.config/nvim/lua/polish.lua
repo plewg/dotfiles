@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("User", {
             tier = 0,
             install_info = {
                 url = "https://github.com/plewg/tree-sitter-typescript",
-                revision = "a099f0abaadbe78aa94cd5e4d70c83b3d3a7fa88",
+                revision = "b7089001133237e7a6222763a67d12248f46ee62",
                 branch = "last_working_version",
                 location = "typescript",
             },
@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("User", {
             tier = 0,
             install_info = {
                 url = "https://github.com/plewg/tree-sitter-typescript",
-                revision = "a099f0abaadbe78aa94cd5e4d70c83b3d3a7fa88",
+                revision = "b7089001133237e7a6222763a67d12248f46ee62",
                 branch = "last_working_version",
                 location = "tsx",
             },
