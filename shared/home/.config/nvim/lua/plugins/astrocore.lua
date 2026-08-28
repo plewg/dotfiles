@@ -38,7 +38,15 @@ return {
                 -- false isn't working to unmap here, so doing a noop instead
                 ["<C-x><C-o>"] = "<Nop>",
                 ["<Tab>"] = {
-                    function() return vim.fn.pumvisible() == 1 and "<CR>" or "<Tab>" end,
+                    function()
+                        if vim.snippet.active({ direction = 1 }) then
+                            return "<Cmd>lua vim.snippet.jump(1)<CR>"
+                        elseif vim.fn.pumvisible() == 1 then
+                            return "<CR>"
+                        else
+                            return "<Tab>"
+                        end
+                    end,
                     expr = true,
                     desc = "Accept completion",
                 },
