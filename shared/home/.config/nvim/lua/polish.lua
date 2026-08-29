@@ -53,3 +53,7 @@ vim.api.nvim_create_autocmd("CompleteDone", {
     pattern = "*",
     command = "pclose",
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function() vim.opt.formatoptions:remove({ "r", "o" }) end,
+})
