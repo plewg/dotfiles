@@ -3,11 +3,15 @@
 -- fit in the normal config locations above can go here
 
 vim.api.nvim_create_autocmd("FileType", {
-    callback = function()
-        if vim.bo.buftype ~= "" then vim.b.minicompletion_disable = true end
-    end,
+    callback = function() vim.opt.formatoptions:remove({ "r", "o" }) end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "note" },
+    callback = function() vim.opt_local.formatoptions:remove({ "t", "c" }) end,
+})
+
+-- I'll do it myself
 vim.api.nvim_create_autocmd("User", {
     pattern = "TSUpdate",
     callback = function()
@@ -45,15 +49,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end,
 })
 
-vim.keymap.set({ "n", "v" }, "<S-Up>", "<Nop>")
-vim.keymap.set({ "n", "v" }, "<S-Down>", "<Nop>")
-vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>")
-
 vim.api.nvim_create_autocmd("CompleteDone", {
     pattern = "*",
     command = "pclose",
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-    callback = function() vim.opt.formatoptions:remove({ "r", "o" }) end,
-})
+vim.keymap.set({ "n", "v" }, "<S-Up>", "<Nop>")
+vim.keymap.set({ "n", "v" }, "<S-Down>", "<Nop>")
+vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>")

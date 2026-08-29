@@ -1,5 +1,4 @@
 local harpoon = require("harpoon")
-local cmp = require("blink.cmp")
 
 ---@type LazySpec
 return {
