@@ -16,7 +16,6 @@ return {
         },
         -- customize lsp formatting options
         formatting = {
-            disabled = { "vtsls", "jsonls", "bashls" },
             timeout_ms = 10000, -- default format timeout
         },
         -- TODO: bashls/shellcheck code actions?
@@ -58,6 +57,13 @@ return {
                     },
                 },
             },
+            bashls = {
+                -- Disabling here because conform.nvim overrides vim.lsp.buf.format()
+                on_attach = function(client)
+                    client.server_capabilities.documentFormattingProvider = false
+                    client.server_capabilities.documentRangeFormattingProvider = false
+                end,
+            },
             eslint = {
                 settings = {
                     rulesCustomizations = {
@@ -68,6 +74,11 @@ return {
                 },
             },
             vtsls = {
+                -- Disabling here because conform.nvim overrides vim.lsp.buf.format()
+                on_attach = function(client)
+                    client.server_capabilities.documentFormattingProvider = false
+                    client.server_capabilities.documentRangeFormattingProvider = false
+                end,
                 capabilities = {
                     textDocument = {
                         completion = {
@@ -90,6 +101,11 @@ return {
                 },
             },
             jsonls = {
+                -- Disabling here because conform.nvim overrides vim.lsp.buf.format()
+                on_attach = function(client)
+                    client.server_capabilities.documentFormattingProvider = false
+                    client.server_capabilities.documentRangeFormattingProvider = false
+                end,
                 settings = {
                     json = {
                         schemas = require("schemastore").json.schemas(),
