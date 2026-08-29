@@ -77,7 +77,6 @@ return {
                         },
                     },
                 },
-                ["js/ts.format.enabled"] = false,
                 settings = {
                     typescript = {
                         preferences = {

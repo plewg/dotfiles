@@ -1,4 +1,5 @@
 local harpoon = require("harpoon")
+local cmp = require("blink.cmp")
 
 ---@type LazySpec
 return {
@@ -38,27 +39,10 @@ return {
             i = {
                 -- false isn't working to unmap here, so doing a noop instead
                 ["<C-x><C-o>"] = "<Nop>",
-                ["<Tab>"] = {
-                    function()
-                        if vim.snippet.active({ direction = 1 }) then
-                            return "<Cmd>lua vim.snippet.jump(1)<CR>"
-                        elseif vim.fn.pumvisible() == 1 then
-                            return "<CR>"
-                        else
-                            return "<Tab>"
-                        end
-                    end,
-                    expr = true,
-                    desc = "Accept completion",
-                },
                 ["<CR>"] = {
                     function()
                         local npairs = require("nvim-autopairs")
-                        if vim.fn.pumvisible() ~= 0 then
-                            return npairs.esc("<C-e><CR>")
-                        else
-                            return vim.api.nvim_feedkeys(npairs.autopairs_cr(), "in", false)
-                        end
+                        return vim.api.nvim_feedkeys(npairs.autopairs_cr(), "in", false)
                     end,
                     expr = true,
                     noremap = true,
