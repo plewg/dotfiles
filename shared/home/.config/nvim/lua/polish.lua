@@ -48,3 +48,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.keymap.set({ "n", "v" }, "<S-Up>", "<Nop>")
 vim.keymap.set({ "n", "v" }, "<S-Down>", "<Nop>")
 vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>")
+
+vim.api.nvim_create_autocmd("CompleteDone", {
+    pattern = "*",
+    command = "pclose",
+})

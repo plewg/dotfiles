@@ -23,7 +23,7 @@ return {
                 clipboard = "",
                 undofile = true,
                 pumheight = 7,
-                completeopt = { "menuone", "noinsert", "fuzzy" },
+                completeopt = { "menuone", "noinsert", "fuzzy", "preview" },
                 colorcolumn = "80,120",
                 swapfile = false,
                 pumborder = "rounded",

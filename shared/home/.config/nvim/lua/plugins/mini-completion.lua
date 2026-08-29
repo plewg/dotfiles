@@ -3,5 +3,8 @@ return {
     lazy = false,
     opts = {
         fallback_action = "",
+        delay = {
+            info = 10000000000,
+        },
     },
 }
