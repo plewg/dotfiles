@@ -1,7 +1,9 @@
 sources:
   - .
   - ../dotfiles-private
-
 plugins:
   - ciiqr/nk-plugins
   - ./plugins/link-cleanup
+  - ./plugins/pacman
+  - ./plugins/nvim-init
+  - ./plugins/mise

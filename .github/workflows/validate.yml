@@ -1,0 +1,49 @@
+name: validate
+on:
+  workflow_dispatch: # Manually trigger
+  schedule:
+    - cron: 0 13 1 * * # 1st of every month at 1pm UTC
+jobs:
+  validate:
+    name: Validate
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-13
+          - ubuntu-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Macos Hacks
+        run: |
+          # my config installs python-yq, which conflicts with the 'yq' package actions runners have installed
+          brew unlink yq
+
+          # actions have python 3 already installed (not through brew), so
+          # when other packages try to install the brew version, they run into
+          # conflicts linking binaries
+          brew install python3 --overwrite
+          brew install python-argcomplete --overwrite
+
+          mkdir ~/Public ~/Applications ~/Music ~/Pictures
+
+          mkdir ~/.backup
+        if: runner.os == 'macOS'
+      - name: Windows Hacks
+        run: |
+          mkdir ~/.backup
+        if: runner.os == 'Windows'
+      - name: Install # windows
+        env:
+          CLICOLOR_FORCE: "1"
+        run: ./install.ps1 $env:COMPUTERNAME
+        timeout-minutes: 45
+        if: runner.os == 'Windows'
+      - name: Install # not windows
+        env:
+          CLICOLOR_FORCE: "1"
+        run: ./install.sh "$HOSTNAME"
+        timeout-minutes: 45
+        if: runner.os != 'Windows'

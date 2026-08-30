@@ -1,0 +1,9 @@
+version: "1"
+git_protocol: ssh
+# NOTE: blank means use default from environment
+browser:
+editor:
+pager:
+prompt: enabled
+aliases:
+  co: pr checkout

@@ -1,16 +1,16 @@
-# setup on mac
+# dotfiles
 
-```sh
-sudo scutil --set HostName 'paige'
-sudo scutil --set LocalHostName 'paige'
-sudo scutil --set ComputerName 'paige'
-dscacheutil -flushcache
+[![validate](https://github.com/plewg/dotfiles/actions/workflows/validate.yml/badge.svg)](https://github.com/plewg/dotfiles/actions/workflows/validate.yml)
+
+## install
+
+```bash
+./install.sh 'laptop-paige'
 ```
+
+## install (macos)
+
 
 # 1Password
 
 enable the 1Password ssh agent
-
-# Install nk and run setup
-
-./install.sh

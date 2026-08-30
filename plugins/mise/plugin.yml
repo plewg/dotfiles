@@ -1,11 +1,11 @@
-name: nvim-init
+name: mise
 when: os in ["macos", "linux"]
-after: mise
+after: files
 
 provision:
-  when: declaration == "nvim.init"
+  when: declaration == "mise"
 
-executable: nvim-init.sh
+executable: mise.sh
 
 schema:
   $schema: https://json-schema.org/draft/2020-12/schema

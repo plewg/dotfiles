@@ -1,0 +1,51 @@
+[general]
+live_config_reload = true
+
+[scrolling]
+history = 100000
+
+# theme
+[colors.primary]
+background = "#292524"
+foreground = "#F5F5F4"
+
+[colors.cursor]
+text = "CellBackground"
+cursor = "#F5F5F4"
+
+[colors.normal]
+black = "#282921"
+red = "#FF2777"
+green = "#A3E635"
+yellow = "#FDDD6C"
+blue = "#A78BFA"
+magenta = "#DB2777"
+cyan = "#67E8F9"
+white = "#F5F5F4"
+
+[colors.bright]
+black = "#44403C"
+red = "#FF6E6E"
+green = "#BEF264"
+yellow = "#FDE68A"
+blue = "#C4B5FD"
+magenta = "#EC4899"
+cyan = "#A5F3FC"
+white = "#FAFAF9"
+
+# font
+[font]
+offset = { y = 1 }
+size = 14
+normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Regular" }
+
+# misc
+[[hints.enabled]]
+command = "xdg-open"
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = true
+mouse.mods = "Control"
+binding = { key = "U", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\\u{0000}-\\u{001F}\\u{007F}-\\u{009F}<>\"\\s{-}\\^⟨⟩`\\\\]+"

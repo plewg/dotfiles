@@ -1,0 +1,11 @@
+when:
+  - os == "linux"
+  - distro == "arch"
+
+directories:
+  - ~/Screenshots/{{ machine }}
+
+files:
+  - source: linux/home
+    destination: ~/
+    link_files: true

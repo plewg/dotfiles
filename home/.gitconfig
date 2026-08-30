@@ -1,0 +1,96 @@
+[user]
+	name = Paige Dwight
+	email = 85356912+plewg@users.noreply.github.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDSn6p9qnBl879jJBU8PhuIOu3Mnw0DKOInT6OKnMwei
+[url "ssh://git@github.com/"]
+	pushInsteadOf = https://github.com/
+[push]
+	default = simple
+	autoSetupRemote = true
+[pull]
+	rebase = true
+[color]
+	branch = auto
+	diff = auto
+	ui = true
+[rerere]
+	enabled = true
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = ~/.config/git/allowed_signers
+[commit]
+	gpgsign = true
+[core]
+	trustctime = false
+	pager = delta
+[include]
+	path = ~/.config/git/platform.config
+[branch]
+	autosetupmerge = true
+[fetch]
+	prune = true
+[pretty]
+	mono = format:%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
+[diff]
+	renames = copies
+	# tool = meld
+	colorMoved = default
+[difftool]
+	prompt = false
+[merge]
+	# tool = meld
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true # use n and N to move between diff sections
+[alias]
+	st = status
+	br = branch
+	cm = commit -m
+	co = checkout
+	new = checkout -b
+	cmb = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh cmb"
+	anp = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh anp"
+	anpa = !~/.scripts/git.sh anpa
+	anpu = !~/.scripts/git.sh anpu
+	squash = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh squash"
+	alias = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh alias"
+	wip = !~/.scripts/git.sh wip
+	rebase-self = !~/.scripts/git.sh rebase-self
+	pf = push --force-with-lease --force-if-includes
+	# diff
+	dcw = diff --cached -w
+	dc = diff --cached
+	dcow = diff --color-words
+	dcwo = diff --cached --color-words
+	d = diff
+	# log
+	lp = log --color --pretty=mono --relative-date --decorate
+	reflogp = reflog --pretty=mono
+	# assume-unchanged
+	hide = update-index --assume-unchanged
+	unhide = update-index --no-assume-unchanged
+	hidden = "!cd -- ${GIT_PREFIX:-.};git ls-files -v | grep \"^[[:lower:]]\" | cut -d\" \" -f2"
+	# misc
+	contributors = shortlog -s -n -e
+	cloc = "!cd -- ${GIT_PREFIX:-.};cloc --vcs git"
+	tree = "!cd -- ${GIT_PREFIX:-.};tree --gitignore -I '.git' -a"
+	find-pending-changes-to-base = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh find-pending-changes-to-base"
+	external = !~/.scripts/git.sh external
+	# github
+	clone-all = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh clone-all"
+	admins = !~/.scripts/git.sh admins
+	rebase-default = !~/.scripts/git.sh rebase-default
+	reset-new = "!git diff --name-only --diff-filter=A | xargs git reset"
+	reset-new-staged = "!git diff --name-only --diff-filter=A --cached | xargs git reset"
+	reset-new-all = "!git diff --name-only --diff-filter=A HEAD | xargs git reset"
+	pr-view = !~/.scripts/gh.sh pr
+	ed = "!$EDITOR"
+	can = !git commit --amend --no-edit
+	repo = "!~/.scripts/git.sh repo"
