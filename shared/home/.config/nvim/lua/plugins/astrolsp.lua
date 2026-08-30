@@ -92,9 +92,9 @@ return {
                     -- I'm not sure this one does anything
                     -- complete_function_calls = true,
                     typescript = {
-                        suggest = {
-                            completeFunctionCalls = true,
-                        },
+                        -- suggest = {
+                        --     completeFunctionCalls = true,
+                        -- },
                         preferences = {
                             includePackageJsonAutoImports = "on",
                             importModuleSpecifier = "non-relative",
