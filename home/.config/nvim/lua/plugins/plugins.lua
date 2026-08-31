@@ -157,4 +157,20 @@ return {
             require("astronvim.plugins.configs.nvim-autopairs")(plugin, opts)
         end,
     },
+    {
+        "nvimtools/none-ls.nvim",
+        config = function()
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    require("none-ls-shellcheck.code_actions").with({
+                        extra_filetypes = { "zsh" },
+                    }),
+                },
+            })
+        end,
+        dependencies = {
+            "gbprod/none-ls-shellcheck.nvim",
+        },
+    },
 }
