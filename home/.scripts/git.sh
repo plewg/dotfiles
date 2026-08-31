@@ -78,7 +78,7 @@ git::alias() {
 
 git::find_pending_changes_to_base() {
     # test if gh is authenticated
-    if ! gh pr list >/dev/null 2>&1; then
+    if ! gh pr list > /dev/null 2>&1; then
         echo "gh not authenticated, can't check pr merge status"
         return 1
     fi
@@ -96,7 +96,7 @@ git::find_pending_changes_to_base() {
         # we will count all those for the lp count since here we specifically
         # want to know how out of sync they are with the base)
 
-        if git diff --exit-code --quiet "origin/${base}...${branch}" -- "${@:2}" 2>/dev/null; then
+        if git diff --exit-code --quiet "origin/${base}...${branch}" -- "${@:2}" 2> /dev/null; then
             # skipping because diff between base and branch doesn't show changes for any of the provided files
             continue
         fi
@@ -105,7 +105,7 @@ git::find_pending_changes_to_base() {
         # - probs mostly just branches that weren't merged into base?
         # TODO: origin/ wouldn't work with multiple/renamed upstreams...
         declare branch_name="${branch/'origin/'/}"
-        if [[ "$(gh pr view "$branch_name" --json 'closed' --jq '.closed' 2>/dev/null)" == 'true' ]]; then
+        if [[ "$(gh pr view "$branch_name" --json 'closed' --jq '.closed' 2> /dev/null)" == 'true' ]]; then
             # skipping because branch has been merged and was simply not deleted
             continue
         fi
@@ -134,7 +134,7 @@ git::external() {
     # extract directory path from repo
     # NOTE: sed doesn't support non-greedy matching, previously had: sed -E 's#^(https?://|git@)[^/:]+[/:]([^.]+)(\.git)?$#\2#g'
     declare directory
-    directory="$(perl -pe 's#^(https?://|git@)[^/:]+[/:](.*?)(\.git)?$#\2#g' <<<"$repo")"
+    directory="$(perl -pe 's#^(https?://|git@)[^/:]+[/:](.*?)(\.git)?$#\2#g' <<< "$repo")"
 
     # clone to ~/External
     git clone "$repo" "${HOME}/External/${directory}"
@@ -282,7 +282,7 @@ git::clone_all() {
     declare -a repositories=()
     while read -r repo; do
         repositories+=("$repo")
-    done <<<"$(
+    done <<< "$(
         gh repo list "$who" \
             --limit '10000' \
             --json 'name' \

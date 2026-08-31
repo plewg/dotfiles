@@ -14,5 +14,10 @@ indent_size = 2
 [.gitconfig]
 indent_style = tab
 
-[Makefile]
-indent_style = tab
+[[shell]]
+space_redirects = true
+switch_case_indent = true
+binary_next_line = true
+
+[*.{tf,tfvars}]
+indent_size = 2
