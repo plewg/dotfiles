@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+trap 'echo uwuwuwuwuu; exit 1' INT
+
+for package in $(pacman -Qqe); do
+    repo="$(pacman -Qi "$package" | head -1 | awk '{ print $4 }')"
+    if [[ "$repo" != "None" ]]; then
+        echo "${repo}/${package}"
+    fi
+done
