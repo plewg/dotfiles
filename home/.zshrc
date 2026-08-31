@@ -1,7 +1,8 @@
 # zmodload zsh/zprof
 
 export ZSH="${HOME}/External/ohmyzsh"
-export GPG_TTY="$(tty)"
+GPG_TTY="$(tty)"
+export GPG_TTY
 export NVM_DIR="${HOME}/.nvm"
 export DISABLE_SPRING="true"
 export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
@@ -14,27 +15,34 @@ export TURBO_TELEMETRY_DISABLED=1
 export TERM="alacritty"
 
 #shellcheck disable=SC1091
-[ -s "${HOME}/.profile.private" ] && . "${HOME}/.profile.private"
+[[ -s "${HOME}/.profile.private" ]] && . "${HOME}/.profile.private"
 
 PATH="${HOME}/.cargo/bin:${PATH}"
 PATH="${HOME}/.local/bin:${PATH}"
 export PATH
 
+# shellcheck disable=SC2034
 ZSH_THEME="robbyrussell"
+# shellcheck disable=SC2034
 CASE_SENSITIVE="true"
 HISTSIZE=1000000
+# shellcheck disable=SC2034
 SAVEHIST=1000000
+# shellcheck disable=SC2034
 plugins=(z)
+# shellcheck disable=SC2034
 DISABLE_AUTO_UPDATE=true
 
 source "${ZSH}/oh-my-zsh.sh"
 zstyle ':completion:*' rehash true
 
 if [[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+    # shellcheck disable=SC1094
     source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 
 if [[ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+    # shellcheck disable=SC1094
     source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
@@ -54,6 +62,7 @@ fpath=(
     ${fpath[@]}
 )
 
+# shellcheck disable=SC2034
 ZSH_DISABLE_COMPFIX="true"
 autoload -U compinit && compinit
 
@@ -78,7 +87,7 @@ doit() {
     else
         dir="$(fzf -1 -q "$dir" <<<"$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 realpath --relative-to="$HOME")")"
     fi
-    [ -d "${HOME}/${dir}" ] && cd "${HOME}/${dir}" || return 1
+    [[ -d "${HOME}/${dir}" ]] && cd "${HOME}/${dir}" || return 1
 }
 
 if type mise >/dev/null; then
@@ -90,7 +99,3 @@ if [[ -f "$HOME/.config/op/plugins.sh" ]]; then
 fi
 
 # zprof
-
-# Added by LM Studio CLI (lms)
-export PATH="${PATH}:${HOME}/.lmstudio/bin"
-# End of LM Studio CLI section
