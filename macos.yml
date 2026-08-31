@@ -1,16 +1,14 @@
 when: os == "macos"
 
 files:
-  - source: mac/home
+  - source: macos/home
     destination: ~/
-  - source: files/com.googlecode.iterm2.plist
-    destination: ~/Library/Preferences/com.googlecode.iterm2.plist
 
 directories:
   - ~/Screenshots/{{ machine }}
 
 packages:
-  - homebrew/cask/google-chrome
+  - homebrew/cask/zen
   - homebrew/cask/1password
   - coreutils
   - git-delta
@@ -22,7 +20,6 @@ packages:
   - session-manager-plugin
   - homebrew/cask/visual-studio-code
   - steam
-  - homebrew/cask/iterm2
   - less
   - wget
   - woof
@@ -46,11 +43,10 @@ packages:
   - brew-cask-completion
   - launchctl-completion
   - netcat
-  - homebrew/cask/spotify
   - homebrew/cask/adobe-acrobat-reader
   - homebrew/cask/meetingbar
   - kap
-  - homebrew/cask/font-inconsolata-nerd-font
+  - homebrew/cask/font-caskaydia-cove-nerd-font
   - git
   - gh
   - hub
