@@ -9,3 +9,332 @@ files:
   - source: linux/home
     destination: ~/
     link_files: true
+
+# It's not time yet
+# packages:
+#   # base
+#   - core/base
+#   - core/base-devel
+#   - chaotic-aur/yay
+#   - extra/pkgfile
+#   - core/less
+#   - extra/wget
+#   - extra/htop
+#   - extra/whois
+#   - core/openssh
+#   - extra/rsync
+#   - extra/tmux
+#   - extra/zip
+#   - extra/fdupes
+#   - extra/jq
+#   - extra/yq
+#   - core/openssl
+#   - extra/zsh
+#   - extra/zsh-completions
+#   - extra/zsh-syntax-highlighting
+#   - extra/zsh-autosuggestions
+#   - core/bash
+#   - extra/bash-completion
+#   - extra/tree
+#   - extra/fzf
+#   - extra/fd
+#   - extra/calc
+#   - extra/bat
+#   - extra/bat-extras
+#   - extra/ripgrep
+#   - extra/age
+#   - extra/perl-image-exiftool
+#   - extra/wl-clipboard
+#
+#   # frontend
+#   - plasma
+#   - extra/gwenview
+#   - extra/phonon-qt6-vlc
+#   - extra/kwalletmanager
+#   - extra/kwallet-pam
+#   - extra/keyd
+#   - chaotic-aur/ungoogled-chromium-bin
+#   - chaotic-aur/zen-browser-bin
+#   - multilib/lib32-nvidia-utils
+#   - multilib/steam
+#   - chaotic-aur/parsec-bin
+#   - extra/alacritty
+#   - extra/baobab
+#   - extra/ttf-cascadia-code-nerd
+#   - extra/noto-fonts
+#   - extra/noto-fonts-cjk
+#   - extra/noto-fonts-emoji
+#   - extra/meld
+#   - extra/vlc
+#   - extra/vlc-plugins-all
+#
+#   # games
+#   - chaotic-aur/faugus-launcher
+#
+#   # development
+#   - extra/git
+#   - extra/github-cli
+#   - extra/git-delta
+#   - extra/cloc
+#   - extra/docker
+#   - extra/docker-compose
+#   - chaotic-aur/visual-studio-code-bin
+#   - extra/shellcheck
+#   - extra/shfmt
+#   - extra/doggo
+#   - extra/postgresql
+#   - extra/mise
+#   - extra/usage
+#   - core/python
+#   - extra/python-pipx
+#   - extra/xdotool
+#
+#   # TODO: review
+#   # - cachyos-core-znver4/device-mapper
+#   # - cachyos-core-znver4/dmraid
+#   # - cachyos-core-znver4/dosfstools
+#   # - cachyos-core-znver4/e2fsprogs
+#   # - cachyos-core-znver4/efibootmgr
+#   # - cachyos-core-znver4/hdparm
+#   # - cachyos-core-znver4/inetutils
+#   # - cachyos-core-znver4/iptables
+#   # - cachyos-core-znver4/jfsutils
+#   # - cachyos-core-znver4/logrotate
+#   # - cachyos-core-znver4/lvm2
+#   # - cachyos-core-znver4/man-db
+#   # - cachyos-core-znver4/nano
+#   # - cachyos-core-znver4/nfs-utils
+#   # - cachyos-core-znver4/nilfs-utils
+#   # - cachyos-core-znver4/perl
+#   # - cachyos-core-znver4/s-nail
+#   # - cachyos-core-znver4/sudo
+#   # - cachyos-core-znver4/texinfo
+#   # - cachyos-core-znver4/usbutils
+#   # - cachyos-core-znver4/which
+#   # - cachyos-core-znver4/wpa_supplicant
+#   # - cachyos-core-znver4/xfsprogs
+#   # - extra/accountsservice
+#   # - extra/alsa-plugins
+#   # - extra/alsa-utils
+#   # - extra/ark
+#   # - extra/bind
+#   # - extra/bluedevil
+#   # - extra/bluez
+#   # - extra/bluez-hid2hci
+#   # - extra/bluez-libs
+#   # - extra/bluez-utils
+#   # - extra/btop
+#   # - extra/btrfs-assistant
+#   # - extra/cinny-desktop
+#   # - extra/cmake
+#   # - extra/cups-filters
+#   # - extra/cups-pdf
+#   # - extra/dhclient
+#   # - extra/dmidecode
+#   # - extra/dnsmasq
+#   # - extra/dolphin
+#   # - extra/duf
+#   # - extra/efitools
+#   # - extra/egl-wayland
+#   # - extra/ethtool
+#   # - extra/exfatprogs
+#   # - extra/eyedropper
+#   # - extra/f2fs-tools
+#   # - extra/fastfetch
+#   # - extra/ffmpegthumbnailer
+#   # - extra/ffmpegthumbs
+#   # - extra/filelight
+#   # - extra/flatpak
+#   # - extra/foomatic-db-engine
+#   # - extra/foomatic-db-gutenprint-ppds
+#   # - extra/fsarchiver
+#   # - extra/fwupd
+#   # - extra/ghostscript
+#   # - extra/gst-plugin-pipewire
+#   # - extra/gutenprint
+#   # - extra/haruna
+#   # - extra/haveged
+#   # - extra/helix
+#   # - extra/hwinfo
+#   # - extra/iwd
+#   # - extra/jujutsu
+#   # - extra/kate
+#   # - extra/kcalc
+#   # - extra/kdeconnect
+#   # - extra/kdegraphics-thumbnailers
+#   # - extra/kde-gtk-config
+#   # - extra/kdeplasma-addons
+#   # - extra/kdialog
+#   # - extra/kinfocenter
+#   # - extra/kio-admin
+#   # - extra/konsole
+#   # - extra/krita
+#   # - extra/kscreen
+#   # - extra/libdvdcss
+#   # - extra/libgsf
+#   # - extra/libopenraw
+#   # - extra/libplasma
+#   # - extra/libreoffice-still
+#   # - extra/libva-nvidia-driver
+#   # - extra/libwnck3
+#   # - extra/lsscsi
+#   # - extra/lua-language-server
+#   # - extra/marksman
+#   # - extra/mesa-utils
+#   # - extra/micro
+#   # - extra/modemmanager
+#   # - extra/mold
+#   # - extra/mtools
+#   # - extra/mupen64plus
+#   # - extra/musl
+#   # - extra/networkmanager-openvpn
+#   # - extra/nss-mdns
+#   # - extra/ntfs-3g
+#   # - extra/obs-studio
+#   # - extra/okteta
+#   # - extra/pacman-contrib
+#   # - extra/partitionmanager
+#   # - extra/pavucontrol
+#   # - extra/picard
+#   # - extra/pipewire-alsa
+#   # - extra/pipewire-pulse
+#   # - extra/plasma-browser-integration
+#   # - extra/plasma-desktop
+#   # - extra/plasma-firewall
+#   # - extra/plasma-integration
+#   # - extra/plasma-nm
+#   # - extra/plasma-pa
+#   # - extra/plasma-systemmonitor
+#   # - extra/plasma-thunderbolt
+#   # - extra/plasma-workspace
+#   # - extra/plocate
+#   # - extra/plymouth
+#   # - extra/plymouth-kcm
+#   # - extra/podman
+#   # - extra/poppler-glib
+#   # - extra/powerdevil
+#   # - extra/prismlauncher
+#   # - extra/pv
+#   # - extra/qt6-wayland
+#   # - extra/rio
+#   # - extra/rtkit
+#   # - extra/rust
+#   # - extra/sddm-kcm
+#   # - extra/sg3_utils
+#   # - extra/smartmontools
+#   # - extra/snapper
+#   # - extra/spectacle
+#   # - extra/splix
+#   # - extra/strawberry
+#   # - extra/stylua
+#   # - extra/sysfsutils
+#   # - extra/tk
+#   # - extra/tree-sitter
+#   # - extra/tree-sitter-cli
+#   # - extra/unrar
+#   # - extra/unzip
+#   # - extra/upower
+#   # - extra/usb_modeswitch
+#   # - extra/vim
+#   # - extra/wabt
+#   # - extra/wezterm
+#   # - extra/wireplumber
+#   # - extra/xdg-desktop-portal
+#   # - extra/xdg-desktop-portal-kde
+#   # - extra/xdg-user-dirs
+#   # - extra/xf86-input-libinput
+#   # - extra/xf86-video-amdgpu
+#   # - extra/xl2tpd
+#   # - extra/xorg-server
+#   # - extra/xorg-xdpyinfo
+#   # - extra/xorg-xinit
+#   # - extra/xorg-xinput
+#   # - extra/xorg-xkill
+#   # - extra/xorg-xrandr
+#   # - extra/xsettingsd
+#   # - extra/zig
+#   # - cachyos/helium-browser-bin
+#   # - cachyos/lib32-mesa
+#   # - cachyos/lib32-vulkan-radeon
+#   # - cachyos/librewolf-bin
+#   # - cachyos/linux-firmware
+#   # - cachyos/mkinitcpio
+#   # - cachyos/noto-color-emoji-fontconfig
+#   # - cachyos/octopi
+#   # - cachyos/paru
+#   # - cachyos/power-profiles-daemon
+#   # - cachyos/protonplus
+#   # - cachyos/protonup-qt
+#   # - cachyos/systemd-boot-manager
+#   # - cachyos/vesktop
+#   # - cachyos/vk-hdr-layer-kwin6-git
+#   # - cachyos/vulkan-radeon
+#   # - cachyos/yay-bin
+#   # - cachyos-znver4/go
+#   # - cachyos-znver4/lib32-opencl-nvidia
+#   # - cachyos-znver4/linux-cachyos
+#   # - cachyos-znver4/linux-cachyos-headers
+#   # - cachyos-znver4/linux-cachyos-lts
+#   # - cachyos-znver4/linux-cachyos-lts-headers
+#   # - cachyos-znver4/linux-cachyos-lts-nvidia-open
+#   # - cachyos-znver4/linux-cachyos-nvidia-open
+#   # - cachyos-znver4/nvidia-settings
+#   # - cachyos-znver4/nvidia-utils
+#   # - cachyos-znver4/opencl-nvidia
+#   # - cachyos-znver4/sddm
+#   # - chaotic-aur/chaotic-mirrorlist
+#   # - chaotic-aur/element-desktop-git
+#   # - chaotic-aur/fluffychat
+#   # - chaotic-aur/google-chrome
+#   # - chaotic-aur/steamcmd
+#   # - chaotic-aur/wowup-cf-beta-bin
+#   # - core/btrfs-progs
+#   # - core/diffutils
+#   # - core/man-pages
+#   # - core/mdadm
+#   # - core/wireless-regdb
+#   # - extra/alsa-firmware
+#   # - extra/anki
+#   # - extra/awesome-terminal-fonts
+#   # - extra/bash-language-server
+#   # - extra/beets
+#   # - extra/breeze-gtk
+#   # - extra/cantarell-fonts
+#   # - extra/cpupower
+#   # - extra/cups
+#   # - extra/eslint-language-server
+#   # - extra/ex-vi-compat
+#   # - extra/feishin
+#   # - extra/firefox
+#   # - extra/foomatic-db
+#   # - extra/foomatic-db-nonfree
+#   # - extra/foomatic-db-nonfree-ppds
+#   # - extra/foomatic-db-ppds
+#   # - extra/gameconqueror
+#   # - extra/glances
+#   # - extra/gsfonts
+#   # - extra/gst-libav
+#   # - extra/gst-plugins-bad
+#   # - extra/gst-plugins-ugly
+#   # - extra/gst-plugin-va
+#   # - extra/hwdetect
+#   # - extra/lsb-release
+#   # - extra/nano-syntax-highlighting
+#   # - extra/netctl
+#   # - extra/networkmanager
+#   # - extra/ntp
+#   # - extra/piper
+#   # - extra/qbittorrent
+#   # - extra/quodlibet
+#   # - extra/rebuild-detector
+#   # - extra/reflector
+#   # - extra/sof-firmware
+#   # - extra/system-config-printer
+#   # - extra/tailwindcss-language-server
+#   # - extra/typescript-language-server
+#   # - extra/ufw
+#   # - extra/zed
+#
+# # default.programs:
+# #   is this correct?
+# #   web-browser: zen-browser-bin
