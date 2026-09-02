@@ -318,6 +318,7 @@ local theme = lush(function(injected_functions)
         -- SQL
         sym("@attribute.sql")({ fg = keyword }),
         sym("@constructor.lua")({ fg = braces }),
+        sym("@string.escape")({ fg = number }),
     }
 end)
 
