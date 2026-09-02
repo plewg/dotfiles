@@ -12,37 +12,29 @@ config.colors = {
     foreground = "#F5F5F4",
     background = "#292524",
     cursor_bg = "#F5F5F4",
-    -- ansi = {
-    --     "#282921",
-    --     "#ff2070",
-    --     "#b0ff11",
-    --     "#ffc16a",
-    --     "#56e4ff",
-    --     "#ae81ff",
-    --     "#91ffef",
-    --     "#fafaf0",
-    -- },
     ansi = {
-        "#292524",
-        "#ff2070",
+        "#282921",
+        "#FF2777",
         "#A3E635",
         "#FDDD6C",
-        "#36c4ff",
         "#A78BFA",
-        "#91efff",
+        "#DB2777",
+        "#67E8F9",
         "#F5F5F4",
     },
     brights = {
-        "#7b7558",
-        "#ff2070",
-        "#A3E635",
-        "#FDDD6C",
-        "#36c4ff",
-        "#A78BFA",
-        "#91efff",
-        "#F5F5F4",
+        "#44403C",
+        "#FF6E6E",
+        "#BEF264",
+        "#FDE68A",
+        "#C4B5FD",
+        "#EC4899",
+        "#A5F3FC",
+        "#FAFAF9",
     },
 }
+
+config.scrollback_lines = 100000
 
 -- window
 -- config.use_fancy_tab_bar = false
