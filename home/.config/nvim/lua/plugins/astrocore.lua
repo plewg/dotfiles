@@ -136,6 +136,8 @@ return {
                 -- Keep search results in centre of screen
                 ["n"] = "nzzzv",
                 ["N"] = "Nzzzv",
+                -- Give it back, precious
+                ["<C-x>"] = false,
             },
             v = {
                 -- Move visual selections up and down
