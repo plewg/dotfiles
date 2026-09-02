@@ -93,4 +93,4 @@
 	pr-view = !~/.scripts/gh.sh pr
 	ed = "!$EDITOR"
 	can = !git commit --amend --no-edit
-	repo = "!~/.scripts/git.sh repo"
+	browse = "!~/.scripts/git.sh repo"
