@@ -162,6 +162,42 @@ return {
                     },
                 },
                 ignored = false,
+                sources = {
+                    projects = {
+                        confirm = function(picker, item)
+                            picker:close()
+                            if not item then return end
+                            local dir = item.file
+
+                            local function find(haystack, needle)
+                                for _, session in ipairs(haystack) do
+                                    if session == needle then return session end
+                                end
+                            end
+
+                            -- Match resession session name convention
+                            local session_name = string.gsub(dir, "/", "_")
+
+                            -- Look for a matching session
+                            local resession = require("resession")
+                            local target_session = find(resession.list(), session_name)
+
+                            -- Save our current session
+                            resession.save(vim.fn.getcwd(), { notify = false })
+
+                            -- Load session if found
+                            if target_session ~= nil then
+                                resession.load(target_session)
+                            -- Close current buffers, chdir, and initialize new
+                            -- session if not found
+                            else
+                                vim.cmd("%bd")
+                                vim.fn.chdir(dir)
+                                resession.save(vim.fn.getcwd(), { notify = false })
+                            end
+                        end,
+                    },
+                },
             },
         },
     },
