@@ -185,12 +185,12 @@ return {
                             -- Save our current session
                             resession.save(vim.fn.getcwd(), { notify = false })
 
-                            -- Load session if found
                             if target_session ~= nil then
+                                -- Load session if found
                                 resession.load(target_session)
-                            -- Close current buffers, chdir, and initialize new
-                            -- session if not found
                             else
+                                -- Close current buffers, chdir, and initialize
+                                -- new session if not found
                                 vim.cmd("%bd")
                                 vim.fn.chdir(dir)
                                 resession.save(vim.fn.getcwd(), { notify = false })
