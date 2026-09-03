@@ -184,13 +184,9 @@ return {
 
                             -- Save our current session, skip if nvim was opened
                             -- with args
-                            if vim.g.project_switch_skip_save == false then
+                            if resession.get_current() ~= nil then
                                 resession.save(vim.fn.getcwd(), { notify = false })
                             end
-
-                            -- Set to false after the first switch, because now
-                            -- we're guaranteed to be in a proper session
-                            vim.g.project_switch_skip_save = false
 
                             if target_session ~= nil then
                                 -- Load session if found
@@ -200,6 +196,7 @@ return {
                             else
                                 -- Close current buffers, chdir, and initialize
                                 -- new session if not found
+                                resession.detach()
                                 vim.cmd("%bd")
                                 vim.fn.chdir(dir)
                                 resession.save(vim.fn.getcwd(), { notify = false })
