@@ -13,6 +13,7 @@ return {
         },
         sessions = {
             -- Only save the session if nvim was started with no args
+            -- AAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
             autosave = {
                 cwd = vim.fn.argc(-1) == 0,
             },
@@ -69,6 +70,7 @@ return {
                 ["<Leader><Leader>e"] = false,
                 ["<Leader><Leader>t"] = false,
                 ["<Leader><Leader>"] = false,
+                -- ganaar
                 ["<Leader>a"] = {
                     function()
                         harpoon:list():add()
@@ -117,6 +119,7 @@ return {
                     end,
                     desc = "ga naar zes",
                 },
+                -- TODO: remap ganaar window
                 -- ["<Leader><Leader><Leader>"] = {
                 --     function()
                 --         local bufnr = vim.api.nvim_create_buf(false, true)
@@ -163,7 +166,6 @@ return {
                     function()
                         require("snacks").picker.projects({
                             format = "file",
-                            -- Consider splitting these to different keybinds?
                             dev = { "~/Projects", "~/External", "~/Work" },
                             recent = false,
                         })

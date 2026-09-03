@@ -229,4 +229,10 @@ return {
             "gbprod/none-ls-shellcheck.nvim",
         },
     },
+    {
+        "package-info.nvim",
+        opts = {
+            notifications = false,
+        },
+    },
 }
