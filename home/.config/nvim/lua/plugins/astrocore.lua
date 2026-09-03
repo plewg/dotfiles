@@ -48,15 +48,21 @@ return {
             },
             n = {
                 ["<Tab>"] = {
-                    function() require("astrocore.buffer").nav(1) end,
+                    function()
+                        require("astrocore.buffer").nav(1)
+                    end,
                     desc = "Next tab",
                 },
                 ["<S-Tab>"] = {
-                    function() require("astrocore.buffer").nav(-1) end,
+                    function()
+                        require("astrocore.buffer").nav(-1)
+                    end,
                     desc = "Previous tab",
                 },
                 ["<Leader>fw"] = {
-                    function() require("snacks").picker.grep({ hidden = true }) end,
+                    function()
+                        require("snacks").picker.grep({ hidden = true })
+                    end,
                     desc = "Find words",
                 },
                 ["<Leader><Leader>a"] = false,
@@ -64,35 +70,51 @@ return {
                 ["<Leader><Leader>t"] = false,
                 ["<Leader><Leader>"] = false,
                 ["<Leader>a"] = {
-                    function() harpoon:list():add() end,
+                    function()
+                        harpoon:list():add()
+                    end,
                     desc = "Add harpoon mark",
                 },
                 ["<C-e>"] = {
-                    function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+                    function()
+                        harpoon.ui:toggle_quick_menu(harpoon:list())
+                    end,
                     desc = "Open harpoon list",
                 },
                 ["<Leader>1"] = {
-                    function() harpoon:list():select(1) end,
+                    function()
+                        harpoon:list():select(1)
+                    end,
                     desc = "ga naar een",
                 },
                 ["<Leader>2"] = {
-                    function() harpoon:list():select(2) end,
+                    function()
+                        harpoon:list():select(2)
+                    end,
                     desc = "ga naar twee",
                 },
                 ["<Leader>3"] = {
-                    function() harpoon:list():select(3) end,
+                    function()
+                        harpoon:list():select(3)
+                    end,
                     desc = "ga naar drie",
                 },
                 ["<Leader>4"] = {
-                    function() harpoon:list():select(4) end,
+                    function()
+                        harpoon:list():select(4)
+                    end,
                     desc = "ga naar vier",
                 },
                 ["<Leader>5"] = {
-                    function() harpoon:list():select(5) end,
+                    function()
+                        harpoon:list():select(5)
+                    end,
                     desc = "ga naar vijf",
                 },
                 ["<Leader>6"] = {
-                    function() harpoon:list():select(6) end,
+                    function()
+                        harpoon:list():select(6)
+                    end,
                     desc = "ga naar zes",
                 },
                 -- ["<Leader><Leader><Leader>"] = {
@@ -122,7 +144,9 @@ return {
                     desc = "Copy absolute path to current file",
                 },
                 ["<Leader>X"] = {
-                    function() vim.cmd("!chmod +x %") end,
+                    function()
+                        vim.cmd("!chmod +x %")
+                    end,
                     desc = "chmod +X",
                 },
                 -- Keep cursor in centre screen while paging up and down

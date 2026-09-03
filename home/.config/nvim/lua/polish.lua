@@ -11,7 +11,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "note" },
-    callback = function() vim.opt_local.formatoptions:remove({ "t", "c" }) end,
+    callback = function()
+        vim.opt_local.formatoptions:remove({ "t", "c" })
+    end,
 })
 
 -- I'll do it myself

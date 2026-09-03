@@ -66,7 +66,12 @@ return {
             },
         },
     },
-    { "rebelot/heirline.nvim", opts = function(_, opts) opts.winbar = nil end },
+    {
+        "rebelot/heirline.nvim",
+        opts = function(_, opts)
+            opts.winbar = nil
+        end,
+    },
     { "b0o/schemastore.nvim" },
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -166,7 +171,9 @@ return {
                     projects = {
                         confirm = function(picker, item)
                             picker:close()
-                            if not item then return end
+                            if not item then
+                                return
+                            end
                             local dir = item.file
 
                             -- Look for a matching session
