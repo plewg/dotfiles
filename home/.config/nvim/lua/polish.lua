@@ -40,6 +40,8 @@ vim.api.nvim_create_autocmd("User", {
     end,
 })
 
+if vim.fn.argc(-1) then vim.g.project_switch_skip_save = true end
+
 vim.api.nvim_create_autocmd("VimEnter", {
     desc = "Restore previous directory session if neovim opened with no arguments",
     nested = true,
@@ -47,7 +49,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
         -- Only load the session if nvim was started with no args
         if vim.fn.argc(-1) == 0 then
             -- try to load a directory session using the current working directory
-            require("resession").load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
+            local session_name = string.gsub(vim.fn.getcwd(), "/", "_")
+            require("resession").load(session_name, {
+                silence_errors = true,
+            })
         end
     end,
 })

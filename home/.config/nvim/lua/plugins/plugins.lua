@@ -182,12 +182,21 @@ return {
                             local resession = require("resession")
                             local target_session = find(resession.list(), session_name)
 
-                            -- Save our current session
-                            resession.save(vim.fn.getcwd(), { notify = false })
+                            -- Save our current session, skip if nvim was opened
+                            -- with args
+                            if vim.g.project_switch_skip_save == false then
+                                resession.save(vim.fn.getcwd(), { notify = false })
+                            end
+
+                            -- Set to false after the first switch, because now
+                            -- we're guaranteed to be in a proper session
+                            vim.g.project_switch_skip_save = false
 
                             if target_session ~= nil then
                                 -- Load session if found
-                                resession.load(target_session)
+                                resession.load(target_session, {
+                                    silence_errors = true,
+                                })
                             else
                                 -- Close current buffers, chdir, and initialize
                                 -- new session if not found
