@@ -169,37 +169,28 @@ return {
                             if not item then return end
                             local dir = item.file
 
-                            local function find(haystack, needle)
-                                for _, session in ipairs(haystack) do
-                                    if session == needle then return session end
-                                end
-                            end
-
-                            -- Match resession session name convention
-                            local session_name = string.gsub(dir, "/", "_")
-
                             -- Look for a matching session
                             local resession = require("resession")
-                            local target_session = find(resession.list(), session_name)
 
-                            -- Save our current session, skip if nvim was opened
-                            -- with args
-                            if resession.get_current() ~= nil then
-                                resession.save(vim.fn.getcwd(), { notify = false })
-                            end
-
-                            if target_session ~= nil then
-                                -- Load session if found
-                                resession.load(target_session, {
-                                    silence_errors = true,
+                            -- If we have a session or we were launched without
+                            -- any args, then save before switching
+                            local in_session = resession.get_current() ~= nil or vim.fn.argc(-1) == 0
+                            if in_session then
+                                resession.save(vim.fn.getcwd(), {
+                                    dir = "dirsession",
+                                    notify = false,
                                 })
                             else
-                                -- Close current buffers, chdir, and initialize
-                                -- new session if not found
+                                require("astrocore").config.sessions.autosave.cwd = true
+                            end
+
+                            -- If we fail to load that means that a session has
+                            -- not yet been initialized for the target directory
+                            if not (pcall(resession.load, dir, { dir = "dirsession" })) then
+                                -- Clean up current state, then chdir
                                 resession.detach()
-                                vim.cmd("%bd")
+                                vim.cmd("%bdelete")
                                 vim.fn.chdir(dir)
-                                resession.save(vim.fn.getcwd(), { notify = false })
                             end
                         end,
                     },
