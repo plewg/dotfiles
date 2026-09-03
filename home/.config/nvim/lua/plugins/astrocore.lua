@@ -135,6 +135,17 @@ return {
                 ["N"] = "Nzzzv",
                 -- Give it back, precious
                 ["<C-x>"] = false,
+                ["<Leader>fp"] = {
+                    function()
+                        require("snacks").picker.projects({
+                            format = "text",
+                            -- Consider splitting these to different keybinds?
+                            dev = { "~/Projects", "~/External", "~/Work" },
+                            recent = false,
+                        })
+                    end,
+                    desc = "Find projects",
+                },
             },
             v = {
                 -- Move visual selections up and down
