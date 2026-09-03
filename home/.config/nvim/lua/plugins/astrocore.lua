@@ -13,7 +13,6 @@ return {
         },
         sessions = {
             -- Only save the session if nvim was started with no args
-            -- AAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
             autosave = {
                 cwd = vim.fn.argc(-1) == 0,
             },
