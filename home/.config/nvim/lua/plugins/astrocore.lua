@@ -162,7 +162,7 @@ return {
                 ["<Leader>fp"] = {
                     function()
                         require("snacks").picker.projects({
-                            format = "text",
+                            format = "file",
                             -- Consider splitting these to different keybinds?
                             dev = { "~/Projects", "~/External", "~/Work" },
                             recent = false,
