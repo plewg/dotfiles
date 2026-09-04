@@ -1,6 +1,6 @@
 # zmodload zsh/zprof
 
-export ZSH="${HOME}/External/ohmyzsh"
+export ZSH="${HOME}/.oh-my-zsh"
 GPG_TTY="$(tty)"
 export GPG_TTY
 export NVM_DIR="${HOME}/.nvm"
@@ -46,7 +46,7 @@ if [[ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]
     source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
-if type brew >/dev/null; then
+if type brew > /dev/null; then
     source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
     source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
@@ -82,15 +82,15 @@ alias dc="docker compose"
 
 doit() {
     declare dir="$1"
-    if type grealpath >/dev/null; then
-        dir="$(fzf -1 -q "$dir" <<<"$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -type d -mindepth 1 -maxdepth 1 -print0 | xargs -0 grealpath --relative-to="$HOME")")"
+    if type grealpath > /dev/null; then
+        dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -type d -mindepth 1 -maxdepth 1 -print0 | xargs -0 grealpath --relative-to="$HOME")")"
     else
-        dir="$(fzf -1 -q "$dir" <<<"$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 realpath --relative-to="$HOME")")"
+        dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 realpath --relative-to="$HOME")")"
     fi
     [[ -d "${HOME}/${dir}" ]] && cd "${HOME}/${dir}" || return 1
 }
 
-if type mise >/dev/null; then
+if type mise > /dev/null; then
     eval "$(mise activate zsh)"
 fi
 

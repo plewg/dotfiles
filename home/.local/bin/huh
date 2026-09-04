@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if type 'bat' > /dev/null 2>&1; then
+    bat "$(which "$@")"
+else
+    cat "$(which "$@")"
+fi

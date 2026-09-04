@@ -152,12 +152,12 @@ local theme = lush(function(injected_functions)
         SnacksPickerListCursorLine({ bg = line_bg }),
         SnacksPickerDir({ fg = comment }),
 
-        RainbowDelimiterYellow({ fg = accents.yellow }),
-        RainbowDelimiterPurple({ fg = accents.purple }),
-        RainbowDelimiterBlue({ fg = accents.blue }),
-        RainbowDelimiterRed({ fg = accents.red }),
-        RainbowDelimiterOrange({ fg = accents.orange }),
-        RainbowDelimiterGreen({ fg = accents.green }),
+        RainbowDelimiterOne({ fg = accents.yellow }),
+        RainbowDelimiterTwo({ fg = accents.purple }),
+        RainbowDelimiterThree({ fg = accents.blue }),
+        RainbowDelimiterFour({ fg = accents.red }),
+        RainbowDelimiterFive({ fg = accents.orange }),
+        RainbowDelimiterSix({ fg = accents.green }),
 
         -- Statement      { }, -- (*) Any statement
         Conditional({ fg = keyword }), --   if, then, else, endif, switch, etc.
@@ -230,6 +230,16 @@ local theme = lush(function(injected_functions)
         -- DiagnosticSignInfo         { } , -- Used for "Info" signs in sign column.
         -- DiagnosticSignHint         { } , -- Used for "Hint" signs in sign column.
         -- DiagnosticSignOk           { } , -- Used for "Ok" signs in sign column.
+
+        -- Note language
+        NoteComment({ fg = comment }),
+        NoteSection({ fg = string }),
+        NoteDone({ fg = func }),
+        NoteTodo({ fg = argument }),
+        NoteQuestion({ fg = declaration }),
+        NotePartial({ fg = declaration }),
+        NoteImportant({ fg = keyword }),
+        NoteUrgent({ fg = keyword, bold = true, gui = "underline" }),
 
         -- Tree-Sitter syntax groups.
         --

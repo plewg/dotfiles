@@ -1,5 +1,6 @@
 [general]
 live_config_reload = true
+import = ["~/.config/alacritty/platform.toml"]
 
 [scrolling]
 history = 100000
@@ -36,12 +37,11 @@ white = "#FAFAF9"
 # font
 [font]
 offset = { y = 1 }
-size = 14
 normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Regular" }
 
 # misc
 [[hints.enabled]]
-command = "xdg-open"
+command = "open"
 hyperlinks = true
 post_processing = true
 persist = false

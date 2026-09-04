@@ -9,7 +9,7 @@ files:
 
 git.repo:
   - source: https://github.com/ohmyzsh/ohmyzsh.git
-    destination: ~/External/ohmyzsh
+    destination: ~/.oh-my-zsh
 
 sudoers:
   mode: passwordless
@@ -26,8 +26,15 @@ shell.values:
     export: true
 
 link-cleanup:
-  - ~/.local/bin
+  - ~/.config/alacritty
+  - ~/.config/gh
+  - ~/.config/git
+  - ~/.config/mise
   - ~/.config/nvim
+  - ~/.config/yay
+  - ~/.config/zed
+  - ~/.local/bin
+  - ~/.scripts
 
 mise:
 nvim.init:
