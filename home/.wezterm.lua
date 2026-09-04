@@ -48,6 +48,11 @@ config.keys = {
         mods = "CTRL|SHIFT",
         action = wezterm.action.DisableDefaultAssignment,
     },
+    {
+        key = "Enter",
+        mods = "META",
+        action = wezterm.action.DisableDefaultAssignment,
+    },
 }
 
 return config
