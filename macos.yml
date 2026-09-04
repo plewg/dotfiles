@@ -3,6 +3,7 @@ when: os == "macos"
 files:
   - source: macos/home
     destination: ~/
+    link_files: true
 
 directories:
   - ~/Screenshots/{{ machine }}
@@ -22,7 +23,6 @@ packages:
   - steam
   - less
   - wget
-  - woof
   - htop
   - whois
   - openssh
@@ -79,18 +79,24 @@ default.programs:
   .md: Visual Studio Code
   .yml: Visual Studio Code
   .json: Visual Studio Code
-  .js: Visual Studio Code
-  .jsx: Visual Studio Code
+  .xml: Visual Studio Code
+  .csv: Visual Studio Code
+  .svg: Visual Studio Code
   .ts: Visual Studio Code
   .tsx: Visual Studio Code
-  .rb: Visual Studio Code
-  .erb: Visual Studio Code
-  .xml: Visual Studio Code
-  http://: Google Chrome
+  .js: Visual Studio Code
+  .jsx: Visual Studio Code
+  .reg: Visual Studio Code
+  .prisma: Visual Studio Code
+  .lua: Visual Studio Code
+  .mkv: IINA
+  .mp4: IINA
+  .avi: IINA
+  .mov: IINA
+  .wmv: IINA
+  .webm: IINA
+  http://: Firefox
   file://: Finder
-  .graphql: Visual Studio Code
-
-# macos.terminal.theme: files/mine.terminal
 
 macos.hide:
   - ~/Music
@@ -150,21 +156,48 @@ macos.plist.merge:
 macos.defaults:
   # % System and Menubar
 
-  - domain: com.apple.menuextra.clock
-    name: DateFormat
-    value: "EEE MMM d  h:mm a"
+  # Hide user menu item
+  - domain: /Library/Preferences/.GlobalPreferences
+    name: MultipleSessionEnabled
+    value: false
+    resets: SystemUIServer
 
-  # TODO: confirm AppleMenuBarVisibleInFullscreen is sufficient on new machines & verify resets
+  # Set Menubar Date Format
+  # TODO: does this still work? defaults write NSGlobalDomain AppleICUTimeFormatStrings -dict-add "2" "HH:mm:ss"
+  # TODO: figure out new settings: defaults read com.apple.menuextra.clock
+  # {
+  #     FlashDateSeparators = 0;
+  #     ShowAMPM = 1;
+  #     ShowDate = 0;
+  #     ShowDayOfWeek = 1;
+  #     ShowSeconds = 0;
+  # }
+  # - domain: com.apple.menuextra.clock
+  #   name: DateFormat
+  #   value: EEE MMM d  h:mm a
+
+  # System Preferences > General > Automatically hide and show the menu bar
+  - domain: NSGlobalDomain
+    name: _HIHideMenuBar
+    value: false
+    resets: SystemUIServer
+
   # System Preferences > Desktop & Dock > Menu Bar > Automatically hide and show the menu bar
   - domain: NSGlobalDomain
     name: AppleMenuBarVisibleInFullscreen
     value: true
     resets: SystemUIServer # / Dock?
 
-  # dark mode
+  # - System Settings > Desktop and Dock > Windows > Tiled windows have margin: off
+  - domain: com.apple.WindowManager
+    name: EnableTiledWindowMargins
+    value: false
+    resets: SystemUIServer
+
+  # light mode
   - domain: NSGlobalDomain
     name: AppleInterfaceStyle
-    value: Dark
+    value: Light
     resets: Dock
   - domain: NSGlobalDomain
     name: AppleInterfaceStyleSwitchesAutomatically
@@ -202,7 +235,7 @@ macos.defaults:
   # Graphite "0.847059 0.847059 0.862745 Graphite"
   - domain: NSGlobalDomain
     name: AppleHighlightColor
-    value: "0.752941 0.964706 0.678431 Green"
+    value: 0.752941 0.964706 0.678431 Green
     resets: Dock
 
   - domain: NSGlobalDomain
@@ -221,11 +254,6 @@ macos.defaults:
   - domain: NSGlobalDomain
     name: NSNavPanelExpandedStateForSaveMode2
     value: true
-
-  # Disable swipe between pages gestures
-  - domain: NSGlobalDomain
-    name: AppleEnableSwipeNavigateWithScrolls
-    value: false
 
   # Save to disk (not to iCloud) by default
   - domain: NSGlobalDomain
@@ -308,7 +336,10 @@ macos.defaults:
       - "/System/Library/CoreServices/Menu Extras/Bluetooth.menu"
     resets: SystemUIServer
 
-  # NOTE: disables auto switching between desktop (mostly). Which means the random switches macos likes to do will stop, but also means intentional switching to focus an app may not always work. Plus there are some more subtle bugs with this that can be annoying at times.
+  # NOTE: disables auto switching between desktop (mostly). Which means the
+  # random switches macos likes to do will stop, but also means intentional
+  # switching to focus an app may not always work. Plus there are some more
+  # subtle bugs with this that can be annoying at times.
   - domain: com.apple.dock
     name: workspaces-auto-swoosh
     value: false
@@ -318,7 +349,7 @@ macos.defaults:
 
   # Increase sound quality for Bluetooth headphones/headsets
   - domain: com.apple.BluetoothAudioAgent
-    name: "Apple Bitpool Min (editable)"
+    name: Apple Bitpool Min (editable)
     value: 40
     resets: coreaudiod
 
@@ -428,7 +459,7 @@ macos.defaults:
   # When performing a search, search the current folder by default
   - domain: com.apple.finder
     name: FXDefaultSearchScope
-    value: "SCcf"
+    value: SCcf
     resets: Finder
 
   # Disable the warning when changing a file extension
@@ -510,6 +541,8 @@ macos.defaults:
       Preview: false
       Privileges: true
     resets: Finder
+
+  # % Dock
 
   # Disable: Automatically rearrange Spaces based on most recent use
   - domain: com.apple.dock
@@ -691,10 +724,12 @@ macos.defaults:
 
   # % Safari
 
+  # TODO: this errors instead of prompting to five Full Disk Access in Alacritty... can we fix?
   # Prevent Safari from opening 'safe' files automatically after downloading
-  # - domain: com.apple.Safari
-  #   name: AutoOpenSafeDownloads
-  #   value: false
+  # prettier-ignore
+  - domain: "{{ home }}/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari.plist"
+    name: AutoOpenSafeDownloads
+    value: false
 
   # % Screenshots
 
@@ -713,16 +748,8 @@ macos.defaults:
 
 ---
 when:
-  - machine != "work-paige"
   - os == "macos"
-
-macos.pmset:
-  battery:
-    displaysleep: 15
-    sleep: 15
-  ac:
-    displaysleep: 0
-    sleep: 0
+  - machine != "work-paige"
 
 macos.defaults:
   # % System updates

@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+
+export MACRO_EDITOR='code'
+export EDITOR='edit'
+export PAGER='less'
+export LESS='-R -F'
+export TIMEFMT='Real: %E User: %U System: %S Percent: %P Cmd: %J'
+export CLICOLOR=1 # fixes `ls --color=auto` on macos
+export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
+export PRETTIERD_DEFAULT_CONFIG="${HOME}/.prettierrc.toml"
+export COLORTERM="truecolor"
+export TURBO_TELEMETRY_DISABLED=1
+export TERM="alacritty"
+
+tabs -4
+
+alias grep='grep --color'
+alias egrep='egrep --color'
+alias man='man -a'
+alias rm=' rm'     # don't keep rm in history
+alias sudo='sudo ' # Enable aliases to be sudo'ed
+alias ls='ls --color=auto'
+alias l='ls -A'
+alias ll='ls -AlF'
+alias '?'='type -af'
+alias '??'='huh'
+alias map='xargs -n1'
+alias mapi='xargs -I "{}"'
+alias ymd='date "+%Y-%m-%d"'
+alias broken-links='find . -type l -exec test ! -e {} ";" -print'
+alias m='macro'
+alias mr='macro run'
+alias path='echo "$PATH" | tr ":" "\n"'
+alias ssh-keygen='ssh-keygen -t rsa -b 4096 -o -N ""'
+alias ssh-fingerprint='ssh-keygen -l -E md5 -f' # get ssh key fingerprint same way as github
+alias remote-ip='curl icanhazip.com'
+alias drun='docker run --rm -it'
+alias dc='docker compose'
+alias code='code -n'
+# TODO: sync with plugin
+alias mime-type='file --mime-type'
+alias find-contains='grep -rl'
+alias fd='fd --hidden'
+alias ff='fd --hidden --exclude .git'
+alias rg='rg --hidden'
+alias rr='rg --hidden --iglob='"'"'!.git'"'"''
+alias tree='tree -a'
+# alias tt='tree -a -I .git'
+alias repo='~/.scripts/git.sh repo'
+alias yml='yq -y . | bat --language=yaml'
+alias ts-node='ts-node-esm -O "{\"isolatedModules\": false, \"esModuleInterop\": true}" -i'
+alias sued='sudo edit'
+alias dns='doggo A AAAA CAA CNAME HINFO LOC MX NS OPENPGPKEY PTR SOA SRV SSHFP TLSA TXT URI'
+alias echol='printf "%s\n"'
+alias ncu='npx npm-check-updates --root --workspaces --dep "prod,dev,optional,peer,packageManager"'
+alias smallest='us --summary'
+alias largest='uu --summary'
+alias ok='echo "$?"'
+alias e=edit
+
+# git
+gcd() {
+    declare root
+    root="$(git rev-parse --show-toplevel)" || return "$?"
+
+    cd "${root}/${1}" || return "$?"
+}
+
+gh() {
+    if [[ -n "$ZSH_VERSION" ]]; then
+        # make arrays zero based
+        setopt LOCAL_OPTIONS KSH_ARRAYS
+    fi
+
+    if command gh "$@"; then
+        if [[ "$*" == 'repo clone '* ]]; then
+            declare -a repo_args=("${@:3}")
+            if [[ "${#repo_args[@]}" -lt 1 ]]; then
+                echo 'unreachable: no args after $ gh repo clone' >&2
+                return 1
+            fi
+
+            declare repo="${repo_args[0]}"
+            declare directory="${repo_args[1]}"
+            if [[ "$directory" == "" || "$directory" == "--" ]]; then
+                # TODO: there's probably still some edge cases...
+                directory="$(basename "$repo")"
+                directory="${directory%.git}"
+            fi
+
+            echo "$ cd ${directory}"
+            # shellcheck disable=SC2164
+            cd "$directory"
+        fi
+    fi
+}
+
+git() {
+    # TODO: same as gh, but for `git clone ...`
+    command git "$@"
+}
+
+doit() {
+    declare dir="$1"
+    if type grealpath > /dev/null 2>&1; then
+        dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 grealpath --relative-to="$HOME")")"
+    else
+        dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 realpath --relative-to="$HOME")")"
+    fi
+
+    if [[ "$dir" != "" && -d "${HOME}/${dir}" ]]; then
+        cd "${HOME}/${dir}" || return "$?"
+    else
+        return 1
+    fi
+}
+
+# shared
+. source-if-exists "${HOME}/.shared_rc.d/${DOTFILES_MACHINE:-}"

@@ -1,101 +1,147 @@
+#!/usr/bin/env zsh
+
+# DEBUGGING PERFORMANCE
 # zmodload zsh/zprof
 
-export ZSH="${HOME}/.oh-my-zsh"
-GPG_TTY="$(tty)"
-export GPG_TTY
-export NVM_DIR="${HOME}/.nvm"
-export DISABLE_SPRING="true"
-export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
-export LESS="-F -R"
-export EDITOR="nvim"
-export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
-export PRETTIERD_DEFAULT_CONFIG="${HOME}/.prettierrc.toml"
-export COLORTERM="truecolor"
-export TURBO_TELEMETRY_DISABLED=1
-export TERM="alacritty"
-
-#shellcheck disable=SC1091
-[[ -s "${HOME}/.profile.private" ]] && . "${HOME}/.profile.private"
-
-PATH="${HOME}/.cargo/bin:${PATH}"
-PATH="${HOME}/.local/bin:${PATH}"
-export PATH
-
-# shellcheck disable=SC2034
-ZSH_THEME="robbyrussell"
-# shellcheck disable=SC2034
-CASE_SENSITIVE="true"
-HISTSIZE=1000000
-# shellcheck disable=SC2034
-SAVEHIST=1000000
-# shellcheck disable=SC2034
-plugins=(z)
-# shellcheck disable=SC2034
-DISABLE_AUTO_UPDATE=true
-
-source "${ZSH}/oh-my-zsh.sh"
-zstyle ':completion:*' rehash true
-
-if [[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
-    # shellcheck disable=SC1094
-    source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-fi
-
-if [[ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
-    # shellcheck disable=SC1094
-    source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-fi
-
-if type brew > /dev/null; then
-    source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-    source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-    fpath=(
-        "$(brew --prefix)/share/zsh-completions"
-        "$(brew --prefix)/share/zsh/site-functions"
-        ${fpath[@]}
-    )
-fi
-
-fpath=(
-    "$HOME/.zcompletions"
-    ${fpath[@]}
-)
-
-# shellcheck disable=SC2034
-ZSH_DISABLE_COMPFIX="true"
-autoload -U compinit && compinit
-
-setopt HIST_IGNORE_SPACE
-setopt INC_APPEND_HISTORY
-setopt HIST_VERIFY
-setopt HIST_IGNORE_ALL_DUPS
-unsetopt nomatch
-unsetopt autocd
-
-# Key Bindings
-# NOTE: run `bindkey` to see all keybindings
-bindkey '^H' backward-kill-word
-
-alias ll='ls -lah'
-alias dc="docker compose"
-
-doit() {
-    declare dir="$1"
-    if type grealpath > /dev/null; then
-        dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -type d -mindepth 1 -maxdepth 1 -print0 | xargs -0 grealpath --relative-to="$HOME")")"
-    else
-        dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 realpath --relative-to="$HOME")")"
-    fi
-    [[ -d "${HOME}/${dir}" ]] && cd "${HOME}/${dir}" || return 1
-}
-
-if type mise > /dev/null; then
+# mise
+if type 'mise' > /dev/null 2>&1; then
     eval "$(mise activate zsh)"
 fi
 
-if [[ -f "$HOME/.config/op/plugins.sh" ]]; then
-    source "$HOME/.config/op/plugins.sh"
+# omz
+plugins=(z)
+DISABLE_AUTO_UPDATE="true"
+ZSH_DISABLE_COMPFIX="true"
+# Prompt
+ZSH_THEME="robbyrussell"
+zstyle ':omz:lib:directories' aliases no
+. source-if-exists ~/.oh-my-zsh/oh-my-zsh.sh
+
+. source-if-exists ~/.shared_rc
+
+# syntax-highlighting
+. source-first-found \
+    /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+    /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+    "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# autosuggestions
+. source-first-found \
+    /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh \
+    "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# ls auto complete colours
+# created with: https://geoff.greer.fm/lscolors/
+export LSCOLORS='exgxfxdxcxegedabagacad'
+LS_COLORS='di=34:ln=36:so=35:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+zstyle ':completion:*:default' list-colors "$LS_COLORS"
+
+# macos completions
+# - base
+if [[ -n "$HOMEBREW_PREFIX" ]]; then
+    fpath=(
+        "${HOMEBREW_PREFIX}/share/zsh-completions"
+        "${HOMEBREW_PREFIX}/share/zsh/site-functions"
+        "${fpath[@]}"
+    )
 fi
 
+# Completions
+fpath=("$HOME/.zcompletions" "${fpath[@]}")
+
+# precmd
+_plewg_dotfiles_precmd() {
+    # NOTE: not sure why the tab size resets 🤷
+    tabs -4
+}
+typeset -ag precmd_functions
+if [[ -z "${precmd_functions[(r)_plewg_dotfiles_precmd]}" ]]; then
+    precmd_functions+=(_plewg_dotfiles_precmd)
+fi
+
+zstyle :compinstall filename "$HOME/.zshrc"
+
+# TODO: fix colours so directories are blue not red...
+zstyle ':completion:*' special-dirs true # Complete . and .. special directories
+zstyle ':completion:*' list-colors ''    # colour completions
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+
+
+autoload -Uz compinit bashcompinit promptinit
+# Completions
+compinit -u
+bashcompinit
+# Prompt
+promptinit
+
+# Glob's without any matches are sent to the command as is
+unsetopt no_match
+
+setopt auto_cd
+setopt auto_push_d
+setopt push_d_ignore_dups
+
+# history
+setopt hist_ignore_dups
+setopt inc_append_history
+setopt hist_expire_dups_first
+setopt hist_reduce_blanks
+setopt extended_history  # record timestamp of command in HISTFILE
+setopt hist_ignore_space # ignore commands that start with space
+setopt hist_verify       # show command with history expansion to user before running it
+setopt share_history     # share command history data
+
+setopt interactive_comments
+
+# completions
+setopt list_packed         # Make the completion list smaller by printing the matches in columns with different widths
+setopt no_complete_aliases # NOTE: despite the name, this actually enables aliases to be auto-completed as though it were the full command.
+
+setopt no_rm_star_silent
+setopt print_exit_value
+
+# Disable printing of ^C and related control commands
+stty -ctlecho
+
+# automatically remove duplicates from these arrays
+typeset -gU path cdpath manpath fpath
+
+HISTFILE="${HOME}/.histfile"
+HISTSIZE=101000
+SAVEHIST=100000
+LISTMAX=0 # only show the following prompt if doing so would scroll 'do you wish to see all NNN possibilities?'
+export WORDCHARS='_-|'
+
+# Key Bindings
+# NOTE: run `bindkey` to see all keybindings
+bindkey -e # emacs
+# NOTE:
+# - get keybinding codes with: $ showkey -a
+# - print terminfo with: $ infocmp -1
+if [[ "$OSTYPE" == darwin* && "$TERM_PROGRAM" == 'Apple_Terminal' ]]; then
+    bindkey '\e^[OA' beginning-of-line # alt + up
+    bindkey '\e^[OB' end-of-line # alt + down
+    bindkey '\e(' kill-word # alt + delete
+else
+    # alacritty/kitty/foot/ghostty/wezterm at least all seem to work the same
+    bindkey '^[[1;3A' beginning-of-line # alt + up
+    bindkey '^[[1;3B' end-of-line # alt + down
+    bindkey '^[[1;3C' forward-word # alt + right
+    bindkey '^[[1;3D' backward-word # alt + left
+    bindkey '^[[3;5~' kill-word # ctrl + delete
+    bindkey '^H' backward-kill-word # ctrl + backspace
+fi
+
+# print partial line indicator (to prevent prompt clobbering final partial line of output)
+# unsetopt prompt_cr
+setopt PROMPT_CR
+setopt PROMPT_SP
+PROMPT_EOL_MARK='%B%K{red}%%%k%E'
+
+# rosetta
+if [[ "$OSTYPE" == darwin* && "$(uname -m)" != 'arm64' ]]; then
+    RPROMPT='x86'
+fi
+
+# DEBUGGING PERFORMANCE
 # zprof

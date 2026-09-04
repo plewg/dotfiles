@@ -1,5 +1,6 @@
 when:
   - os == "linux"
+  # - distro == "arch"
 
 directories:
   - ~/Screenshots/{{ machine }}
