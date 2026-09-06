@@ -4,7 +4,21 @@
         "version": "LuaJIT",
         "pathStrict": true
     },
-    "diagnostics.globals": ["vim"],
+    "workspace": {
+        "library": [
+            "${3rd}/luv/library",
+            "$VIMTUNTIME",
+            "~/.local/share/nvim/lazy/lazy.nvim",
+            "~/.local/share/nvim/lazy/astrocore",
+            "~/.local/share/nvim/lazy/astrolsp",
+            "~/.local/share/nvim/lazy/astroui"
+        ]
+    },
+    "diagnostics": {
+        "globals": ["vim"],
+        "disable": ["empty-block", "trailing-space"],
+        "unusedLocalExclude": ["_*", "_"]
+    },
     "type": {
         "checkTableShape": true
     }
