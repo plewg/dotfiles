@@ -328,14 +328,42 @@ local theme = lush(function(injected_functions)
         -- sym"@include"           { }, -- Include
         -- sym"@preproc"           { }, -- PreProc
         -- sym"@debug"             { }, -- Debug
+
         -- SQL
         sym("@attribute.sql")({ fg = keyword }),
         sym("@constructor.lua")({ fg = braces }),
         sym("@string.escape")({ fg = number }),
+
+        -- yaml
+        sym("@property.yaml")({ fg = keyword }),
+        sym("@punctuation.delimiter.yaml")({ fg = text }),
+
+        -- json
+        sym("@property.json")({ fg = declaration }),
+        sym("@string.json")({ fg = text }),
+
+        -- toml
+        sym("@property.toml")({ fg = declaration }),
+
+        -- markdown
+        sym("@markup.heading.1.markdown")({ fg = func, bold = true }),
+        sym("@markup.heading.2.markdown")({ fg = func, bold = true }),
+        sym("@markup.heading.3.markdown")({ fg = func, bold = true }),
+        sym("@markup.heading.4.markdown")({ fg = func, bold = true }),
+        sym("@markup.heading.5.markdown")({ fg = func, bold = true }),
+        sym("@markup.heading.6.markdown")({ fg = func, bold = true }),
+        sym("@markup.strong")({ fg = declaration, bold = true }),
+        -- TODO: can't reasonably style the ``` because the contents will also
+        -- - match this in the case their language is unknown
+        -- sym("@markup.raw.block.markdown")({ fg = comment }),
+
+        -- sym("@markup.link.label.markdown_inline")({ fg = declaration }),
+        sym("@markup.link.url.markdown_inline")({ fg = string }),
+
+        sym("@markup.raw.markdown_inline")({ fg = argument }),
+        sym("@markup.list.markdown")({ fg = func }),
     }
 end)
 
 -- Return our parsed theme for extension or use elsewhere.
 return theme
-
--- vi:nowrap

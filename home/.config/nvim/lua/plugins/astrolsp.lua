@@ -41,7 +41,7 @@ return {
                                     13, -- Enum
                                     14, -- Keyword
                                     15, -- Snippet
-                                    16, -- Color
+                                    16, -- Colour
                                     17, -- File
                                     18, -- Reference
                                     19, -- Folder
@@ -58,6 +58,13 @@ return {
                 },
             },
             bashls = {
+                -- Disabling here because conform.nvim overrides vim.lsp.buf.format()
+                on_attach = function(client)
+                    client.server_capabilities.documentFormattingProvider = false
+                    client.server_capabilities.documentRangeFormattingProvider = false
+                end,
+            },
+            sqls = {
                 -- Disabling here because conform.nvim overrides vim.lsp.buf.format()
                 on_attach = function(client)
                     client.server_capabilities.documentFormattingProvider = false

@@ -8,6 +8,9 @@ return {
         treesitter = {
             ensure_installed = { "sql" },
         },
+        filetypes = {
+            pg = "sql",
+        },
         diagnostics = {
             severity_sort = true,
         },
@@ -29,12 +32,15 @@ return {
                 pumborder = "rounded",
                 textwidth = 80,
                 scrolloff = 8,
+                spell = true,
+                spelllang = "en_ca,en_us,nl",
+                spelloptions = "camel",
             },
             g = { undotree_WindowLayout = 3 },
         },
         mappings = {
             i = {
-                -- false isn't working to unmap here, so doing a noop instead
+                -- false isn't working to un-map here, so doing a no-op instead
                 ["<C-x><C-o>"] = "<Nop>",
                 ["<F1>"] = "<Nop>",
                 ["<CR>"] = {
@@ -66,6 +72,41 @@ return {
                     end,
                     desc = "Find words",
                 },
+                ["<Leader>c"] = {
+                    function()
+                        local current = vim.api.nvim_get_current_buf()
+                        local buffers = vim.tbl_filter(function(buf)
+                            return vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buflisted
+                        end, vim.api.nvim_list_bufs())
+
+                        -- Find the current buffer's position in the buffer list
+                        local index
+                        for i, buf in ipairs(buffers) do
+                            if buf == current then
+                                index = i
+                                break
+                            end
+                        end
+
+                        -- If there's a buffer to the right, select it after closing.
+                        -- Otherwise select the buffer to the left.
+                        local target = buffers[index + 1] or buffers[index - 1]
+
+                        require("astrocore.buffer").close(current)
+
+                        if target and vim.api.nvim_buf_is_valid(target) then
+                            vim.api.nvim_set_current_buf(target)
+                        end
+                    end,
+                    desc = "Close buffer",
+                },
+                ["<C-p>"] = {
+                    function()
+                        require("snacks").picker.files({ hidden = true })
+                    end,
+                    desc = "Find files",
+                },
+                -- disable harpoon
                 ["<Leader><Leader>a"] = false,
                 ["<Leader><Leader>e"] = false,
                 ["<Leader><Leader>t"] = false,

@@ -92,11 +92,19 @@ return {
         "stevearc/conform.nvim",
         opts = function(_, opts)
             opts.formatters_by_ft = opts.formatters_by_ft or {}
-            opts.formatters_by_ft["tex"] = { "tex-fmt" }
+            opts.formatters = opts.formatters or {}
+
             -- Setup this formatter for all filetypes
-            -- opts.formatters_by_ft["*"] = { "trim_newlines" }
-            -- Setup this formatter for filetypes that have no other formatters
-            opts.formatters_by_ft["_"] = { "trim_newlines" }
+            opts.formatters_by_ft["*"] = { "trim_newlines" }
+
+            -- Setup formatting for tex/latex
+            opts.formatters_by_ft["tex"] = { "tex-fmt" }
+
+            -- SQL options
+            opts.formatters_by_ft["sql"] = { "sqlfluff" }
+            opts.formatters["sqlfluff"] = { require_cwd = false }
+
+            -- Always run lsp formatting first
             opts.default_format_opts = { lsp_format = "first" }
 
             opts.format_on_save = function(bufnr)
@@ -111,10 +119,7 @@ return {
             {
                 "WhoIsSethDaniel/mason-tool-installer.nvim",
                 optional = true,
-                opts = function(_, opts)
-                    opts.ensure_installed =
-                        require("astrocore").list_insert_unique(opts.ensure_installed or {}, { "tex-fmt" })
-                end,
+                opts = { ensure_installed = { "tex-fmt", "sqlfluff", "sqls" } },
             },
         },
     },
@@ -215,6 +220,9 @@ return {
                         keys = {
                             -- close picker immediately with escape instead of exiting insert mode first, and then exiting
                             ["<Esc>"] = { "close", mode = { "i", "n" } },
+                            -- ctrl + up/down are the default, but that doesn't work on macos
+                            ["<S-Down>"] = { "history_forward", mode = { "i", "n" } },
+                            ["<S-Up>"] = { "history_back", mode = { "i", "n" } },
                         },
                     },
                 },
@@ -285,6 +293,36 @@ return {
         "package-info.nvim",
         opts = {
             notifications = false,
+        },
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        optional = true,
+        opts = function(_, opts)
+            opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "sqls" })
+        end,
+    },
+    {
+        "jay-babu/mason-null-ls.nvim",
+        optional = true,
+        opts = function(_, opts)
+            opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "sqlfluff" })
+            opts.handlers = opts.handlers or {}
+
+            opts.handlers.sqlfluff = function()
+                local null_ls = require("null-ls")
+                null_ls.register(null_ls.builtins.diagnostics.sqlfluff)
+                null_ls.register(null_ls.builtins.formatting.sqlfluff)
+            end
+        end,
+    },
+    {
+        "mfussenegger/nvim-lint",
+        optional = true,
+        opts = {
+            linters_by_ft = {
+                sql = { "sqlfluff" },
+            },
         },
     },
 }
