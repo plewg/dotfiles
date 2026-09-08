@@ -64,13 +64,6 @@ return {
                     client.server_capabilities.documentRangeFormattingProvider = false
                 end,
             },
-            sqls = {
-                -- Disabling here because conform.nvim overrides vim.lsp.buf.format()
-                on_attach = function(client)
-                    client.server_capabilities.documentFormattingProvider = false
-                    client.server_capabilities.documentRangeFormattingProvider = false
-                end,
-            },
             eslint = {
                 settings = {
                     rulesCustomizations = {
