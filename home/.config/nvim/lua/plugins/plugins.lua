@@ -108,9 +108,13 @@ return {
             opts.default_format_opts = { lsp_format = "first" }
 
             opts.format_on_save = function(bufnr)
+                local on_save_opts = { timeout_ms = 10000 }
+
                 if vim.F.if_nil(vim.b[bufnr].autoformat, vim.g.autoformat, true) then
-                    return { lsp_format = "first" }
+                    on_save_opts["lsp_format"] = "first"
                 end
+
+                return on_save_opts
             end
 
             return opts
