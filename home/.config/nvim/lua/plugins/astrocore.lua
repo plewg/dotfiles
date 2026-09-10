@@ -33,7 +33,7 @@ return {
                 textwidth = 80,
                 scrolloff = 8,
                 spell = true,
-                spelllang = "en_ca,en_us,nl",
+                spelllang = "en_ca",
                 spelloptions = "camel",
             },
             g = { undotree_WindowLayout = 3 },
