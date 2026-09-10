@@ -52,7 +52,12 @@ git::squash() {
 }
 
 git::cmb() {
-    git cm "[$(git branch --show-current | sed -E 's/^([A-Z]{1,}-[0-9]{1,}).*$/\1/')] $1" "${@:2}"
+    declare branch
+    branch="$(git branch --show-current)"
+    declare prefix
+    prefix="$(sed -E 's/^([A-Z]{1,}-[0-9]{1,}).*$/\1/' <<< "$branch")"
+
+    git cm "[${prefix}] ${1}" "${@:2}"
 }
 
 git::anp() {
@@ -124,20 +129,45 @@ git::find_pending_changes_to_base() {
 }
 
 git::external() {
-    declare repo="$1"
-    if [[ -z "$repo" ]]; then
+    declare repo_url="$1"
+    if [[ -z "$repo_url" ]]; then
         echo "usage: git external <repo>"
-        echo "   ie. git external git@github.com:trpc/trpc.git"
+        echo "   ie. git external git@github.com:microsoft/TypeScript.git"
+        echo "   ie. git external https://github.com/microsoft/TypeScript.git"
+        echo "   ie. git external microsoft/TypeScript"
+        echo "   these will all clone to ~/External/microsoft-TypeScript"
         return 1
     fi
 
     # extract directory path from repo
-    # NOTE: sed doesn't support non-greedy matching, previously had: sed -E 's#^(https?://|git@)[^/:]+[/:]([^.]+)(\.git)?$#\2#g'
-    declare directory
-    directory="$(perl -pe 's#^(https?://|git@)[^/:]+[/:](.*?)(\.git)?$#\2#g' <<< "$repo")"
+    declare repo_descriptor=""
+    case "$repo_url" in
+        http://* | https://* | git@*)
+            # NOTE: sed doesn't support non-greedy matching, previously had: sed -E 's#^(https?://|git@)[^/:]+[/:]([^.]+)(\.git)?$#\2#g'
+            repo_descriptor="$(perl -pe 's#^(https?://|git@)[^/:]+[/:](.*?)(\.git)?$#\2#g' <<< "$repo_url")"
+            ;;
+        */*)
+            repo_descriptor="$repo_url"
+            repo_url="https://github.com/${repo_url}.git"
+            ;;
+        *)
+            echo "invalid repo: ${repo_url}"
+            exit 1
+            ;;
+    esac
+
+    # if owner is the same as repo, just use the repo name on it's own (ie. neovim/neovim)
+    declare owner="${repo_descriptor%/*}"
+    declare repo="${repo_descriptor#*/}"
+    declare directory=""
+    if [[ "$owner" == "$repo" ]]; then
+        directory="$repo"
+    else
+        directory="${owner}-${repo}"
+    fi
 
     # clone to ~/External
-    git clone "$repo" "${HOME}/External/${directory}"
+    git clone --filter=blob:none "$repo_url" "${HOME}/External/${directory}"
 }
 
 git::repo() {

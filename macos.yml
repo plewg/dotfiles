@@ -5,9 +5,6 @@ files:
     destination: ~/
     link_files: true
 
-directories:
-  - ~/Screenshots/{{ machine }}
-
 packages:
   - homebrew/cask/zen
   - homebrew/cask/1password
