@@ -8,9 +8,6 @@ return {
         treesitter = {
             ensure_installed = { "sql" },
         },
-        filetypes = {
-            pg = "sql",
-        },
         diagnostics = {
             severity_sort = true,
         },
@@ -33,14 +30,16 @@ return {
                 textwidth = 80,
                 scrolloff = 8,
                 spell = true,
-                spelllang = "en_ca",
-                spelloptions = "camel",
+                -- spell files: https://ftp.nluug.nl/pub/vim/runtime/spell
+                spelllang = { "en_ca" },
+                spelloptions = { "camel" },
+                spellfile = vim.fn.stdpath("config") .. "/spell/dictionary.utf-8.add",
             },
             g = { undotree_WindowLayout = 3 },
         },
         mappings = {
             i = {
-                -- false isn't working to un-map here, so doing a no-op instead
+                -- false isn't working to unmap here, so doing a noop instead
                 ["<C-x><C-o>"] = "<Nop>",
                 ["<F1>"] = "<Nop>",
                 ["<CR>"] = {
@@ -72,6 +71,66 @@ return {
                     end,
                     desc = "Find words",
                 },
+                -- save
+                ["<Leader>w"] = {
+                    function()
+                        if vim.bo.buftype == "" and vim.api.nvim_buf_get_name(0) == "" then
+                            vim.ui.input({ prompt = "Enter filename: " }, function(input)
+                                local name = vim.fn.trim(input or "")
+
+                                -- Make sure a name was provided
+                                if name == "" then
+                                    return
+                                end
+
+                                -- Set filename
+                                local bufnr = vim.api.nvim_get_current_buf()
+                                vim.api.nvim_buf_set_name(bufnr, name)
+
+                                -- Update file type
+                                local filetype, on_detect = vim.filetype.match({ buf = bufnr })
+                                if filetype ~= nil then
+                                    if on_detect ~= nil then
+                                        -- NOTE: sets file type specific variables
+                                        on_detect(bufnr)
+                                    end
+
+                                    vim.bo[bufnr].filetype = filetype
+                                end
+
+                                -- Save
+                                vim.cmd.write()
+                            end)
+                        else
+                            vim.cmd.write()
+                        end
+                    end,
+                },
+                -- neo-tree: always open in the main cwd (not the per-buffer dir)
+                ["<Leader>e"] = {
+                    function()
+                        require("neo-tree.command").execute({
+                            toggle = true,
+                            dir = vim.fn.getcwd(),
+                            reveal = true,
+                        })
+                    end,
+                    desc = "Toggle Explorer",
+                },
+                ["<Leader>o"] = {
+                    function()
+                        if vim.bo.filetype == "neo-tree" then
+                            vim.cmd.wincmd("p")
+                        else
+                            require("neo-tree.command").execute({
+                                dir = vim.fn.getcwd(),
+                                reveal = true,
+                                focus = true,
+                            })
+                        end
+                    end,
+                    desc = "Toggle Explorer Focus",
+                },
                 ["<Leader>c"] = {
                     function()
                         local current = vim.api.nvim_get_current_buf()
@@ -88,8 +147,15 @@ return {
                             end
                         end
 
+                        -- If the current buffer isn't in the list, we close
+                        -- normally (prompts, help, etc)
+                        if index == nil then
+                            vim.api.nvim_buf_delete(0, {})
+                            return
+                        end
+
                         -- If there's a buffer to the right, select it after closing.
-                        -- Otherwise select the buffer to the left.
+                        -- Otherwise, select the buffer to the left.
                         local target = buffers[index + 1] or buffers[index - 1]
 
                         require("astrocore.buffer").close(current)
