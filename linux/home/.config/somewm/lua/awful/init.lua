@@ -1,0 +1,44 @@
+---------------------------------------------------------------------------
+--- AWesome Functions very UsefuL
+--
+-- @author Julien Danjou &lt;julien@danjou.info&gt;
+-- @copyright 2008 Julien Danjou
+-- @module awful
+---------------------------------------------------------------------------
+
+require("awful._compat")
+
+local ret = {
+    client = require("awful.client");
+    completion = require("awful.completion");
+    layout = require("awful.layout");
+    placement = require("awful.placement");
+    prompt = require("awful.prompt");
+    screen = require("awful.screen");
+    tag = require("awful.tag");
+    widget = require("awful.widget");
+    keygrabber = require("awful.keygrabber");
+    input = require("awful.input");
+    gesture = require("awful.gesture");
+    menu = require("awful.menu");
+    mouse = require("awful.mouse");
+    remote = require("awful.remote");
+    key = require("awful.key");
+    keyboard = require("awful.keyboard");
+    button = require("awful.button");
+    wibar = require("awful.wibar");
+    startup_notification = require("awful.startup_notification");
+    tooltip = require("awful.tooltip");
+    permissions = require("awful.permissions");
+    titlebar = require("awful.titlebar");
+    wallpaper = require("awful.wallpaper");
+    popup = require("awful.popup");
+    spawn = require("awful.spawn");
+    screenshot = require("awful.screenshot");
+    statusnotifierwatcher = require("awful.statusnotifierwatcher");
+    systray = require("awful.systray");
+}
+
+return ret
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

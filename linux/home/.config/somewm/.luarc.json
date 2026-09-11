@@ -1,0 +1,18 @@
+{
+    "format.enable": false,
+    "runtime": {
+        "version": "LuaJIT",
+        "pathStrict": true
+    },
+    "workspace": {
+        "library": []
+    },
+    "diagnostics": {
+        "globals": ["awesome"],
+        "disable": ["empty-block", "trailing-space"],
+        "unusedLocalExclude": ["_*", "_"]
+    },
+    "type": {
+        "checkTableShape": true
+    }
+}

@@ -1,0 +1,15 @@
+[selene]
+base = "lua51"
+name = "globals"
+
+[awesome]
+any = true
+
+[tag]
+any = true
+
+[screen]
+any = true
+
+[client]
+any = true

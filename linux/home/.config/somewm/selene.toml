@@ -1,0 +1,12 @@
+std = "selene/awesome"
+
+[rules]
+global_usage = "allow"
+if_same_then_else = "allow"
+incorrect_standard_library_use = "allow"
+mixed_table = "allow"
+multiple_statements = "allow"
+empty_if = "allow"
+
+[config]
+awesome.any = true

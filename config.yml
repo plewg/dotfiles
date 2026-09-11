@@ -33,6 +33,7 @@ shell.values:
 
 link-cleanup:
   - ~/.config/alacritty
+  - ~/.config/somewm
   - ~/.config/gh
   - ~/.config/git
   - ~/.config/mise

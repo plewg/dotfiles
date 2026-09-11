@@ -42,6 +42,10 @@ files:
 #   - extra/age
 #   - extra/perl-image-exiftool
 #   - extra/wl-clipboard
+#   - extra/brightnessctl
+#   - extra/wireplumber
+#   - extra/grim
+#   - extra/slurp
 #
 #   # frontend
 #   - plasma
