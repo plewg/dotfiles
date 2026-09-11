@@ -282,7 +282,6 @@ return {
         config = function()
             local null_ls = require("null-ls")
             null_ls.setup({
-                debug = true,
                 sources = {
                     require("none-ls-shellcheck.code_actions").with({
                         extra_filetypes = { "zsh" },

@@ -5,14 +5,9 @@
 [url "ssh://git@github.com/"]
 	pushInsteadOf = https://github.com/
 [push]
-	default = simple
 	autoSetupRemote = true
 [pull]
 	rebase = true
-[color]
-	branch = auto
-	diff = auto
-	ui = true
 [rerere]
 	enabled = true
 [init]
@@ -28,8 +23,6 @@
 	pager = delta
 [include]
 	path = ~/.config/git/platform.config
-[branch]
-	autosetupmerge = true
 [fetch]
 	prune = true
 [pretty]
@@ -37,13 +30,13 @@
 	refMono = format:%C(yellow)%h%C(reset) %gs%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
 [diff]
 	renames = copies
-	# tool = meld
+	tool = meld
 	colorMoved = default
 [difftool]
 	prompt = false
 [merge]
-	# tool = meld
-	conflictstyle = diff3
+	tool = meld
+	conflictstyle = zdiff3
 [mergetool]
 	prompt = false
 [interactive]
@@ -91,7 +84,5 @@
 	reset-new = "!git diff --name-only --diff-filter=A | xargs git reset"
 	reset-new-staged = "!git diff --name-only --diff-filter=A --cached | xargs git reset"
 	reset-new-all = "!git diff --name-only --diff-filter=A HEAD | xargs git reset"
-	pr-view = !~/.scripts/gh.sh pr
-	ed = "!$EDITOR"
 	can = !git commit --amend --no-edit
 	browse = "!~/.scripts/git.sh repo"
