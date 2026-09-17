@@ -6,11 +6,7 @@ export PAGER='less'
 export LESS='-R -F'
 export TIMEFMT='Real: %E User: %U System: %S Percent: %P Cmd: %J'
 export CLICOLOR=1 # fixes `ls --color=auto` on macos
-export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
-export PRETTIERD_DEFAULT_CONFIG="${HOME}/.prettierrc.toml"
-export COLORTERM="truecolor"
 export TURBO_TELEMETRY_DISABLED=1
-export TERM="alacritty"
 
 
 # ls colours, created with: https://geoff.greer.fm/lscolors/
@@ -55,7 +51,6 @@ alias tree='tree -a'
 # alias tt='tree -a -I .git'
 alias repo='~/.scripts/git.sh repo'
 alias yml='yq -y . | bat --language=yaml'
-alias ts-node='ts-node-esm -O "{\"isolatedModules\": false, \"esModuleInterop\": true}" -i'
 alias sued='sudo edit'
 alias dns='doggo A AAAA CAA CNAME HINFO LOC MX NS OPENPGPKEY PTR SOA SRV SSHFP TLSA TXT URI'
 alias echol='printf "%s\n"'
@@ -106,21 +101,6 @@ gh() {
 git() {
     # TODO: same as gh, but for `git clone ...`
     command git "$@"
-}
-
-doit() {
-    declare dir="$1"
-    if type grealpath > /dev/null 2>&1; then
-        dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 grealpath --relative-to="$HOME")")"
-    else
-        dir="$(fzf -1 -q "$dir" <<< "$(find "${HOME}/Projects" "${HOME}/Work" "${HOME}/External" -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 realpath --relative-to="$HOME")")"
-    fi
-
-    if [[ "$dir" != "" && -d "${HOME}/${dir}" ]]; then
-        cd "${HOME}/${dir}" || return "$?"
-    else
-        return 1
-    fi
 }
 
 # shared

@@ -30,6 +30,7 @@ return {
                 textwidth = 80,
                 scrolloff = 8,
                 spell = true,
+                spellcapcheck = "",
                 -- spell files: https://ftp.nluug.nl/pub/vim/runtime/spell
                 spelllang = { "en_ca", "en_us" },
                 spelloptions = { "camel" },
@@ -257,11 +258,13 @@ return {
                     function()
                         vim.cmd("!chmod +x %")
                     end,
-                    desc = "chmod +X",
+                    desc = "chmod +x",
                 },
                 -- Keep cursor in centre screen while paging up and down
                 ["<C-d>"] = "<C-d>zz",
+                ["<PageDown>"] = "<C-d>zz",
                 ["<C-u>"] = "<C-u>zz",
+                ["<PageUp>"] = "<C-u>zz",
                 -- Join lines keeping cursor at beginning of line
                 ["J"] = "mzJ`z",
                 -- Keep search results in centre of screen
@@ -269,6 +272,7 @@ return {
                 ["N"] = "Nzzzv",
                 -- Give it back, precious
                 ["<C-x>"] = false,
+                -- project switcher
                 ["<Leader>fp"] = {
                     function()
                         require("snacks").picker.projects({
@@ -282,8 +286,8 @@ return {
             },
             v = {
                 -- Move visual selections up and down
-                ["J"] = ":m '>+1<CR>gv=gv",
-                ["K"] = ":m '<-2<CR>gv=gv",
+                ["J"] = ":m '>+1<CR>gvgv=gv", -- down
+                ["K"] = ":m '<-2<CR>gvgv=gv", -- up
             },
         },
     },
