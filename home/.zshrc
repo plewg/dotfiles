@@ -61,7 +61,7 @@ setopt auto_cd
 setopt auto_push_d
 setopt push_d_ignore_dups
 # - history
-setopt hist_ignore_dups
+setopt hist_ignore_all_dups
 setopt inc_append_history # append to history immediately after running
 setopt hist_expire_dups_first
 setopt hist_reduce_blanks
