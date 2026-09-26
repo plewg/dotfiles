@@ -1,0 +1,127 @@
+#!/usr/bin/env bash
+
+declare -a args
+args=("$@")
+
+declare -a deletions
+# echo "==========================================="
+for ((i = 0; i < $#; i++)); do
+    declare left="${args[$i]}"
+    if [[ ! -d "$left" ]]; then
+        echo "\"${left}\" does not exist"
+        continue
+    fi
+    for ((j = i + 1; j < $#; j++)); do
+        declare right="${args[$j]}"
+        if [[ ! -d "$right" ]]; then
+            echo "\"${right}\" does not exist"
+            continue
+        fi
+
+        if [[ "$(realpath "${left}")" == "$(realpath "${right}")" ]]; then
+            echo "Not comparing directory \"${left}\" to itself"
+            continue
+        fi
+
+        declare result=""
+        if result="$(diff --brief --recursive "$left" "$right")"; then
+            # echo "${result:-Directories are identical}"
+            # echo "\"${right}\" can be deleted"
+            deletions+=("$right")
+            # echo "==========================================="
+        else
+            if [[ "$left" == "$right"* || "$right" == "$left"* ]]; then
+                declare child=""
+                if [[ "$left" == "$right"* ]]; then
+                    child="$right"
+                elif [[ "$right" == "$left"* ]]; then
+                    child="$left"
+                fi
+
+                # If we get any 'Files a and b differ' messages then we know
+                # there's unique content in both sides, and we can move on early
+                if grep -q "^Files.*differ$" <<< "$result"; then
+                    # echo "Differences in both \"${left}\" and \"${right}\""
+                    # echo "==========================================="
+                    continue
+                fi
+
+                # Extract paths of unique files from diff's output
+                declare -a lines
+                readarray -t lines <<< "$(sed -E "s/Only in ('(.*)'|(.*)): .*/\2\3/" <<< "$(grep -v "^Files.*differ$" <<< "$result")")"
+
+                declare -a dirs
+                declare child_has_unique_content="false"
+                for line in "${lines[@]}"; do
+                    # Check if the file exists below the left directory
+                    if [[ "$(realpath --relative-to "$child" "$line")" != "../"* ]]; then
+                        child_has_unique_content="true"
+                        break
+                    fi
+                done
+
+                if [[ "$child_has_unique_content" == "false" ]]; then
+                    # echo "\"${child}\" can be deleted"
+                    deletions+=("$child")
+                    # echo "==========================================="
+                fi
+            else
+                # If we get any 'Files a and b differ' messages then we know
+                # there's unique content in both sides, and we can move on early
+                if grep -q "^Files.*differ$" <<< "$result"; then
+                    # echo "Differences in both \"${left}\" and \"${right}\""
+                    # echo "==========================================="
+                    continue
+                fi
+
+                # Extract paths of unique files from diff's output
+                declare -a lines
+                readarray -t lines <<< "$(sed -E "s/Only in ('(.*)'|(.*)): .*/\2\3/" <<< "$(grep -v "^Files.*differ$" <<< "$result")")"
+
+                declare -a dirs
+                for line in "${lines[@]}"; do
+                    # Check if the file exists below the left directory
+                    if [[ "$(realpath --relative-to "$left" "$line")" != "../"* ]]; then
+                        dirs+=("$left")
+                    # Check if the file exists below the right directory
+                    elif [[ "$(realpath --relative-to "$right" "$line")" != "../"* ]]; then
+                        dirs+=("$right")
+                    else
+                        echo "Unreachable: ${line} is not within ${left} or ${right}"
+                    fi
+                done
+
+                declare -a top_dirs
+                readarray -t top_dirs <<< "$(printf '%s\n' "${dirs[@]}" | sort | uniq)"
+
+                if [[ "${#top_dirs[@]}" == "1" ]]; then
+                    if [[ "${top_dirs[0]}" == "$left" ]]; then
+                        # echo "\"${right}\" can be deleted"
+                        deletions+=("$right")
+                    elif [[ "${top_dirs[0]}" == "$right" ]]; then
+                        # echo "\"${left}\" can be deleted"
+                        deletions+=("$left")
+                    else
+                        echo "${top_dirs[@]}"
+                        echo "${#top_dirs[@]}"
+                        echo "Unreachable: math is hard"
+                    fi
+                    # else
+                    # echo "Differences in both \"${left}\" and \"${right}\""
+                fi
+                # echo "==========================================="
+            fi
+        fi
+    done
+done
+
+readarray -t dirs_to_delete <<< "$(printf '%s\n' "${deletions[@]}" | sort | uniq)"
+if [[ "${dirs_to_delete[0]}" != "" ]]; then
+    echo "SUMMARY:"
+    for dir in "${dirs_to_delete[@]}"; do
+        echo "Delete \"${dir}\"?"
+        rm --recursive --force --interactive=once "$dir"
+    done
+else
+    echo "No deletions"
+fi

@@ -68,7 +68,7 @@ setopt hist_reduce_blanks
 setopt extended_history  # record timestamp of command in HISTFILE
 setopt hist_ignore_space # ignore commands that start with space
 setopt hist_verify       # show command with history expansion to user before running it
-setopt share_history     # share command history data between all open shells
+# setopt share_history     # share command history data between all open shells
 # - completions
 setopt list_packed         # Make the completion list smaller by printing the matches in columns with different widths
 setopt no_complete_aliases # NOTE: despite the name, this actually enables aliases to be auto-completed as though it were the full command.
@@ -95,6 +95,7 @@ precmd_functions+=(_dotfiles_precmd)
 # Key Bindings
 # NOTE: run `bindkey` to see all keybindings
 bindkey -e # emacs
+bindkey '^R' history-incremental-search-backward
 # NOTE:
 # - get keybinding codes with: $ showkey -a
 # - print terminfo with: $ infocmp -1
